@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import TopNavBar from "./TopNavBar";
 import { Layout as AntLayout } from "antd";
-import Login from "../../Login/LogIn";
+import Login from "../screens/Login/LogIn";
 import styled from "styled-components";
 
 const { Content } = AntLayout;
@@ -14,15 +14,13 @@ const Layout = () => {
       {/* {!user ? (
         <Login />
       ) : ( */}
-      <div>
-        <TopNavBar />
-        <StyledMain>
-          <Sidebar />
-          <StyledContent>
-            <Outlet />
-          </StyledContent>
-        </StyledMain>
-      </div>
+      <TopNavBar />
+      <StyledMain>
+        <Sidebar />
+        <StyledContent>
+          <Outlet />
+        </StyledContent>
+      </StyledMain>
       {/* )} */}
     </>
   );

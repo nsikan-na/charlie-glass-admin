@@ -2,7 +2,7 @@ import { Layout, Menu, MenuProps } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import _ from "lodash";
-import { menuItems } from "../../../routing/menuItems";
+import { menuItems } from "../routing/menuItems";
 import styled from "styled-components";
 
 const { Sider } = Layout;
