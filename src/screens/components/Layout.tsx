@@ -14,9 +14,9 @@ const Layout = () => {
 
   return (
     <>
-      {!user ? (
+      {/* {!user ? (
         <Login />
-      ) : (
+      ) : ( */}
         <div>
           <TopNavBar />
           <StyledMain>
@@ -26,7 +26,7 @@ const Layout = () => {
             </StyledContent>
           </StyledMain>
         </div>
-      )}
+      {/* )} */}
     </>
   );
 };
