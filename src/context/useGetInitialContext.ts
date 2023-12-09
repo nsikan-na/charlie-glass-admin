@@ -1,3 +1,5 @@
-export const useGetInitialContext = () => {
+const useGetInitialContext = () => {
   return {};
 };
+
+export default useGetInitialContext;

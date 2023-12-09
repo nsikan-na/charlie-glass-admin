@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { routes } from "./routing/routes";
-import { Context } from "./context";
-import { useGetInitialContext } from "./context/useGetInitialContext";
+import Context from "./context/Context";
+import useGetInitialContext from "./context/useGetInitialContext";
 
 const queryClient = new QueryClient();
 

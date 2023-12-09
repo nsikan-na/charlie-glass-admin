@@ -10,12 +10,7 @@ type TProps = {
 export const menuItems: TProps = [
   {
     icon: UserOutlined,
-    label: "Reports",
     path: "/",
-  },
-  {
-    icon: UserOutlined,
-    label: "Dynamic Table",
-    path: "/dynamic-table",
+    label: "Invoice",
   },
 ];

@@ -1,17 +1,16 @@
 import Login from "../screens/Login/LogIn";
-import Layout from "../screens/components/Layout";
-import DynamicTable from "../screens/dynamic-table/DynamicTable";
-import ReportsDashboard from "../screens/reports/Reports/Reports";
+import Layout from "../screens/components/ant-design/Layout";
+import Invoice from "../screens/invoice/Invoice";
 
 export const routes = [
   {
     path: "/",
     element: <Layout />,
     children: [
-      // {
-      //   path: "/",
-      //   element: <ReportsDashboard />,
-      // },
+      {
+        path: "/",
+        element: <Invoice />,
+      },
       // {
       //   path: "/dynamic-table",
       //   element: <DynamicTable />,
