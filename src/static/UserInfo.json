@@ -1,0 +1,9 @@
+{
+  "userId": 6,
+  "userName": "Adminstrator NROADMIN",
+  "userBusiness": "NROTB",
+  "roleId": 1,
+  "userInitials": "nra",
+  "expirationMs": 3600000,
+  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJucm9hZG1pbiIsImlhdCI6MTY5MjkyNzkzOSwiZXhwIjoxNjkyOTMxNTM5fQ.Q0HL5XtjMhh-XC0E1gdyZresm-z9yPC6wwQHi3aO8c8"
+}
