@@ -4,29 +4,27 @@ import TopNavBar from "./TopNavBar";
 import { Layout as AntLayout } from "antd";
 import { Context } from "../../context";
 import { useContext } from "react";
-import Login from "../LogIn";
+import Login from "../Login/LogIn";
 import styled from "styled-components";
 
 const { Content } = AntLayout;
 
 const Layout = () => {
-  const { user } = useContext(Context);
-
   return (
     <>
-      {!user ? (
+      {/* {!user ? (
         <Login />
-      ) : (
-        <div>
-          <TopNavBar />
-          <StyledMain>
-            <Sidebar />
-            <StyledContent>
-              <Outlet />
-            </StyledContent>
-          </StyledMain>
-        </div>
-      )}
+      ) : ( */}
+      <div>
+        <TopNavBar />
+        <StyledMain>
+          <Sidebar />
+          <StyledContent>
+            <Outlet />
+          </StyledContent>
+        </StyledMain>
+      </div>
+      {/* )} */}
     </>
   );
 };

@@ -1,25 +1,16 @@
 import { Layout } from "antd";
-import { useContext } from "react";
-import { Context } from "../../context";
 import styled from "styled-components";
 
 const { Header } = Layout;
 
 const TopNavBar = () => {
-  const { user, setUser } = useContext(Context);
-
-  const handleLogoutClicked = () => {
-    setUser(null);
-    localStorage.removeItem("user");
-  };
-
   return (
     <StyledHeader>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <LogoStyled>Das Light</LogoStyled>
+        <LogoStyled>Charlie Glass Admin</LogoStyled>
         <div>
-          <UserNameStyled>{user?.userName}</UserNameStyled>
-          <LogoutStyled onClick={handleLogoutClicked}>Log Out</LogoutStyled>
+          <UserNameStyled>Admin</UserNameStyled>
+          <LogoutStyled>Log Out</LogoutStyled>
         </div>
       </div>
     </StyledHeader>

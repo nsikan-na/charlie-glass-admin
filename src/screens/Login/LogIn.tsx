@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../context";
+import { Context } from "../../context";
 import { Button, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import Input from "./components/Input";
+import Input from "../components/Input";
 import { useQueryClient } from "react-query";
-import login from "../api/login/useLogin";
+import login from "../../api/login/useLogin";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
