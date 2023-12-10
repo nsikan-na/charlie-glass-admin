@@ -1,6 +1,6 @@
-import Login from "../screens/Login/LogIn";
-import Layout from "../layout/Layout";
+import Login from "../screens/login/LogIn";
 import Invoice from "../screens/invoice/Invoice";
+import Layout from "../layout/Layout";
 
 export const routes = [
   {

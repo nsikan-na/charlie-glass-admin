@@ -26,6 +26,7 @@ const LogoStyled = styled.div`
   margin: 0 1rem 0 0;
   font-size: 2rem;
   font-weight: bold;
+  cursor: pointer;
 `;
 const UserNameStyled = styled.span`
   margin: 0 1rem 0 0;

@@ -1,9 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import TopNavBar from "./TopNavBar";
 import { Layout as AntLayout } from "antd";
-import Login from "../screens/Login/LogIn";
 import styled from "styled-components";
+import TopNavBar from "./TopNavBar";
 
 const { Content } = AntLayout;
 
