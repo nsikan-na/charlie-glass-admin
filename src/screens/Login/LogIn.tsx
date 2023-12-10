@@ -1,39 +1,14 @@
 import { Button, Form } from "antd";
-import Input from "../components/ant-design/Input";
+import styled from "styled-components";
+import Input from "../components/Input";
 
 const Login: React.FC = () => {
   return (
-    <div
-      style={{
-        backgroundColor: "lightgray",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "5rem",
-          borderRadius: "5%",
-          backgroundColor: "rgba(255,255,255,0.9)",
-        }}
-      >
+    <BackgroundDiv>
+      <LoginDiv>
         <div style={{ margin: "auto" }}>
           <Form>
-            <div
-              style={{
-                textAlign: "center",
-                fontSize: "2rem",
-                margin: ".75rem 0",
-              }}
-            >
-              Log In
-            </div>
-            <div>Username</div>
+            <LoginLabel>Log In</LoginLabel>
             <Input autoComplete="username" />
             <div style={{ margin: "1rem 0" }}>
               <div>Password</div>
@@ -44,9 +19,32 @@ const Login: React.FC = () => {
             </div>
           </Form>
         </div>
-      </div>
-    </div>
+      </LoginDiv>
+    </BackgroundDiv>
   );
 };
 
 export default Login;
+
+const BackgroundDiv = styled.div`
+  background-color: lightgray;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LoginDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+  border-radius: 5%;
+  background-color: rgba(255, 255, 255, 0.9);
+`;
+
+const LoginLabel = styled.div`
+  text-align: center;
+  font-size: 2rem;
+  margin: 0.75rem 0;
+`;

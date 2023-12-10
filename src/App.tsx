@@ -1,19 +1,13 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { routes } from "./routing/routes";
-import Context from "./context/Context";
-import useGetInitialContext from "./context/useGetInitialContext";
-
-const queryClient = new QueryClient();
-
-const router = createBrowserRouter(routes);
+import { Context, useInitialStore } from "./context";
 
 function App() {
-  const initialContext = useGetInitialContext();
   return (
-    <Context.Provider value={initialContext}>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+    <Context.Provider value={useInitialStore()}>
+      <QueryClientProvider client={new QueryClient()}>
+        <RouterProvider router={createBrowserRouter(routes)} />
       </QueryClientProvider>
     </Context.Provider>
   );
