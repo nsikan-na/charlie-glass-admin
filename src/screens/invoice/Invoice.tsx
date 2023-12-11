@@ -6,7 +6,26 @@ import { Card, Space } from "antd";
 import CardComponent from "./InvoiceCard";
 
 const Invoice = (): JSX.Element => {
-  const test = [1, 2, 3, 4, 5, 6, 7, 8, 89, 10];
+  const invoices = [
+    {
+      date: "2000-02-21",
+      name: "Shawn Montgomery",
+      services: ["Glass", "Storefront", "Mirror", "x", "y", "z", "a"],
+      invoiceNumber: 12345,
+    },
+    {
+      date: "1999-07-22",
+      name: "Nsikan Kpan",
+      services: ["Glass", "Storefront", "Mirror"],
+      invoiceNumber: 54321,
+    },
+    {
+      date: "2006-10-99",
+      name: "Jon Vaylin",
+      services: ["Glass", "Storefront"],
+      invoiceNumber: 434341,
+    },
+  ];
 
   return (
     <div>
@@ -38,8 +57,8 @@ const Invoice = (): JSX.Element => {
           // gridTemplateRows: "400px",
         }}
       >
-        {test.map((card) => (
-          <CardComponent />
+        {invoices.map((invoice) => (
+          <CardComponent invoice={invoice} />
         ))}
       </div>
     </div>
