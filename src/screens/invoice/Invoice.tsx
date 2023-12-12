@@ -1,34 +1,28 @@
 import { Input } from "antd";
 import styled from "styled-components";
-import styles from "./Invoice.module.css";
 import { Button } from "antd";
 import { Card, Space } from "antd";
-import CardComponent from "./InvoiceCard";
+import InvoiceCard from "./InvoiceCard";
+import InvoiceModal from "./InvoiceModal";
+import { useState } from "react";
 
 const Invoice = (): JSX.Element => {
-  const invoices = [
-    {
-      date: "2000-02-21",
-      name: "Shawn Montgomery",
-      services: ["Glass", "Storefront", "Mirror", "x", "y", "z", "a"],
-      invoiceNumber: 12345,
-    },
-    {
-      date: "1999-07-22",
-      name: "Nsikan Kpan",
-      services: ["Glass", "Storefront", "Mirror"],
-      invoiceNumber: 54321,
-    },
-    {
-      date: "2006-10-99",
-      name: "Jon Vaylin",
-      services: ["Glass", "Storefront"],
-      invoiceNumber: 434341,
-    },
-  ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div>
+      <InvoiceModal closeModal={closeModal} isModalOpen={isModalOpen} />
       <div
         style={{
           display: "flex",
@@ -58,7 +52,7 @@ const Invoice = (): JSX.Element => {
         }}
       >
         {invoices.map((invoice) => (
-          <CardComponent invoice={invoice} />
+          <InvoiceCard showModal={showModal} invoice={invoice} />
         ))}
       </div>
     </div>
@@ -86,5 +80,49 @@ const NewBtn = styled(Button)`
   /* height: 50px;
   width: 120px; */
 `;
+const invoices = [
+  {
+    date: "2000-02-21",
+    name: "Shawn Montgomery",
+    services: ["Glass", "Storefront", "Mirror", "x", "y", "z", "a"],
+    invoiceNumber: 12345,
+  },
+  {
+    date: "1999-07-22",
+    name: "Nsikan Kpan",
+    services: ["Glass", "Storefront", "Mirror"],
+    invoiceNumber: 54321,
+  },
+  {
+    date: "2006-10-99",
+    name: "Jon Vaylin",
+    services: ["Glass", "Storefront"],
+    invoiceNumber: 434341,
+  },
+  {
+    date: "2006-10-99",
+    name: "Jon Vaylin",
+    services: ["Glass", "Storefront"],
+    invoiceNumber: 434341,
+  },
+  {
+    date: "2006-10-99",
+    name: "Jon Vaylin",
+    services: ["Glass", "Storefront"],
+    invoiceNumber: 434341,
+  },
+  {
+    date: "2006-10-99",
+    name: "Jon Vaylin",
+    services: ["Glass", "Storefront"],
+    invoiceNumber: 434341,
+  },
+  {
+    date: "2006-10-99",
+    name: "Jon Vaylin",
+    services: ["Glass", "Storefront"],
+    invoiceNumber: 434341,
+  },
+];
 
 export default Invoice;

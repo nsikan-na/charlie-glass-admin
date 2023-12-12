@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { Card, Space } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
+import { Button, Modal } from "antd";
+import { useState } from "react";
+import InvoiceModal from "./InvoiceModal";
 
-export default function CardComponent({ invoice }: any) {
-  console.log(invoice);
-
+export default function InvoiceCard({ invoice, showModal }: any) {
   return (
-    <Space direction="vertical" size={20}>
+    <div>
+      <></>
       <Card
         //   key={uniqueId()}
         style={{ width: 350, margin: ".5rem 1rem" }}
@@ -16,11 +18,10 @@ export default function CardComponent({ invoice }: any) {
           </div>
         }
         actions={[
-          <CaretRightOutlined style={{ fontSize: "1.5rem" }} />,
-          // <PlayCircleOutlined
-          //   style={{ fontSize: "1.5rem" }}
-          //   onClick={() => showModal(item)}
-          // />,
+          <CaretRightOutlined
+            onClick={showModal}
+            style={{ fontSize: "1.5rem" }}
+          />,
         ]}
       >
         <div>
@@ -29,7 +30,7 @@ export default function CardComponent({ invoice }: any) {
               //   display: "flex",
               textAlign: "center",
               width: "100%",
-              height: "15rem",
+              height: "6rem",
               //   backgroundColor: "red",
             }}
           >
@@ -38,8 +39,9 @@ export default function CardComponent({ invoice }: any) {
             <div
               style={{
                 display: "grid",
-                backgroundColor: "red",
-
+                // backgroundColor: "red",
+                justifyContent: "center",
+                marginTop: "1rem",
                 gridTemplateColumns: "4rem 4rem 4rem",
               }}
             >
@@ -50,6 +52,6 @@ export default function CardComponent({ invoice }: any) {
           </div>
         </div>
       </Card>
-    </Space>
+    </div>
   );
 }
