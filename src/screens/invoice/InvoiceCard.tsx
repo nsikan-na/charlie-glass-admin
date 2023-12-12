@@ -3,7 +3,7 @@ import { Card, Space } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import InvoiceModal from "./InvoiceModal";
+import InvoiceModal from "../modals/InvoiceModal";
 
 export default function InvoiceCard({ invoice, showModal }: any) {
   return (

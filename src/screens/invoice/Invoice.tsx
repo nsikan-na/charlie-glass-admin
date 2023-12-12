@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Button } from "antd";
 import { Card, Space } from "antd";
 import InvoiceCard from "./InvoiceCard";
-import InvoiceModal from "./InvoiceModal";
+import InvoiceModal from "../modals/InvoiceModal";
 import { useState } from "react";
 
 const Invoice = (): JSX.Element => {
