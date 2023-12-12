@@ -13,14 +13,14 @@ export const routes = [
         path: "/",
         element: <Invoice />,
       },
-      {
-        path: "/pdf",
-        element: <PdfTemplate />,
-      },
-      {
-        path: "download",
-        element: <PDfDownloadButton />,
-      },
+      // {
+      //   path: "/pdf",
+      //   element: <PdfTemplate />,
+      // },
+      // {
+      //   path: "download",
+      //   element: <PDfDownloadButton />,
+      // },
       // {
       //   path: "/dynamic-table",
       //   element: <DynamicTable />,
