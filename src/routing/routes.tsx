@@ -14,14 +14,6 @@ export const routes = [
         element: <Invoice />,
       },
       // {
-      //   path: "/pdf",
-      //   element: <PdfTemplate />,
-      // },
-      // {
-      //   path: "download",
-      //   element: <PDfDownloadButton />,
-      // },
-      // {
       //   path: "/dynamic-table",
       //   element: <DynamicTable />,
       // },

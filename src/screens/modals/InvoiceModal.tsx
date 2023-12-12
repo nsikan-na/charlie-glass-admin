@@ -1,11 +1,13 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
+import PdfTemplate from "../../util/pdf/PdfTemplate";
 
 export default function InvoiceModal({ isModalOpen, closeModal }: any) {
   return (
     <Modal
       title="Basic Modal"
       open={isModalOpen}
+      width={"90%"}
       // onOk={handleOk}
       onCancel={closeModal}
       footer={() => {
@@ -18,9 +20,7 @@ export default function InvoiceModal({ isModalOpen, closeModal }: any) {
         );
       }}
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <PdfTemplate />
     </Modal>
   );
 }
