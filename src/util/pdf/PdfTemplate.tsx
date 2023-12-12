@@ -11,7 +11,7 @@ const PdfTemplate = () => {
   return (
     <PDFViewer style={{ width: "100%", height: "70vh" }} >
       <Document>
-        <Page size={"A3"}>
+        <Page size={"A4"}>
           <View style={{ padding: 40 }}>
             <View
               style={{
