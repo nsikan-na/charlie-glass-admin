@@ -9,7 +9,7 @@ import {
 
 const PdfTemplate = () => {
   return (
-    <PDFViewer style={{ width: "100%", height: "70vh" }} showToolbar={false}>
+    <PDFViewer style={{ width: "100%", height: "70vh" }} >
       <Document>
         <Page size={"A3"}>
           <View style={{ padding: 40 }}>
