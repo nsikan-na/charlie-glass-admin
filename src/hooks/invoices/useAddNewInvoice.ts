@@ -10,7 +10,7 @@ const useAddNewInvoice = () => {
 
   return useMutation({
     mutationFn: async () =>
-      await axios.post(`${EBaseUrl.CGI_API}/api/v1/invoices/5/add`, myBody),
+      await axios.post(`${EBaseUrl.CGI_API}/api/v1/invoices/6/add`, myBody),
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET_ALL_INVOICES] });

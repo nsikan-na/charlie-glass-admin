@@ -11,7 +11,7 @@ const useGetInvoiceById = ({ invoiceId }: TProps) => {
   return useQuery({
     queryKey: [EQueryKey.GET_INVOICE_BY_ID],
     queryFn: async () =>
-      await axios.get(`${EBaseUrl.CGI_API}/api/v1/invoices/5/${invoiceId}`, {
+      await axios.get(`${EBaseUrl.CGI_API}/api/v1/invoices/6/${invoiceId}`, {
         headers: {
           "Content-Type": "application/json",
         },

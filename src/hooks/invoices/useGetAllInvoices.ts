@@ -7,7 +7,7 @@ const useGetAllInvoices = () => {
   return useQuery({
     queryKey: [EQueryKey.GET_ALL_INVOICES],
     queryFn: async () =>
-      await axios.get(`${EBaseUrl.CGI_API}/api/v1/invoices/5`, {
+      await axios.get(`${EBaseUrl.CGI_API}/api/v1/invoices/6`, {
         headers: {
           "Content-Type": "application/json",
         },
