@@ -6,10 +6,33 @@ import {
   Document,
   PDFViewer,
 } from "@react-pdf/renderer";
+import { useContext } from "react";
+import { Context } from "../../context";
 
 const PdfTemplate = () => {
+  const {
+    companyDetails: {
+      email,
+      phoneNumber,
+      street: companyStreet,
+      state: companyState,
+      city: companyCity,
+      zip: companyZip,
+    },
+  } = useContext(Context);
+
+  const {
+    id: invoice_id,
+    cart,
+    receiver_name,
+    date_of_invoice,
+    street,
+    city,
+    state,
+    zip,
+  } = dataset;
   return (
-    <PDFViewer style={{ width: "100%", height: "70vh" }} >
+    <PDFViewer style={{ width: "100%", height: "60vh" }}>
       <Document>
         <Page size={"A4"}>
           <View style={{ padding: 40 }}>
@@ -22,13 +45,28 @@ const PdfTemplate = () => {
             >
               <View style={{ flex: 3 }}>
                 <Text style={{ fontSize: 40 }}>INVOICE</Text>
-                <View>
-                  <Text>326 50th Street</Text>
-                  <Text>(718)-765-0087</Text>
-                  <Text>chalieglassinc@gmail.com</Text>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text>{companyStreet}</Text>
+                  <Text>{phoneNumber}</Text>
+                </View>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text>{`${companyCity}, ${companyState} ${companyZip}`}</Text>
+                  <Text>{email}</Text>
                 </View>
               </View>
-              <View style={{ flex: 1 }}>
+              <View style={{ flex: 1.5 }}>
                 <Image src="/logo2.png" style={{ width: "100%" }} />
               </View>
             </View>
@@ -40,28 +78,23 @@ const PdfTemplate = () => {
                 margin: "15 0",
               }}
             >
-              <View>
-                <Text>Bill To</Text>
-                <Text>Mr. Nick Tsoukalas</Text>
-                <Text>330 7th Ave Unit 83</Text>
-                <Text>New York, New York</Text>
-                <Text>Manhattan</Text>
-                <Text>10001</Text>
-                <Text>United States</Text>
+              <View style={{ flex: 4 }}>
+                <Text>Ship To:</Text>
+                <Text>{receiver_name}</Text>
+                <Text>{street}</Text>
+                <Text>
+                  {city}, {state}
+                </Text>
+                <Text>{zip}, United States</Text>
               </View>
-              <View>
-                <Text>Ship To</Text>
-                <Text>Mr. Nick Tsoukalas</Text>
-                <Text>N&A General Contruction Corp.</Text>
-                <Text>330 7th Ave Unit 83</Text>
-                <Text>New York, New York, Manhattan</Text>
-                <Text>10001, United States</Text>
+
+              <View style={{ flex: 1 }}>
+                <Text>Invoice No.</Text>
+                <Text>Invoice Date</Text>
               </View>
-              <View>
-                <Text>Invoice No. 1010</Text>
-                <Text>Invoice Date 2023-03-16</Text>
-                <Text>Terms Net 30</Text>
-                <Text>Due Date 2023-04-15</Text>
+              <View style={{ flex: 1 }}>
+                <Text>{invoice_id}</Text>
+                <Text>{date_of_invoice}</Text>
               </View>
             </View>
             <View style={{ margin: "15 0" }}>
@@ -72,11 +105,12 @@ const PdfTemplate = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Text style={{ flex: 5 }}>Product</Text>
+                <Text style={{ flex: 1 }}>S.No.</Text>
+                <Text style={{ flex: 3 }}>Product</Text>
                 <Text style={{ flex: 1 }}>Quantity</Text>
                 <Text style={{ flex: 1 }}>Price</Text>
               </View>
-              {dataset.cart.map(({ description, price, quantity }) => (
+              {cart.map(({ description, price, quantity }: any, idx) => (
                 <View
                   style={{
                     display: "flex",
@@ -84,32 +118,25 @@ const PdfTemplate = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <Text style={{ flex: 5 }}>{description}</Text>
+                  <Text style={{ flex: 1 }}>{idx + 1}.</Text>
+                  <Text style={{ flex: 3 }}>{description}</Text>
                   <Text style={{ flex: 1 }}>{quantity}</Text>
                   <Text style={{ flex: 1 }}>{`$${price}`}</Text>
                 </View>
               ))}
             </View>
-            <View style={{ margin: "15 0" }}>
-              {[
-                { label: "Subtotal", amount: 59.44 },
-                { label: "Sales Tax", amount: 5.42 },
-                { label: "TOTAL", amount: 64.86 },
-              ].map(({ label, amount }) => (
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                  }}
-                >
-                  <Text style={{ flex: 5 }}></Text>
-                  <Text style={{ flex: 1 }}>{label}</Text>
-                  <Text style={{ flex: 1 }}>{`$${amount}`}</Text>
-                </View>
-              ))}
+            <View
+              style={{
+                margin: "15 0",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Text style={{ flex: 4 }}></Text>
+              <Text style={{ flex: 1 }}>Total</Text>
+              <Text style={{ flex: 1 }}>$64.86</Text>
             </View>
-
             <View
               style={{
                 display: "flex",
@@ -119,7 +146,6 @@ const PdfTemplate = () => {
               }}
             >
               <Text>Thank you for your business.</Text>
-              <Text>Payment is due within 15 days</Text>
             </View>
           </View>
         </Page>
