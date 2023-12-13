@@ -8,6 +8,7 @@ import {
 } from "@react-pdf/renderer";
 import { useContext } from "react";
 import { Context } from "../../context";
+import { formatDate } from "../helpers";
 
 const PdfTemplate = () => {
   const {
@@ -25,7 +26,7 @@ const PdfTemplate = () => {
     id: invoice_id,
     cart,
     receiver_name,
-    date_of_invoice,
+    creation_date,
     street,
     city,
     state,
@@ -41,33 +42,34 @@ const PdfTemplate = () => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
+                marginBottom: "30",
               }}
             >
-              <View style={{ flex: 3 }}>
+              <View style={{ flex: 3, fontSize: 9 }}>
                 <Text style={{ fontSize: 40 }}>INVOICE</Text>
                 <View
                   style={{
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
+                    flex: 1,
                   }}
                 >
-                  <Text>{companyStreet}</Text>
-                  <Text>{phoneNumber}</Text>
+                  <Text>{`${companyStreet}                   ${phoneNumber}`}</Text>
                 </View>
                 <View
                   style={{
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
+                    flex: 1,
                   }}
                 >
-                  <Text>{`${companyCity}, ${companyState} ${companyZip}`}</Text>
-                  <Text>{email}</Text>
+                  <Text>{`${companyCity}, ${companyState} ${companyZip}        ${email}`}</Text>
                 </View>
               </View>
-              <View style={{ flex: 1.5 }}>
-                <Image src="/logo2.png" style={{ width: "100%" }} />
+              <View style={{ flex: 2 }}>
+                <Image src="/logo2.png" style={{ width: "90%" }} />
               </View>
             </View>
             <View
@@ -75,42 +77,32 @@ const PdfTemplate = () => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                margin: "15 0",
+                margin: "30 0",
               }}
             >
-              <View style={{ flex: 4 }}>
-                <Text>Ship To:</Text>
-                <Text>{receiver_name}</Text>
-                <Text>{street}</Text>
-                <Text>
+              <View style={{ flex: 4, fontSize: 12 }}>
+                <Text style={{ margin: "5 0" }}>Ship To:</Text>
+                <Text style={{ margin: "5 0" }}>{receiver_name}</Text>
+                <Text style={{ margin: "5 0" }}>{street}</Text>
+                <Text style={{ margin: "5 0" }}>
                   {city}, {state}
                 </Text>
-                <Text>{zip}, United States</Text>
+                <Text style={{ margin: "5 0" }}>{zip}, United States</Text>
               </View>
 
-              <View style={{ flex: 1 }}>
-                <Text>Invoice No.</Text>
-                <Text>Invoice Date</Text>
+              <View style={{ flex: 1, fontSize: 12 }}>
+                <Text style={{ margin: "5 0" }}>Invoice #</Text>
+                <Text style={{ margin: "5 0" }}>Invoice Date</Text>
               </View>
-              <View style={{ flex: 1 }}>
-                <Text>{invoice_id}</Text>
-                <Text>{date_of_invoice}</Text>
+              <View style={{ flex: 1, fontSize: 12 }}>
+                <Text style={{ margin: "5 0" }}>{invoice_id}</Text>
+                <Text style={{ margin: "5 0" }}>
+                  {formatDate(creation_date)}
+                </Text>
               </View>
             </View>
-            <View style={{ margin: "15 0" }}>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Text style={{ flex: 1 }}>S.No.</Text>
-                <Text style={{ flex: 3 }}>Product</Text>
-                <Text style={{ flex: 1 }}>Quantity</Text>
-                <Text style={{ flex: 1 }}>Price</Text>
-              </View>
-              {cart.map(({ description, price, quantity }: any, idx) => (
+            <View style={{ margin: "30 0" }}>
+              <View style={{ margin: "10 0", fontSize: 12 }}>
                 <View
                   style={{
                     display: "flex",
@@ -118,34 +110,53 @@ const PdfTemplate = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <Text style={{ flex: 1 }}>{idx + 1}.</Text>
-                  <Text style={{ flex: 3 }}>{description}</Text>
-                  <Text style={{ flex: 1 }}>{quantity}</Text>
-                  <Text style={{ flex: 1 }}>{`$${price}`}</Text>
+                  <Text style={{ flex: 1, margin: "10 0" }}>S.No.</Text>
+                  <Text style={{ flex: 3, margin: "10 0" }}>Product</Text>
+                  <Text style={{ flex: 1, margin: "10 0" }}>Quantity</Text>
+                  <Text style={{ flex: 1, margin: "10 0" }}>Price</Text>
                 </View>
-              ))}
-            </View>
-            <View
-              style={{
-                margin: "15 0",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-end",
-              }}
-            >
-              <Text style={{ flex: 4 }}></Text>
-              <Text style={{ flex: 1 }}>Total</Text>
-              <Text style={{ flex: 1 }}>$64.86</Text>
+                {cart.map(({ description, price, quantity }: any, idx) => (
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Text style={{ flex: 1, margin: "5 0" }}>{idx + 1}.</Text>
+                    <Text style={{ flex: 3, margin: "5 0" }}>
+                      {description}
+                    </Text>
+                    <Text style={{ flex: 1, margin: "5 0" }}>{quantity}</Text>
+                    <Text
+                      style={{ flex: 1, margin: "5 0" }}
+                    >{`$${price}`}</Text>
+                  </View>
+                ))}
+              </View>
+              <View
+                style={{
+                  margin: "10 0",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  fontSize: 12,
+                }}
+              >
+                <Text style={{ flex: 4 }}></Text>
+                <Text style={{ flex: 1 }}>Total</Text>
+                <Text style={{ flex: 1 }}>$64.86</Text>
+              </View>
             </View>
             <View
               style={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                margin: "15 0",
+                marginTop: "150",
               }}
             >
-              <Text>Thank you for your business.</Text>
+              <Text style={{ fontSize: 10 }}>Thank you for your business.</Text>
             </View>
           </View>
         </Page>
@@ -160,7 +171,7 @@ const dataset = {
   id: 135,
   user_id: 4,
   receiver_name: "Jon Snow",
-  date_of_invoice: "2023-12-11T00:00:00.000Z",
+  creation_date: "2023-12-11T00:00:00.000Z",
   street: "456 Oak St",
   city: "Townsville",
   state: "NY",
