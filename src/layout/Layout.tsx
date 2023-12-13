@@ -15,7 +15,7 @@ const Layout = () => {
       ) : ( */}
       <TopNavBar />
       <StyledMain>
-        <Sidebar />
+        {/* <Sidebar /> */}
         <StyledContent>
           <Outlet />
         </StyledContent>
