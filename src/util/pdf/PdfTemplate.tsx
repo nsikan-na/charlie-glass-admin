@@ -36,7 +36,7 @@ const PdfTemplate = () => {
     <PDFViewer style={{ width: "100%", height: "60vh" }}>
       <Document>
         <Page size={"A4"}>
-          <View style={{ padding: 40 }}>
+          <View style={{ padding: 50 }}>
             <View
               style={{
                 display: "flex",
@@ -45,8 +45,8 @@ const PdfTemplate = () => {
                 marginBottom: "30",
               }}
             >
-              <View style={{ flex: 3, fontSize: 9 }}>
-                <Text style={{ fontSize: 40 }}>INVOICE</Text>
+              <View style={{ flex: 3, fontSize: 10 }}>
+                <Text style={{ fontSize: 35 }}>INVOICE</Text>
                 <View
                   style={{
                     display: "flex",
@@ -108,29 +108,51 @@ const PdfTemplate = () => {
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
+                    margin: "5 0",
                   }}
                 >
-                  <Text style={{ flex: 1, margin: "10 0" }}>S.No.</Text>
-                  <Text style={{ flex: 3, margin: "10 0" }}>Product</Text>
-                  <Text style={{ flex: 1, margin: "10 0" }}>Quantity</Text>
-                  <Text style={{ flex: 1, margin: "10 0" }}>Price</Text>
+                  <Text style={{ flex: 1 }}>S.No.</Text>
+                  <Text style={{ flex: 3 }}>Product</Text>
+                  <Text style={{ flex: 1 }}>Quantity</Text>
+                  <Text style={{ flex: 1 }}>Price</Text>
+                </View>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text
+                    style={{ flex: 6 }}
+                  >{`_______________________________________________________________________`}</Text>
                 </View>
                 {cart.map(({ description, price, quantity }: any, idx) => (
-                  <View
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Text style={{ flex: 1, margin: "5 0" }}>{idx + 1}.</Text>
-                    <Text style={{ flex: 3, margin: "5 0" }}>
-                      {description}
-                    </Text>
-                    <Text style={{ flex: 1, margin: "5 0" }}>{quantity}</Text>
-                    <Text
-                      style={{ flex: 1, margin: "5 0" }}
-                    >{`$${price}`}</Text>
+                  <View>
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        margin: "5 0",
+                      }}
+                    >
+                      <Text style={{ flex: 1 }}>{idx + 1}.</Text>
+                      <Text style={{ flex: 3 }}>{description}</Text>
+                      <Text style={{ flex: 1 }}>{quantity}</Text>
+                      <Text style={{ flex: 1 }}>{`$${price}`}</Text>
+                    </View>
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Text
+                        style={{ flex: 6 }}
+                      >{`_______________________________________________________________________`}</Text>
+                    </View>
                   </View>
                 ))}
               </View>
@@ -153,7 +175,7 @@ const PdfTemplate = () => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                marginTop: "150",
+                marginTop: "100",
               }}
             >
               <Text style={{ fontSize: 10 }}>Thank you for your business.</Text>
