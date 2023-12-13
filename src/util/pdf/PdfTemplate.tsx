@@ -45,10 +45,10 @@ const PdfTemplate = () => {
                 minWidth: "100%",
                 minHeight: "100%",
                 display: "flex",
-                marginTop: "20vh",
+                marginTop: "25vh",
                 alignSelf: "center",
-                height: "35%",
-                width: "70%",
+                height: "15%",
+                width: "50%",
                 opacity: 0.05,
               }}
             />
