@@ -35,7 +35,7 @@ const PdfTemplate = () => {
   } = dataset;
   return (
     <PDFViewer style={{ width: "100%", height: "60vh" }}>
-      <Document>
+      <Document title={`Invoice #${invoice_id}`}>
         <Page size={"A4"}>
           <View style={{ paddingTop: 70, paddingLeft: 50 }}>
             <Image
