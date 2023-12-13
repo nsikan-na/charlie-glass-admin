@@ -37,7 +37,7 @@ const PdfTemplate = () => {
     <PDFViewer style={{ width: "100%", height: "60vh" }}>
       <Document>
         <Page size={"A4"}>
-          <View style={{ padding: 50 }}>
+          <View style={{ paddingTop: 70, paddingLeft: 50 }}>
             <Image
               src="titleicon.png"
               style={{
@@ -45,8 +45,10 @@ const PdfTemplate = () => {
                 minWidth: "100%",
                 minHeight: "100%",
                 display: "flex",
-                height: "50%",
-                width: "60%",
+                marginTop: "20vh",
+                alignSelf: "center",
+                height: "35%",
+                width: "70%",
                 opacity: 0.05,
               }}
             />
@@ -188,7 +190,7 @@ const PdfTemplate = () => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                marginTop: "100",
+                marginTop: "70",
               }}
             >
               <Text style={{ fontSize: 10 }}>Thank you for your business.</Text>
