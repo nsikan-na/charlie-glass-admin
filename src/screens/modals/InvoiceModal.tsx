@@ -4,7 +4,6 @@ import PdfTemplate from "../../util/pdf/PdfTemplate";
 export default function InvoiceModal({ isModalOpen, closeModal }: any) {
   return (
     <Modal
-      title="Basic Modal"
       open={isModalOpen}
       width={"60%"}
       onCancel={closeModal}

@@ -126,7 +126,7 @@ const PdfTemplate = () => {
                     margin: "5 0",
                   }}
                 >
-                  <Text style={{ flex: 1 }}>S.No.</Text>
+                  <Text style={{ flex: 1 }}></Text>
                   <Text style={{ flex: 3 }}>Product</Text>
                   <Text style={{ flex: 1 }}>Quantity</Text>
                   <Text style={{ flex: 1 }}>Price</Text>
