@@ -6,7 +6,8 @@ export default function InvoiceModal({ isModalOpen, closeModal }: any) {
     <Modal
       title="Basic Modal"
       open={isModalOpen}
-      width={"90%"}
+      width={"62.5%"}
+      style={{ overflowX: "hidden" }}
       onCancel={closeModal}
       footer={() => {
         return (
