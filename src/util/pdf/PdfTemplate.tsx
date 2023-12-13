@@ -5,6 +5,7 @@ import {
   Image,
   Document,
   PDFViewer,
+  StyleSheet,
 } from "@react-pdf/renderer";
 import { useContext } from "react";
 import { Context } from "../../context";
@@ -37,6 +38,18 @@ const PdfTemplate = () => {
       <Document>
         <Page size={"A4"}>
           <View style={{ padding: 50 }}>
+            <Image
+              src="titleicon.png"
+              style={{
+                position: "absolute",
+                minWidth: "100%",
+                minHeight: "100%",
+                display: "flex",
+                height: "50%",
+                width: "60%",
+                opacity: 0.05,
+              }}
+            />
             <View
               style={{
                 display: "flex",
@@ -124,7 +137,7 @@ const PdfTemplate = () => {
                   }}
                 >
                   <Text
-                    style={{ flex: 6 }}
+                    style={{ flex: 6, color: "lightgray" }}
                   >{`_______________________________________________________________________`}</Text>
                 </View>
                 {cart.map(({ description, price, quantity }: any, idx) => (
@@ -150,7 +163,7 @@ const PdfTemplate = () => {
                       }}
                     >
                       <Text
-                        style={{ flex: 6 }}
+                        style={{ flex: 6, color: "lightgray" }}
                       >{`_______________________________________________________________________`}</Text>
                     </View>
                   </View>
