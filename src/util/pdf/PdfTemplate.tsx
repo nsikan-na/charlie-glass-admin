@@ -5,31 +5,86 @@ import {
   Image,
   Document,
   PDFViewer,
+  StyleSheet,
 } from "@react-pdf/renderer";
+import { useContext } from "react";
+import { Context } from "../../context";
+import { formatDate } from "../helpers";
 
 const PdfTemplate = () => {
+  const {
+    companyDetails: {
+      email,
+      phoneNumber,
+      street: companyStreet,
+      state: companyState,
+      city: companyCity,
+      zip: companyZip,
+    },
+  } = useContext(Context);
+
+  const {
+    id: invoice_id,
+    cart,
+    receiver_name,
+    creation_date,
+    street,
+    city,
+    state,
+    zip,
+  } = dataset;
   return (
-    <PDFViewer style={{ width: "100%", height: "70vh" }} >
-      <Document>
+    <PDFViewer style={{ width: "100%", height: "60vh" }}>
+      <Document title={`Invoice #${invoice_id}`}>
         <Page size={"A4"}>
-          <View style={{ padding: 40 }}>
+          <View style={{ paddingTop: 70, paddingLeft: 50 }}>
+            <Image
+              src="titleicon.png"
+              style={{
+                position: "absolute",
+                minWidth: "100%",
+                minHeight: "100%",
+                display: "flex",
+                marginTop: "25vh",
+                alignSelf: "center",
+                height: "15%",
+                width: "50%",
+                opacity: 0.05,
+              }}
+            />
             <View
               style={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
+                marginBottom: "30",
               }}
             >
-              <View style={{ flex: 3 }}>
-                <Text style={{ fontSize: 40 }}>INVOICE</Text>
-                <View>
-                  <Text>326 50th Street</Text>
-                  <Text>(718)-765-0087</Text>
-                  <Text>chalieglassinc@gmail.com</Text>
+              <View style={{ flex: 3, fontSize: 10 }}>
+                <Text style={{ fontSize: 35 }}>INVOICE</Text>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    flex: 1,
+                  }}
+                >
+                  <Text>{`${companyStreet}                   ${phoneNumber}`}</Text>
+                </View>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    flex: 1,
+                  }}
+                >
+                  <Text>{`${companyCity}, ${companyState} ${companyZip}        ${email}`}</Text>
                 </View>
               </View>
-              <View style={{ flex: 1 }}>
-                <Image src="/logo2.png" style={{ width: "100%" }} />
+              <View style={{ flex: 2 }}>
+                <Image src="/logo2.png" style={{ width: "90%" }} />
               </View>
             </View>
             <View
@@ -37,46 +92,45 @@ const PdfTemplate = () => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                margin: "15 0",
+                margin: "30 0",
               }}
             >
-              <View>
-                <Text>Bill To</Text>
-                <Text>Mr. Nick Tsoukalas</Text>
-                <Text>330 7th Ave Unit 83</Text>
-                <Text>New York, New York</Text>
-                <Text>Manhattan</Text>
-                <Text>10001</Text>
-                <Text>United States</Text>
+              <View style={{ flex: 4, fontSize: 12 }}>
+                <Text style={{ margin: "5 0" }}>Ship To:</Text>
+                <Text style={{ margin: "5 0" }}>{receiver_name}</Text>
+                <Text style={{ margin: "5 0" }}>{street}</Text>
+                <Text style={{ margin: "5 0" }}>
+                  {city}, {state}
+                </Text>
+                <Text style={{ margin: "5 0" }}>{zip}, United States</Text>
               </View>
-              <View>
-                <Text>Ship To</Text>
-                <Text>Mr. Nick Tsoukalas</Text>
-                <Text>N&A General Contruction Corp.</Text>
-                <Text>330 7th Ave Unit 83</Text>
-                <Text>New York, New York, Manhattan</Text>
-                <Text>10001, United States</Text>
+
+              <View style={{ flex: 1, fontSize: 12 }}>
+                <Text style={{ margin: "5 0" }}>Invoice #</Text>
+                <Text style={{ margin: "5 0" }}>Invoice Date</Text>
               </View>
-              <View>
-                <Text>Invoice No. 1010</Text>
-                <Text>Invoice Date 2023-03-16</Text>
-                <Text>Terms Net 30</Text>
-                <Text>Due Date 2023-04-15</Text>
+              <View style={{ flex: 1, fontSize: 12 }}>
+                <Text style={{ margin: "5 0" }}>{invoice_id}</Text>
+                <Text style={{ margin: "5 0" }}>
+                  {formatDate(creation_date)}
+                </Text>
               </View>
             </View>
-            <View style={{ margin: "15 0" }}>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Text style={{ flex: 5 }}>Product</Text>
-                <Text style={{ flex: 1 }}>Quantity</Text>
-                <Text style={{ flex: 1 }}>Price</Text>
-              </View>
-              {dataset.cart.map(({ description, price, quantity }) => (
+            <View style={{ margin: "30 0" }}>
+              <View style={{ margin: "10 0", fontSize: 12 }}>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    margin: "5 0",
+                  }}
+                >
+                  <Text style={{ flex: 1 }}></Text>
+                  <Text style={{ flex: 3 }}>Product</Text>
+                  <Text style={{ flex: 1 }}>Quantity</Text>
+                  <Text style={{ flex: 1 }}>Price</Text>
+                </View>
                 <View
                   style={{
                     display: "flex",
@@ -84,42 +138,62 @@ const PdfTemplate = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <Text style={{ flex: 5 }}>{description}</Text>
-                  <Text style={{ flex: 1 }}>{quantity}</Text>
-                  <Text style={{ flex: 1 }}>{`$${price}`}</Text>
+                  <Text
+                    style={{ flex: 6, color: "lightgray" }}
+                  >{`_______________________________________________________________________`}</Text>
                 </View>
-              ))}
+                {cart.map(({ description, price, quantity }: any, idx) => (
+                  <View>
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        margin: "5 0",
+                      }}
+                    >
+                      <Text style={{ flex: 1 }}>{idx + 1}.</Text>
+                      <Text style={{ flex: 3 }}>{description}</Text>
+                      <Text style={{ flex: 1 }}>{quantity}</Text>
+                      <Text style={{ flex: 1 }}>{`$${price}`}</Text>
+                    </View>
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Text
+                        style={{ flex: 6, color: "lightgray" }}
+                      >{`_______________________________________________________________________`}</Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+              <View
+                style={{
+                  margin: "10 0",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  fontSize: 12,
+                }}
+              >
+                <Text style={{ flex: 4 }}></Text>
+                <Text style={{ flex: 1 }}>Total</Text>
+                <Text style={{ flex: 1 }}>$64.86</Text>
+              </View>
             </View>
-            <View style={{ margin: "15 0" }}>
-              {[
-                { label: "Subtotal", amount: 59.44 },
-                { label: "Sales Tax", amount: 5.42 },
-                { label: "TOTAL", amount: 64.86 },
-              ].map(({ label, amount }) => (
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                  }}
-                >
-                  <Text style={{ flex: 5 }}></Text>
-                  <Text style={{ flex: 1 }}>{label}</Text>
-                  <Text style={{ flex: 1 }}>{`$${amount}`}</Text>
-                </View>
-              ))}
-            </View>
-
             <View
               style={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                margin: "15 0",
+                marginTop: "70",
               }}
             >
-              <Text>Thank you for your business.</Text>
-              <Text>Payment is due within 15 days</Text>
+              <Text style={{ fontSize: 10 }}>Thank you for your business.</Text>
             </View>
           </View>
         </Page>
@@ -134,7 +208,7 @@ const dataset = {
   id: 135,
   user_id: 4,
   receiver_name: "Jon Snow",
-  date_of_invoice: "2023-12-11T00:00:00.000Z",
+  creation_date: "2023-12-11T00:00:00.000Z",
   street: "456 Oak St",
   city: "Townsville",
   state: "NY",

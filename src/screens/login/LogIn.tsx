@@ -1,6 +1,6 @@
 import { Button, Form } from "antd";
 import styled from "styled-components";
-import Input from "../components/Input";
+import Input from "../components/ant-design/Input";
 
 const Login: React.FC = () => {
   return (

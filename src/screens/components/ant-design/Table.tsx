@@ -1,11 +1,20 @@
-import { Table as AntTable } from "antd";
+import { Table as AntTable, TableProps } from "antd";
 import styled from "styled-components";
 import _ from "lodash";
-const Table = ({ dataSource: data, ...props }: any) => {
-  const dataSource = data.map((item: any) => ({
+
+interface AntTableProps<T> extends TableProps<T> {
+  dataSource: T[];
+}
+
+const Table = <T extends object>({
+  dataSource: data,
+  ...props
+}: AntTableProps<T>) => {
+  const dataSource = data.map((item) => ({
     ...item,
     key: _.uniqueId(),
   }));
+
   return (
     <StyledTable
       size="small"
