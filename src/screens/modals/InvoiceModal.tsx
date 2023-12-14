@@ -16,7 +16,7 @@ export default function InvoiceModal({ isModalOpen, closeModal }: any) {
         );
       }}
     >
-      <PdfTemplate />
+      {/* <PdfTemplate data={} /> */}
     </Modal>
   );
 }

@@ -5,13 +5,13 @@ import {
   Image,
   Document,
   PDFViewer,
-  StyleSheet,
 } from "@react-pdf/renderer";
 import { useContext } from "react";
 import { Context } from "../../context";
 import { formatDate } from "../helpers";
+import { TGetInvoiceByIdResponse } from "../../hooks/invoices/useGetInvoiceById";
 
-const PdfTemplate = () => {
+const PdfTemplate = (data: TGetInvoiceByIdResponse) => {
   const {
     companyDetails: {
       email,
@@ -28,11 +28,12 @@ const PdfTemplate = () => {
     cart,
     receiver_name,
     creation_date,
-    street,
-    city,
-    state,
-    zip,
-  } = dataset;
+    receiver_street,
+    receiver_city,
+    receiver_state,
+    receiver_zip,
+  } = data;
+
   return (
     <PDFViewer style={{ width: "100%", height: "60vh" }}>
       <Document title={`Invoice #${invoice_id}`}>
@@ -98,11 +99,13 @@ const PdfTemplate = () => {
               <View style={{ flex: 4, fontSize: 12 }}>
                 <Text style={{ margin: "5 0" }}>Ship To:</Text>
                 <Text style={{ margin: "5 0" }}>{receiver_name}</Text>
-                <Text style={{ margin: "5 0" }}>{street}</Text>
+                <Text style={{ margin: "5 0" }}>{receiver_street}</Text>
                 <Text style={{ margin: "5 0" }}>
-                  {city}, {state}
+                  {receiver_city}, {receiver_state}
                 </Text>
-                <Text style={{ margin: "5 0" }}>{zip}, United States</Text>
+                <Text style={{ margin: "5 0" }}>
+                  {receiver_zip}, United States
+                </Text>
               </View>
 
               <View style={{ flex: 1, fontSize: 12 }}>
@@ -142,7 +145,7 @@ const PdfTemplate = () => {
                     style={{ flex: 6, color: "lightgray" }}
                   >{`_______________________________________________________________________`}</Text>
                 </View>
-                {cart.map(({ description, price, quantity }: any, idx) => (
+                {cart.map(({ description, price, quantity }, idx: number) => (
                   <View>
                     <View
                       style={{
@@ -203,50 +206,3 @@ const PdfTemplate = () => {
 };
 
 export default PdfTemplate;
-
-const dataset = {
-  id: 135,
-  user_id: 4,
-  receiver_name: "Jon Snow",
-  creation_date: "2023-12-11T00:00:00.000Z",
-  street: "456 Oak St",
-  city: "Townsville",
-  state: "NY",
-  zip: "54321",
-  cart: [
-    {
-      cart_item_id: 81,
-      description: "Product C",
-      quantity: 3,
-      price: "9.99",
-    },
-    {
-      cart_item_id: 82,
-      description: "Product A",
-      quantity: 3,
-      price: "9.99",
-    },
-    {
-      cart_item_id: 81,
-      description: "Product C",
-      quantity: 3,
-      price: "9.99",
-    },
-    {
-      cart_item_id: 82,
-      description: "Product A",
-      quantity: 3,
-      price: "9.99",
-    },
-  ],
-  services: [
-    {
-      service_id: 27,
-      service_label: "Service D",
-    },
-    {
-      service_id: 28,
-      service_label: "Service E",
-    },
-  ],
-};
