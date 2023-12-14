@@ -1,12 +1,14 @@
 import { Input } from "antd";
 import styled from "styled-components";
 import { Button } from "antd";
-import { Card, Space } from "antd";
 import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/InvoiceModal";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Invoice = (): JSX.Element => {
+  const [invoices, setInvoices] = useState(invoices1);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -17,9 +19,6 @@ const Invoice = (): JSX.Element => {
     setIsModalOpen(false);
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
   return (
     <div>
       <InvoiceModal closeModal={closeModal} isModalOpen={isModalOpen} />
@@ -34,7 +33,9 @@ const Invoice = (): JSX.Element => {
           <DateInput />
           <NameInput />
         </div>
-        <NewBtn type="primary">New</NewBtn>
+        <Link to="createnewinvoice">
+          <NewBtn type="primary">New</NewBtn>
+        </Link>
       </div>
 
       <div
@@ -80,49 +81,6 @@ const NewBtn = styled(Button)`
   /* height: 50px;
   width: 120px; */
 `;
-const invoices = [
-  {
-    date: "2000-02-21",
-    name: "Shawn Montgomery",
-    services: ["Glass", "Storefront", "Mirror", "x", "y", "z", "a"],
-    invoiceNumber: 12345,
-  },
-  {
-    date: "1999-07-22",
-    name: "Nsikan Kpan",
-    services: ["Glass", "Storefront", "Mirror"],
-    invoiceNumber: 54321,
-  },
-  {
-    date: "2006-10-99",
-    name: "Jon Vaylin",
-    services: ["Glass", "Storefront"],
-    invoiceNumber: 434341,
-  },
-  {
-    date: "2006-10-99",
-    name: "Jon Vaylin",
-    services: ["Glass", "Storefront"],
-    invoiceNumber: 434341,
-  },
-  {
-    date: "2006-10-99",
-    name: "Jon Vaylin",
-    services: ["Glass", "Storefront"],
-    invoiceNumber: 434341,
-  },
-  {
-    date: "2006-10-99",
-    name: "Jon Vaylin",
-    services: ["Glass", "Storefront"],
-    invoiceNumber: 434341,
-  },
-  {
-    date: "2006-10-99",
-    name: "Jon Vaylin",
-    services: ["Glass", "Storefront"],
-    invoiceNumber: 434341,
-  },
-];
+export const invoices1 = [];
 
 export default Invoice;
