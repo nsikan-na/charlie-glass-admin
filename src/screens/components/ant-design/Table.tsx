@@ -16,7 +16,8 @@ const Table = <T extends object>({
   }));
 
   return (
-    <StyledTable
+    <AntTable
+      className=""
       size="small"
       dataSource={dataSource}
       scroll={{
@@ -27,7 +28,5 @@ const Table = <T extends object>({
     />
   );
 };
-
-const StyledTable = styled(AntTable)``;
 
 export default Table;

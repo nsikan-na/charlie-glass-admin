@@ -1,14 +1,13 @@
 import { Button, Form } from "antd";
-import styled from "styled-components";
 import Input from "../components/ant-design/Input";
 
 const Login: React.FC = () => {
   return (
-    <BackgroundDiv>
-      <LoginDiv>
+    <div className="bg-gray-300 h-screen flex justify-center items-center">
+      <div className="flex justify-center items-center p-20 rounded-lg bg-white bg-opacity-90">
         <div style={{ margin: "auto" }}>
           <Form>
-            <LoginLabel>Log In</LoginLabel>
+            <div className="text-center text-2xl my-3">Log In</div>
             <Input autoComplete="username" />
             <div style={{ margin: "1rem 0" }}>
               <div>Password</div>
@@ -19,32 +18,9 @@ const Login: React.FC = () => {
             </div>
           </Form>
         </div>
-      </LoginDiv>
-    </BackgroundDiv>
+      </div>
+    </div>
   );
 };
 
 export default Login;
-
-const BackgroundDiv = styled.div`
-  background-color: lightgray;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const LoginDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem;
-  border-radius: 5%;
-  background-color: rgba(255, 255, 255, 0.9);
-`;
-
-const LoginLabel = styled.div`
-  text-align: center;
-  font-size: 2rem;
-  margin: 0.75rem 0;
-`;

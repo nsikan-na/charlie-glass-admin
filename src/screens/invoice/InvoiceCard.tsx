@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { Card, Space } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd";
