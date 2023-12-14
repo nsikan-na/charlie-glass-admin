@@ -1,11 +1,13 @@
 import { Input as AntInput } from "antd";
 import { InputProps } from "antd/lib/input";
 interface AntInputProps extends InputProps {
-  text?: string;
+  label?: string;
 }
 
-const Input = ({ text, ...props }: AntInputProps) => {
-  return <AntInput allowClear {...props} className="w-48" />;
+const Input = ({ label, ...props }: AntInputProps) => {
+  return (
+    <AntInput addonBefore={label} allowClear {...props} className="w-60" />
+  );
 };
 
 export default Input;

@@ -1,9 +1,10 @@
-import { Input, Button } from "antd";
+import { Button } from "antd";
 import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/InvoiceModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
+import Input from "../components/ant-design/Input";
 
 const Invoice = (): JSX.Element => {
   const [invoices, setInvoices] = useState([]);
@@ -22,9 +23,12 @@ const Invoice = (): JSX.Element => {
     <div>
       <InvoiceModal closeModal={closeModal} isModalOpen={isModalOpen} />
       <div className="flex justify-between m-4">
-        <div>
-          <Input className="w-64 " />
-          <Input className="w-64  ml-8" />
+        <div className="w-full">
+          <Input label="Invoice #" className="inline " />
+          <span className="mx-8">
+            <Input label="Name" className=" inline" />
+          </span>
+          <Input label="Date" className="inline " />
         </div>
         <Link to={ERoute.CREATE_INVOICE}>
           <Button>New</Button>
