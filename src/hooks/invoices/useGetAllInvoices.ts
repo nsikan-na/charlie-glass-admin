@@ -5,11 +5,11 @@ import { EBaseUrl } from "../baseUrl";
 import { useContext } from "react";
 import { Context } from "../../context";
 
-const useGetAllInvoices = (params: TGetAllInvoicesRequestParams) => {
+const useGetAllInvoices = () => {
   const { user } = useContext(Context);
   return useQuery({
     queryKey: [EQueryKey.GET_ALL_INVOICES],
-    queryFn: async () =>
+    queryFn: async (params: any) =>
       await axios.get<TGetAllInvoicesResponse>(
         `${EBaseUrl.CGI_API}/api/v1/invoices/${user?.id}`,
         {
