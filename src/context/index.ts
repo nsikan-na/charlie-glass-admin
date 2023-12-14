@@ -2,6 +2,9 @@ import { createContext } from "react";
 
 export const useInitialStore = () => {
   return {
+    user: {
+      id: 6,
+    },
     companyDetails: {
       name: "Charlie Glass Inc",
       phoneNumber: "(917)-848-9128",
@@ -15,25 +18,21 @@ export const useInitialStore = () => {
 };
 
 export const Context = createContext<TContextProps>({
-  companyDetails: {
-    name: null,
-    phoneNumber: null,
-    street: null,
-    city: null,
-    state: null,
-    zip: null,
-    email: null,
-  },
+  user: null,
+  companyDetails: null,
 });
 
 type TContextProps = {
   companyDetails: {
-    name: string | null;
-    phoneNumber: string | null;
-    street: string | null;
-    city: string | null;
-    state: string | null;
-    zip: string | null;
-    email: string | null;
-  };
+    name: string;
+    phoneNumber: string;
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+    email: string;
+  } | null;
+  user: {
+    id: number;
+  } | null;
 };
