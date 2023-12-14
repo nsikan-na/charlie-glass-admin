@@ -25,8 +25,9 @@ const Invoice = (): JSX.Element => {
           <Input className="w-64 " />
           <Input className="w-64  ml-8" />
         </div>
-        <Link to="createnewinvoice"></Link>
-        <Button>New</Button>
+        <Link to="createnewinvoice">
+          <Button>New</Button>
+        </Link>
       </div>
 
       <div className="flex flex-wrap justify-between items-center overflow-y-scroll h-3/4 p-6 my-4">
