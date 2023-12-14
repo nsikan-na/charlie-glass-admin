@@ -1,5 +1,4 @@
 import { Button as AntButton, ButtonProps } from "antd";
-import styled from "styled-components";
 
 interface AntButtonProps extends ButtonProps {}
 

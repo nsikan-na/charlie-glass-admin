@@ -1,5 +1,4 @@
 import { Input } from "antd";
-import styled from "styled-components";
 import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
 import { Button } from "antd";
@@ -73,13 +72,10 @@ export default function InvoiceServicesInput({
           </Checkbox.Group>
         </div>
         <div style={{ justifySelf: "center" }}>
-          <AddItemBtn onClick={showModal} type="primary">
-            + Add Item
-          </AddItemBtn>
+          <Button onClick={showModal}>+ Add Item</Button>
         </div>
         <div style={{ justifySelf: "end" }}>
           <Button
-            type="primary"
             style={{ marginRight: "10rem" }}
             onClick={() => {
               add.mutate(invoice);
@@ -92,8 +88,6 @@ export default function InvoiceServicesInput({
     </>
   );
 }
-
-const AddItemBtn = styled(Button)``;
 
 const services = [
   { id: 22, label: "ServiceA" },

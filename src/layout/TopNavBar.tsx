@@ -1,36 +1,21 @@
 import { Layout } from "antd";
-import styled from "styled-components";
 
 const { Header } = Layout;
 
 const TopNavBar = () => {
   return (
-    <StyledHeader>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <LogoStyled>Charlie Glass Admin</LogoStyled>
+    <Header className="text-white">
+      <div className="flex justify-between">
+        <div className="mr-4 mt-3 text-2xl font-bold cursor-pointer">
+          Charlie Glass Admin
+        </div>
         <div>
-          <UserNameStyled>Admin</UserNameStyled>
-          <LogoutStyled>Log Out</LogoutStyled>
+          <span className="mr-4">Admin</span>
+          <span className="cursor-pointer">Log Out</span>
         </div>
       </div>
-    </StyledHeader>
+    </Header>
   );
 };
 
 export default TopNavBar;
-
-const StyledHeader = styled(Header)`
-  color: white;
-`;
-const LogoStyled = styled.div`
-  margin: 0 1rem 0 0;
-  font-size: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-`;
-const UserNameStyled = styled.span`
-  margin: 0 1rem 0 0;
-`;
-const LogoutStyled = styled.span`
-  cursor: pointer;
-`;

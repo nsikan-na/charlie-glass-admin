@@ -1,5 +1,4 @@
 import { Table as AntTable, TableProps } from "antd";
-import styled from "styled-components";
 import _ from "lodash";
 
 interface AntTableProps<T> extends TableProps<T> {

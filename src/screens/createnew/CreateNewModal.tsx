@@ -1,8 +1,5 @@
 import { Button, Modal, Input } from "antd";
-import styled from "styled-components";
-import { invoices1 } from "../invoice/Invoice";
-import { useEffect, useRef, useState } from "react";
-import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
+import { useState } from "react";
 
 export default function CreateNewInvoiceModal({
   closeModal,
@@ -22,7 +19,6 @@ export default function CreateNewInvoiceModal({
       price,
     };
     setCart((cart: any) => [cartObj, ...cart]);
-    console.log(cartItems);
   }
 
   return (
@@ -36,31 +32,28 @@ export default function CreateNewInvoiceModal({
         open={isModalOpen}
         footer={() => {
           return (
-            <div>
+            <div className="flex">
               <Button onClick={closeModal}>Cancel</Button>
               <Button onClick={handleSave}>Save</Button>
             </div>
           );
         }}
       >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateRows: "5rem 3rem 3rem",
-            gap: "1rem",
-          }}
-        >
-          <DescriptionInput
+        <div className="grid grid-rows-3 gap-4">
+          <Input
+            className="w-1/2"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <QuanityInput
+          <Input
+            className="w-1/5"
             placeholder="Quantity"
             value={quantity}
             onChange={(e) => setQuantity(+e.target.value)}
           />
-          <PriceInput
+          <Input
+            className="w-1/5"
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -71,16 +64,6 @@ export default function CreateNewInvoiceModal({
   );
 }
 
-const DescriptionInput = styled(Input)`
-  width: 50%;
-`;
-
-const QuanityInput = styled(Input)`
-  width: 20%;
-`;
-const PriceInput = styled(Input)`
-  width: 20%;
-`;
 const myBody = {
   receiver_name: "Juice Wrld",
   street: "456 Oak St",

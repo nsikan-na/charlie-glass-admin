@@ -2,7 +2,6 @@ import { Layout, Menu, MenuProps } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import _ from "lodash";
-import styled from "styled-components";
 import { menuItems } from "../routing/menuItems";
 
 const { Sider } = Layout;
@@ -27,13 +26,9 @@ const Sidebar = () => {
 
   return (
     <Sider>
-      <StyledMenu mode="inline" items={items} />
+      <Menu mode="inline" items={items} className="h-full" />
     </Sider>
   );
 };
 
 export default Sidebar;
-
-const StyledMenu = styled(Menu)`
-  height: 100%;
-`;

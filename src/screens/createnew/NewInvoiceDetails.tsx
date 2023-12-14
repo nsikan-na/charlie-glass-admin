@@ -1,5 +1,3 @@
-import styled from "styled-components";
-import Input from "antd/es/input/Input";
 import { useEffect, useState } from "react";
 
 export default function InvoiceDetailsInput({ setInvoice }: any) {
@@ -18,53 +16,35 @@ export default function InvoiceDetailsInput({ setInvoice }: any) {
 
   return (
     <>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateRows: "4rem 4rem",
-          //   backgroundColor: "red",
-          //   justifyContent: "center",
-        }}
-      >
-        <NameInput
+      <div className="grid grid-rows-2 gap-4">
+        <input
+          className="w-48 h-12"
           placeholder="Name"
           onChange={handleInputChange("receiver_name")}
         />
-        <StreetInput
+        <input
+          className="w-80 h-12"
           placeholder="Street"
           onChange={handleInputChange("street")}
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <LocationInput
+      <div className="flex justify-between">
+        <input
+          className="w-32 h-12"
           placeholder="City"
           onChange={handleInputChange("city")}
         />
-        <LocationInput
+        <input
+          className="w-32 h-12"
           placeholder="State"
           onChange={handleInputChange("state")}
         />
-        <LocationInput placeholder="Zip" onChange={handleInputChange("zip")} />
+        <input
+          className="w-32 h-12"
+          placeholder="Zip"
+          onChange={handleInputChange("zip")}
+        />
       </div>
     </>
   );
 }
-
-const NameInput = styled(Input)`
-  width: 12rem;
-  height: 3rem;
-`;
-const StreetInput = styled(Input)`
-  width: 20rem;
-  height: 3rem;
-`;
-
-const LocationInput = styled(Input)`
-  width: 10rem;
-  height: 3rem;
-`;

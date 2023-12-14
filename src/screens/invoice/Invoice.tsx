@@ -1,13 +1,11 @@
-import { Input } from "antd";
-import styled from "styled-components";
-import { Button } from "antd";
+import { Input, Button } from "antd";
 import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/InvoiceModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Invoice = (): JSX.Element => {
-  const [invoices, setInvoices] = useState(invoices1);
+  const [invoices, setInvoices] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -22,36 +20,16 @@ const Invoice = (): JSX.Element => {
   return (
     <div>
       <InvoiceModal closeModal={closeModal} isModalOpen={isModalOpen} />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "1rem 2rem",
-        }}
-      >
+      <div className="flex justify-between m-4">
         <div>
-          <DateInput />
-          <NameInput />
+          <Input className="w-64 " />
+          <Input className="w-64  ml-8" />
         </div>
-        <Link to="createnewinvoice">
-          <NewBtn type="primary">New</NewBtn>
-        </Link>
+        <Link to="createnewinvoice"></Link>
+        <Button>New</Button>
       </div>
 
-      <div
-        className="cardcontainer"
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          alignItems: "center",
-          overflowY: "scroll",
-          height: "75vh",
-          padding: "1.5rem 1rem",
-          margin: "1rem 0",
-          // gridTemplateRows: "400px",
-        }}
-      >
+      <div className="flex flex-wrap justify-between items-center overflow-y-scroll h-3/4 p-6 my-4">
         {invoices.map((invoice) => (
           <InvoiceCard showModal={showModal} invoice={invoice} />
         ))}
@@ -59,28 +37,5 @@ const Invoice = (): JSX.Element => {
     </div>
   );
 };
-
-const DateInput = styled(Input)`
-  width: 250px;
-  color: red;
-  /* margin-left: 80px; */
-`;
-
-const NameInput = styled(Input)`
-  width: 250px;
-  color: red;
-  margin-left: 2rem;
-`;
-// const DateInput = styled(Input)`
-//   width: 250px;
-//   color: red;
-// `;
-
-const NewBtn = styled(Button)`
-  /* justify-self: center; */
-  /* height: 50px;
-  width: 120px; */
-`;
-export const invoices1 = [];
 
 export default Invoice;
