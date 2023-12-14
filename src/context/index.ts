@@ -14,14 +14,26 @@ export const useInitialStore = () => {
   };
 };
 
-export const Context = createContext({
+export const Context = createContext<TContextProps>({
   companyDetails: {
-    name: "",
-    phoneNumber: "",
-    street: "",
-    city: "",
-    state: "",
-    zip: "",
-    email: "",
+    name: null,
+    phoneNumber: null,
+    street: null,
+    city: null,
+    state: null,
+    zip: null,
+    email: null,
   },
 });
+
+type TContextProps = {
+  companyDetails: {
+    name: string | null;
+    phoneNumber: string | null;
+    street: string | null;
+    city: string | null;
+    state: string | null;
+    zip: string | null;
+    email: string | null;
+  };
+};

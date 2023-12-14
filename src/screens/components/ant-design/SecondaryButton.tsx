@@ -1,7 +1,9 @@
-import { Button as AntButton } from "antd";
+import { Button as AntButton, ButtonProps } from "antd";
 import styled from "styled-components";
 
-const Button = ({ ...props }: any) => {
+interface AntButtonProps extends ButtonProps {}
+
+const Button = ({ ...props }: AntButtonProps) => {
   return <SecondaryButton {...props} />;
 };
 export default Button;
