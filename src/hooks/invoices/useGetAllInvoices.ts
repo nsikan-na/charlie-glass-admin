@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { EQueryKey } from "../util/queryKey";
-import { EBaseUrl } from "../util/baseUrl";
+import { EQueryKey } from "../queryKey";
+import { EBaseUrl } from "../baseUrl";
 import { useContext } from "react";
 import { Context } from "../../context";
 
@@ -25,7 +25,7 @@ const useGetAllInvoices = (params: TGetAllInvoicesRequestParams) => {
 export default useGetAllInvoices;
 
 export type TGetAllInvoicesRequestParams = {
-  invoice_id: number;
+  invoice_id?: number;
   name?: string;
   fromDate?: string;
   toDate?: string;

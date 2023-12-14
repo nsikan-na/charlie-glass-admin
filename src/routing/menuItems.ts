@@ -1,16 +1,17 @@
 import { UserOutlined } from "@ant-design/icons";
+import { ERoute } from "./helpers";
 
 type TProps = {
   icon: any;
   label: string;
-  path?: string;
+  path?: ERoute;
   submenu?: { label: string; path: string }[];
 }[];
 
 export const menuItems: TProps = [
   {
     icon: UserOutlined,
-    path: "/",
+    path: ERoute.INVOICE,
     label: "Invoice",
   },
 ];

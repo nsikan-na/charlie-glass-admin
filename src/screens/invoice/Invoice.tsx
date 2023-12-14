@@ -3,6 +3,7 @@ import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/InvoiceModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ERoute } from "../../routing/helpers";
 
 const Invoice = (): JSX.Element => {
   const [invoices, setInvoices] = useState([]);
@@ -25,7 +26,7 @@ const Invoice = (): JSX.Element => {
           <Input className="w-64 " />
           <Input className="w-64  ml-8" />
         </div>
-        <Link to="createnewinvoice">
+        <Link to={ERoute.CREATE_INVOICE}>
           <Button>New</Button>
         </Link>
       </div>

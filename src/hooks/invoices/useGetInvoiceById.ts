@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { EQueryKey } from "../util/queryKey";
-import { EBaseUrl } from "../util/baseUrl";
+import { EQueryKey } from "../queryKey";
+import { EBaseUrl } from "../baseUrl";
 import { Context } from "../../context";
 import { useContext } from "react";
 import { TGetAllInvoicesResponse } from "./useGetAllInvoices";

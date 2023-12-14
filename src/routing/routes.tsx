@@ -3,28 +3,33 @@ import Layout from "../layout/Layout";
 import CreateNewInvoice from "../screens/createnew/CreateNew";
 
 import Login from "../screens/login/LogIn";
+import { RouteObject } from "react-router";
+import Root from "../layout/Root";
+import { ERoute } from "./helpers";
 
-export const routes = [
+export const routes: RouteObject[] = [
   {
-    path: "/",
+    path: ERoute.ROOT,
     element: <Layout />,
     children: [
       {
-        path: "/",
-        element: <Invoice />,
+        path: ERoute.ROOT,
+        element: <Root />,
       },
       {
-        path: "createnewinvoice",
-        element: <CreateNewInvoice />,
+        path: ERoute.INVOICE,
+        children: [
+          { path: ERoute.INVOICE, element: <Invoice /> },
+          {
+            path: ERoute.CREATE_INVOICE,
+            element: <CreateNewInvoice />,
+          },
+        ],
       },
-      // {
-      //   path: "/dynamic-table",
-      //   element: <DynamicTable />,
-      // },
     ],
   },
   {
-    path: "/login",
+    path: ERoute.LOGIN,
     element: <Login />,
   },
 ];

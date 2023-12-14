@@ -14,7 +14,7 @@ const Layout = () => {
       ) : ( */}
       <TopNavBar />
       <main className="flex">
-        {/* <Sidebar /> */}
+        <Sidebar />
         <Content className="w-4/6">
           <Outlet />
         </Content>
