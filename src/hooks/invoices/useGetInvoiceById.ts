@@ -4,13 +4,14 @@ import { EQueryKey } from "../util/queryKey";
 import { EBaseUrl } from "../util/baseUrl";
 import { Context } from "../../context";
 import { useContext } from "react";
+import { TGetAllInvoicesResponse } from "./useGetAllInvoices";
 
-const useGetInvoiceById = ({ invoiceId }: TGetInvoicesById) => {
+const useGetInvoiceById = ({ invoiceId }: TGetInvoiceByIdRequestParams) => {
   const { user } = useContext(Context);
   return useQuery({
     queryKey: [EQueryKey.GET_INVOICE_BY_ID],
     queryFn: async () =>
-      await axios.get(
+      await axios.get<TGetAllInvoicesResponse>(
         `${EBaseUrl.CGI_API}/api/v1/invoices/${user?.id}/${invoiceId}`,
         {
           headers: {
@@ -30,7 +31,7 @@ export type TCartItem = {
   price: string;
 };
 
-export type TGetInvoicesById = {
+export type TGetInvoiceByIdRequestParams = {
   invoiceId: number;
 };
 
