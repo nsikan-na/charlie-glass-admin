@@ -4,13 +4,32 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import InvoiceModal from "../modals/InvoiceModal";
 
-export default function InvoiceCard({ invoice, showModal }: any) {
-  console.log(invoice);
+export default function InvoiceCard({
+  setCurrentInvoice,
+  invoice,
+  showModal,
+}: any) {
+  function handleClick() {
+    // setCurrentInvoice((i: any) => {
+    //   const {
+    //     invoice_creation_date,
+    //     receiver_name,
+    //     invoice_services,
+    //     user_id,
+    //     ...rest
+    //   } = invoice;
+    //   return {
+    //     invoiceid: rest.invoice_id,
+    //   };
+    // });
+    setCurrentInvoice(invoice.invoice_id);
+  }
+
   return (
     <div>
       <></>
       <Card
-        //   key={uniqueId()}
+        onClick={handleClick}
         style={{ width: 350, margin: ".5rem 1rem" }}
         title={
           <div style={{ fontWeight: 400, fontSize: ".9rem" }}>

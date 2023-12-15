@@ -1,10 +1,11 @@
 import { Input, Button } from "antd";
 import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/InvoiceModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
 import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
+import useGetInvoiceById from "../../hooks/invoices/useGetInvoiceById";
 
 const Invoice = (): JSX.Element => {
   const [invoices, setInvoices] = useState([]);
@@ -12,6 +13,10 @@ const Invoice = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data } = useGetAllInvoices();
+
+  const [currentInvoice, setCurrentInvoice] = useState(null);
+
+  const [pdf, setPdf] = useState(0);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -21,9 +26,18 @@ const Invoice = (): JSX.Element => {
     setIsModalOpen(false);
   };
 
+  const { data: pdfData }: any = useGetInvoiceById(currentInvoice as any);
+  useEffect(() => {
+    setPdf(pdfData?.data);
+  }, [currentInvoice, pdfData]);
+
   return (
     <div>
-      <InvoiceModal closeModal={closeModal} isModalOpen={isModalOpen} />
+      <InvoiceModal
+        closeModal={closeModal}
+        isModalOpen={isModalOpen}
+        pdf={pdf}
+      />
       <div className="flex justify-between m-4">
         <div>
           <Input className="w-64 " />
@@ -36,7 +50,11 @@ const Invoice = (): JSX.Element => {
 
       <div className="flex flex-wrap justify-between items-center overflow-y-scroll h-3/4 p-6 my-4">
         {data?.data?.map((invoice: any) => (
-          <InvoiceCard showModal={showModal} invoice={invoice} />
+          <InvoiceCard
+            setCurrentInvoice={setCurrentInvoice}
+            showModal={showModal}
+            invoice={invoice}
+          />
         ))}
       </div>
     </div>

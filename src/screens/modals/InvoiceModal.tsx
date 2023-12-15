@@ -1,8 +1,9 @@
 import { Button, Modal } from "antd";
 
 import PdfTemplate from "../../util/pdf/PdfTemplate";
+import { useEffect } from "react";
 
-export default function InvoiceModal({ isModalOpen, closeModal }: any) {
+export default function InvoiceModal({ isModalOpen, closeModal, pdf }: any) {
   return (
     <Modal
       open={isModalOpen}
@@ -16,7 +17,7 @@ export default function InvoiceModal({ isModalOpen, closeModal }: any) {
         );
       }}
     >
-      {/* <PdfTemplate data={} /> */}
+      <PdfTemplate invoiceData={pdf as any} />
     </Modal>
   );
 }
