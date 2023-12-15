@@ -3,13 +3,15 @@ import axios from "axios";
 import { EQueryKey } from "../queryKey";
 import { EBaseUrl } from "../baseUrl";
 import { Context } from "../../context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TGetAllInvoicesResponse } from "./useGetAllInvoices";
+import { d } from "@tanstack/react-query-devtools/build/legacy/devtools-ZdlRR-0P";
 
-const useGetInvoiceById = ({ invoiceId }: TGetInvoiceByIdRequestParams) => {
+const useGetInvoiceById = (invoiceId: any) => {
   const { user } = useContext(Context);
+
   return useQuery({
-    queryKey: [EQueryKey.GET_INVOICE_BY_ID],
+    queryKey: [EQueryKey.GET_INVOICE_BY_ID, invoiceId],
     queryFn: async () =>
       await axios.get<TGetAllInvoicesResponse>(
         `${EBaseUrl.CGI_API}/api/v1/invoices/${user?.id}/${invoiceId}`,
@@ -21,6 +23,18 @@ const useGetInvoiceById = ({ invoiceId }: TGetInvoiceByIdRequestParams) => {
       ),
   });
 };
+
+// function GetData() {
+//   const x = useQuery({
+//     queryKey: ["invoice"],
+//     queryFn: async () => {
+//       const response = await fetch("/api/invoice");
+//       const data = await response.json();
+//       return data;
+//     },
+//   });
+//   console.log(x);
+// }
 
 export default useGetInvoiceById;
 

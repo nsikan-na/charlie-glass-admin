@@ -4,16 +4,36 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import InvoiceModal from "../modals/InvoiceModal";
 
-export default function InvoiceCard({ invoice, showModal }: any) {
+export default function InvoiceCard({
+  setCurrentInvoice,
+  invoice,
+  showModal,
+}: any) {
+  function handleClick() {
+    // setCurrentInvoice((i: any) => {
+    //   const {
+    //     invoice_creation_date,
+    //     receiver_name,
+    //     invoice_services,
+    //     user_id,
+    //     ...rest
+    //   } = invoice;
+    //   return {
+    //     invoiceid: rest.invoice_id,
+    //   };
+    // });
+    setCurrentInvoice(invoice.invoice_id);
+  }
+
   return (
     <div>
       <></>
       <Card
-        //   key={uniqueId()}
+        onClick={handleClick}
         style={{ width: 350, margin: ".5rem 1rem" }}
         title={
           <div style={{ fontWeight: 400, fontSize: ".9rem" }}>
-            {invoice.date}
+            {invoice?.invoice_creation_date}
           </div>
         }
         actions={[
@@ -33,8 +53,8 @@ export default function InvoiceCard({ invoice, showModal }: any) {
               //   backgroundColor: "red",
             }}
           >
-            <div style={{ marginTop: "1rem" }}>{invoice.name}</div>
-            <div>{invoice.invoiceNumber}</div>
+            <div style={{ marginTop: "1rem" }}>{invoice?.receiver_name}</div>
+            <div>{invoice?.invoice_id}</div>
             <div
               style={{
                 display: "grid",
@@ -44,7 +64,7 @@ export default function InvoiceCard({ invoice, showModal }: any) {
                 gridTemplateColumns: "4rem 4rem 4rem",
               }}
             >
-              {invoice.services.map((service: any) => (
+              {invoice?.invoice_services?.map((service: any) => (
                 <div>{service} </div>
               ))}
             </div>

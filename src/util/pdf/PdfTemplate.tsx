@@ -11,7 +11,7 @@ import { Context } from "../../context";
 import { formatDate } from "../helpers";
 import { TGetInvoiceByIdResponse } from "../../hooks/invoices/useGetInvoiceById";
 
-const PdfTemplate = (data: TGetInvoiceByIdResponse) => {
+const PdfTemplate = ({ invoiceData }: any) => {
   const {
     companyDetails: {
       email,
@@ -23,6 +23,7 @@ const PdfTemplate = (data: TGetInvoiceByIdResponse) => {
     },
   } = useContext(Context);
 
+  if (!invoiceData) return <div>Loading</div>;
   const {
     id: invoice_id,
     cart,
@@ -32,7 +33,7 @@ const PdfTemplate = (data: TGetInvoiceByIdResponse) => {
     receiver_city,
     receiver_state,
     receiver_zip,
-  } = data;
+  } = invoiceData;
 
   return (
     <PDFViewer style={{ width: "100%", height: "60vh" }}>
@@ -145,34 +146,36 @@ const PdfTemplate = (data: TGetInvoiceByIdResponse) => {
                     style={{ flex: 6, color: "lightgray" }}
                   >{`_______________________________________________________________________`}</Text>
                 </View>
-                {cart.map(({ description, price, quantity }, idx: number) => (
-                  <View>
-                    <View
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        margin: "5 0",
-                      }}
-                    >
-                      <Text style={{ flex: 1 }}>{idx + 1}.</Text>
-                      <Text style={{ flex: 3 }}>{description}</Text>
-                      <Text style={{ flex: 1 }}>{quantity}</Text>
-                      <Text style={{ flex: 1 }}>{`$${price}`}</Text>
+                {cart?.map(
+                  ({ description, price, quantity }: any, idx: number) => (
+                    <View>
+                      <View
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                          margin: "5 0",
+                        }}
+                      >
+                        <Text style={{ flex: 1 }}>{idx + 1}.</Text>
+                        <Text style={{ flex: 3 }}>{description}</Text>
+                        <Text style={{ flex: 1 }}>{quantity}</Text>
+                        <Text style={{ flex: 1 }}>{`$${price}`}</Text>
+                      </View>
+                      <View
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Text
+                          style={{ flex: 6, color: "lightgray" }}
+                        >{`_______________________________________________________________________`}</Text>
+                      </View>
                     </View>
-                    <View
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Text
-                        style={{ flex: 6, color: "lightgray" }}
-                      >{`_______________________________________________________________________`}</Text>
-                    </View>
-                  </View>
-                ))}
+                  )
+                )}
               </View>
               <View
                 style={{
