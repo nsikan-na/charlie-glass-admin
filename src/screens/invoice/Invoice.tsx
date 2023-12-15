@@ -4,11 +4,14 @@ import InvoiceModal from "../modals/InvoiceModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
+import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
 
 const Invoice = (): JSX.Element => {
   const [invoices, setInvoices] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data } = useGetAllInvoices();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -32,7 +35,7 @@ const Invoice = (): JSX.Element => {
       </div>
 
       <div className="flex flex-wrap justify-between items-center overflow-y-scroll h-3/4 p-6 my-4">
-        {invoices.map((invoice) => (
+        {data?.data?.map((invoice: any) => (
           <InvoiceCard showModal={showModal} invoice={invoice} />
         ))}
       </div>
