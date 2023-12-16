@@ -3,9 +3,8 @@ import axios from "axios";
 import { EQueryKey } from "../queryKey";
 import { EBaseUrl } from "../baseUrl";
 import { Context } from "../../context";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { TGetAllInvoicesResponse } from "./useGetAllInvoices";
-import { d } from "@tanstack/react-query-devtools/build/legacy/devtools-ZdlRR-0P";
 
 const useGetInvoiceById = (invoiceId: any) => {
   const { user } = useContext(Context);
@@ -23,18 +22,6 @@ const useGetInvoiceById = (invoiceId: any) => {
       ),
   });
 };
-
-// function GetData() {
-//   const x = useQuery({
-//     queryKey: ["invoice"],
-//     queryFn: async () => {
-//       const response = await fetch("/api/invoice");
-//       const data = await response.json();
-//       return data;
-//     },
-//   });
-//   console.log(x);
-// }
 
 export default useGetInvoiceById;
 
