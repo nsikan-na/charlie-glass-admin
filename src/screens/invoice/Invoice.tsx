@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import InvoiceCard from "./InvoiceCard";
-import InvoiceModal from "../modals/InvoiceModal";
+import InvoiceModal from "../modals/invoice/InvoiceModal";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
