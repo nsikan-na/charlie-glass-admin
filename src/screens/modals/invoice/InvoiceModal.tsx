@@ -5,7 +5,7 @@ import PdfTemplate from "../../../util/pdf/PdfTemplate";
 export default function InvoiceModal({ isModalOpen, closeModal, pdf }: any) {
   return (
     <Modal
-      title={<div className="text-white">.</div>}
+      title={<div className="invisible">.</div>}
       open={isModalOpen}
       width={"60%"}
       onCancel={closeModal}
