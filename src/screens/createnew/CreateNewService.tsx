@@ -6,6 +6,7 @@ import type { CheckboxValueType } from "antd/es/checkbox/Group";
 import CreateNewInvoiceModal from "./CreateNewModal";
 import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import { uniqueId } from "lodash";
+import { PlusCircleOutlined } from "@ant-design/icons";
 
 export default function InvoiceServicesInput({
   setInvoice,
@@ -71,8 +72,11 @@ export default function InvoiceServicesInput({
             ))}
           </Checkbox.Group>
         </div>
-        <div style={{ justifySelf: "center" }}>
-          <Button onClick={showModal}>+ Add Item</Button>
+        <div style={{ justifySelf: "center", alignSelf: "center" }}>
+          <Button onClick={showModal}>
+            <PlusCircleOutlined />
+            Add Item
+          </Button>
         </div>
         <div style={{ justifySelf: "end" }}>
           <Button

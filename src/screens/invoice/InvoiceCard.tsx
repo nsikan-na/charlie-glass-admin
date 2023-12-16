@@ -1,5 +1,5 @@
 import { Card, Space } from "antd";
-import { CaretRightOutlined } from "@ant-design/icons";
+import { PlayCircleOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd";
 import { useState } from "react";
 import InvoiceModal from "../modals/invoice/InvoiceModal";
@@ -27,7 +27,6 @@ export default function InvoiceCard({
 
   return (
     <div>
-      <></>
       <Card
         onClick={handleClick}
         style={{ width: 350, margin: ".5rem 1rem" }}
@@ -37,7 +36,7 @@ export default function InvoiceCard({
           </div>
         }
         actions={[
-          <CaretRightOutlined
+          <PlayCircleOutlined
             onClick={showModal}
             style={{ fontSize: "1.5rem" }}
           />,
