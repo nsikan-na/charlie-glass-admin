@@ -4,14 +4,9 @@ import InvoiceDetailsInput from "./NewInvoiceDetails";
 import InvoiceServicesInput from "./CreateNewService";
 import { useEffect, useState } from "react";
 import AddedToCart from "./AddedToCart";
+import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 
 export default function CreateNewInvoice() {
-  const [name, setName] = useState("");
-  const [street, setStreet] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zip, setZip] = useState("");
-
   const [cartItems, setCart]: any = useState([]);
 
   const [invoice, setInvoice]: any = useState({
@@ -38,7 +33,7 @@ export default function CreateNewInvoice() {
         }}
       >
         <div className="ml-72">
-          <Button type="primary">Go Back</Button>
+          <PrimaryButton>Back</PrimaryButton>
         </div>
       </div>
       <div
@@ -59,23 +54,6 @@ export default function CreateNewInvoice() {
             marginRight: "0",
           }}
         >
-          {/* <Input
-            label="Name"
-            setInvoice={setInvoice}
-            invoice={invoice}
-            setName={setName}
-            setStreet={setStreet}
-            setCity={setCity}
-            setState={setState}
-            setZip={setZip}
-          /> */}
-          {/* <Input
-            label="Street"
-            setInvoice={setInvoice}
-            invoice={invoice}
-            setCart={setCart}
-            cartItems={cartItems}
-          /> */}
           <InvoiceDetailsInput setCart={setCart} setInvoice={setInvoice} />
           <InvoiceServicesInput
             invoice={invoice}

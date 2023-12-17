@@ -3,7 +3,7 @@ import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
 import { Button, Tooltip } from "antd";
 import type { CheckboxValueType } from "antd/es/checkbox/Group";
-import CreateNewInvoiceModal from "./CreateNewModal";
+import CreateNewInvoiceModal from "../modals/invoice/CreateNewModal";
 import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import { uniqueId } from "lodash";
 import { PlusCircleOutlined } from "@ant-design/icons";
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
 import AddedToCart from "./AddedToCart";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
+import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
 
 export default function InvoiceServicesInput({
   setInvoice,
@@ -87,15 +88,13 @@ export default function InvoiceServicesInput({
           />
         ))}
         <div className="mt-8" style={{ justifySelf: "center" }}>
-          <Button onClick={showModal}>+ Add Item</Button>
+          <SecondaryButton onClick={showModal}>+ Add Item</SecondaryButton>
         </div>
         <div style={{ justifySelf: "end" }}>
           <Link to={ERoute.INVOICE}>
             <PrimaryButton
               style={{ marginRight: "10rem" }}
-              onClick={() => {
-                add.mutate(invoice);
-              }}
+              onClick={() => add.mutate(invoice)}
             >
               Submit
             </PrimaryButton>

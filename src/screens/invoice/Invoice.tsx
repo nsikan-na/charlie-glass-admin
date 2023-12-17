@@ -65,15 +65,12 @@ const Invoice = (): JSX.Element => {
               onChange={onFilterChange("name")}
             />
           </span>
-          <RangePicker onChange={onRangeFilterChange} className="mr-4" />
-          <SearchButton
-            className=""
-            onClick={() => {
-              setInput(filters);
-            }}
-          />
+          <RangePicker onChange={onRangeFilterChange} className="" />
+          <span className="ml-4">
+            <SearchButton className="" onClick={() => setInput(filters)} />
+          </span>
         </div>
-        <PrimaryButton onClick={() => navigate(ERoute.INVOICE)}>
+        <PrimaryButton onClick={() => navigate(ERoute.CREATE_INVOICE)}>
           New
         </PrimaryButton>
       </div>

@@ -1,6 +1,6 @@
 import Invoice from "../screens/invoice/Invoice";
 import Layout from "../layout/Layout";
-import CreateNewInvoice from "../screens/createnew/CreateNew";
+import CreateNewInvoice from "../screens/create-new-invoice/CreateNewInvoice";
 
 import Login from "../screens/login/LogIn";
 import { RouteObject } from "react-router";

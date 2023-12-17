@@ -1,6 +1,7 @@
 import { Button, Modal } from "antd";
 
 import PdfTemplate from "../../../util/pdf/PdfTemplate";
+import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
 
 export default function InvoiceModal({ isModalOpen, closeModal, pdf }: any) {
   return (
@@ -9,15 +10,11 @@ export default function InvoiceModal({ isModalOpen, closeModal, pdf }: any) {
       open={isModalOpen}
       width={"60%"}
       onCancel={closeModal}
-      footer={() => {
-        return (
-          <div className="flex justify-end">
-            <Button className="mr-12" onClick={closeModal}>
-              Cancel
-            </Button>
-          </div>
-        );
-      }}
+      footer={() => (
+        <div className="flex justify-end">
+          <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
+        </div>
+      )}
     >
       <PdfTemplate invoiceData={pdf as any} />
     </Modal>
