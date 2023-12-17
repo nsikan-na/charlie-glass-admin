@@ -27,7 +27,7 @@ export default function CreateNewInvoice() {
   }, [cartItems]);
 
   return (
-    <div className="px-52 py-16">
+    <div className="px-52 py-8">
       <div
         style={{
           width: "70%",
