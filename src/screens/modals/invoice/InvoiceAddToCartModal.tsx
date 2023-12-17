@@ -14,6 +14,7 @@ export default function CreateNewInvoiceModal({
   const [price, setPrice] = useState("");
 
   function handleSave() {
+    if (!description || !quantity || !price) return;
     const cartObj = {
       description,
       quantity,
@@ -46,7 +47,8 @@ export default function CreateNewInvoiceModal({
       <div>
         <div className="my-4">
           <div>Description</div>
-          <Input
+          <Input.TextArea
+            autoSize={{ minRows: 3 }}
             value={description}
             onChange={(e: any) => setDescription(e.target.value)}
             className="w-full"

@@ -35,7 +35,7 @@ export default function CreateNewInvoice() {
           justifyContent: "flex-start",
         }}
       >
-        <div className="ml-72">
+        <div className="">
           <PrimaryButton onClick={() => navigate(ERoute.INVOICE)}>
             Back
           </PrimaryButton>

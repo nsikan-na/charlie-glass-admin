@@ -48,16 +48,16 @@ const Invoice = (): JSX.Element => {
         pdf={pdfData?.data}
       />
       <div className="flex justify-between m-4">
-        <div className="w-full">
+        <div>
           <Input
-            label="Invoice #"
-            className="inline "
+            addonBefore="Invoice #"
+            className="w-72"
             onChange={onFilterChange("invoice_id")}
           />
           <span className="mx-8">
             <Input
-              label="Name"
-              className=" inline"
+              addonBefore="Name"
+              className="w-72"
               onChange={onFilterChange("name")}
             />
           </span>

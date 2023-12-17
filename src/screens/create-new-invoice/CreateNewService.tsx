@@ -71,8 +71,10 @@ export default function InvoiceServicesInput({
             ))}
           </Checkbox.Group>
         </div>
-        <div style={{ justifySelf: "center" }}>Current Items</div>
-        {cartItems.map((item: any) => (
+        {cartItems > 0 ? (
+          <div style={{ justifySelf: "center" }}>Current Items</div>
+        ) : null}
+        {cartItems?.map((item: any) => (
           <AddedToCart
             description={item.description}
             quantity={item.quantity}
@@ -105,24 +107,3 @@ const services = [
   { id: 9999, label: "ServiceE" },
   { id: 21121, label: "ServiceF" },
 ];
-
-const myBody = {
-  receiver_name: "Juice Wrld",
-  street: "456 Oak St",
-  city: "Townsville",
-  state: "NY",
-  zip: "54321",
-  cart: [
-    {
-      description: "Product C",
-      quantity: 3,
-      price: "9.99",
-    },
-    {
-      description: "Product A",
-      quantity: 3,
-      price: "9.99",
-    },
-  ],
-  services: [27, 28],
-};

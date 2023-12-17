@@ -3,29 +3,44 @@ import Input from "../components/ant-design/form/Input";
 export default function InvoiceDetailsInput({ setInvoice }: any) {
   const [input, setInput] = useState({});
 
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
-
   const handleInputChange = (key: string) => (e: any) => {
     setInput((i) => ({ ...i, [key]: e.target.value }));
   };
 
-  useEffect(
-    () => setInvoice((invoice: any) => ({ ...invoice, ...input })),
-    [input, setInvoice]
-  );
+  useEffect(() => {
+    setInvoice((invoice: any) => ({ ...invoice, ...input }));
+  }, [input, setInvoice]);
 
   return (
     <>
       <div className="grid grid-rows-2 gap-0">
-        <Input label="Name" onChange={handleInputChange("receiver_name")} />
-        <Input label="Street" onChange={handleInputChange("street")} />
+        <div>
+          <div>Name</div>
+          <Input
+            onChange={handleInputChange("receiver_name")}
+            className="w-72"
+          />
+        </div>
+        <div>
+          <div>Street</div>
+          <Input onChange={handleInputChange("street")} className="w-6/12" />
+        </div>
       </div>
       <div className="flex justify-between">
-        <Input label="City" onChange={handleInputChange("city")} />
-        <Input label="State" onChange={handleInputChange("state")} />
-        <Input label="Zip" onChange={handleInputChange("zip")} />
+        <div>
+          <div>City</div>
+          <div className="">
+            <Input onChange={handleInputChange("city")} className="w-72" />
+          </div>
+        </div>
+        <div>
+          <div>State</div>
+          <Input onChange={handleInputChange("state")} className="w-72" />
+        </div>
+        <div>
+          <div>Zip</div>
+          <Input onChange={handleInputChange("zip")} className="w-72" />
+        </div>
       </div>
     </>
   );
