@@ -1,5 +1,5 @@
 import { Button, Form } from "antd";
-import Input from "../components/ant-design/Input";
+import Input from "../components/ant-design/form/Input";
 
 const Login: React.FC = () => {
   return (

@@ -4,6 +4,7 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import InvoiceModal from "../modals/invoice/InvoiceModal";
 import { formatDate } from "../../util/helpers";
+import { uniqueId } from "lodash";
 // import { formatDate } from "../../util/helpers";
 
 export default function InvoiceCard({
@@ -66,7 +67,7 @@ export default function InvoiceCard({
               }}
             >
               {invoice?.invoice_services?.map((service: any) => (
-                <div>{service} </div>
+                <div key={uniqueId()}>{service} </div>
               ))}
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Input from "../components/ant-design/Input";
+import Input from "../components/ant-design/form/Input";
 export default function InvoiceDetailsInput({ setInvoice }: any) {
   const [input, setInput] = useState({});
 

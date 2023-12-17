@@ -10,7 +10,7 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
 import AddedToCart from "./AddedToCart";
-import PrimaryButton from "../components/ant-design/PrimaryButton";
+import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 
 export default function InvoiceServicesInput({
   setInvoice,

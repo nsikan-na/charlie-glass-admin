@@ -1,7 +1,7 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import Input from "../components/ant-design/Input";
 import { Link } from "react-router-dom";
+import Input from "../components/ant-design/form/Input";
 export default function CreateNewInvoiceModal({
   closeModal,
   isModalOpen,
