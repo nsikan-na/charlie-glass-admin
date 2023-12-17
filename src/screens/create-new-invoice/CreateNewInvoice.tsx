@@ -27,28 +27,23 @@ export default function CreateNewInvoice() {
   }, [cartItems]);
 
   return (
-    <>
+    <div className="px-52 py-20">
       <div
         style={{
-          marginTop: "3rem",
-          display: "flex",
-          justifyContent: "flex-start",
+          width: "70%",
         }}
       >
-        <div className="">
-          <PrimaryButton onClick={() => navigate(ERoute.INVOICE)}>
-            Back
-          </PrimaryButton>
-        </div>
+        <PrimaryButton onClick={() => navigate(ERoute.INVOICE)}>
+          Back
+        </PrimaryButton>
       </div>
       <div
         style={{ marginTop: "3rem", display: "flex", justifyContent: "center" }}
       >
-        <div style={{ textAlign: "justify" }}>Create New</div>
+        <div style={{ textAlign: "justify" }} className="text-2xl">
+          Create New Invoice
+        </div>
       </div>
-
-      {/*
-       */}
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
@@ -68,6 +63,6 @@ export default function CreateNewInvoice() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }

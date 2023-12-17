@@ -2,7 +2,7 @@ import { Input } from "antd";
 import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
 import { uniqueId } from "lodash";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddedToCart from "./AddedToCart";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { ERoute } from "../../routing/helpers";
@@ -18,7 +18,7 @@ export default function InvoiceServicesInput({
   cartItems,
 }: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const navigate = useNavigate();
   const [checkedServices, setCheckedServices] = useState([]);
 
   const showModal = () => {
@@ -85,14 +85,15 @@ export default function InvoiceServicesInput({
           <SecondaryButton onClick={showModal}>Add Item</SecondaryButton>
         </div>
         <div style={{ justifySelf: "end" }}>
-          <Link to={ERoute.INVOICE}>
-            <PrimaryButton
-              style={{ marginRight: "10rem" }}
-              onClick={() => add.mutate(invoice)}
-            >
-              Submit
-            </PrimaryButton>
-          </Link>
+          <PrimaryButton
+            style={{ marginRight: "10rem" }}
+            onClick={() => {
+              add.mutate(invoice);
+              navigate(ERoute.INVOICE);
+            }}
+          >
+            Submit
+          </PrimaryButton>
         </div>
       </div>
     </>
@@ -100,10 +101,10 @@ export default function InvoiceServicesInput({
 }
 
 const services = [
-  { id: 22, label: "ServiceA" },
-  { id: 433, label: "ServiceB" },
-  { id: 3232, label: "ServiceC" },
-  { id: 2323, label: "ServiceD" },
-  { id: 9999, label: "ServiceE" },
-  { id: 21121, label: "ServiceF" },
+  { id: 27, label: "Shower Doors" },
+  { id: 28, label: "Shelves" },
+  { id: 29, label: "Glass Partition" },
+  { id: 30, label: "Store Fronts" },
+  { id: 31, label: "Mirrors" },
+  { id: 32, label: "Others" },
 ];

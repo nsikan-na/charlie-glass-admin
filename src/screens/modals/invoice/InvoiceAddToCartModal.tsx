@@ -28,7 +28,7 @@ export default function CreateNewInvoiceModal({
     setDescription("");
     setQuantity(0);
     setPrice("");
-  }, []);
+  }, [isModalOpen]);
 
   return (
     <Modal

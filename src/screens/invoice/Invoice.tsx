@@ -2,7 +2,7 @@ import { Button } from "antd";
 import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/invoice/InvoiceModal";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
 import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
 import useGetInvoiceById from "../../hooks/invoices/useGetInvoiceById";
