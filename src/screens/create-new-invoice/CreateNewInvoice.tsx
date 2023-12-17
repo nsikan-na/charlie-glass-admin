@@ -3,8 +3,9 @@ import { Button } from "antd";
 import InvoiceDetailsInput from "./NewInvoiceDetails";
 import InvoiceServicesInput from "./CreateNewService";
 import { useEffect, useState } from "react";
-import AddedToCart from "./AddedToCart";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
+import { useNavigate } from "react-router-dom";
+import { ERoute } from "../../routing/helpers";
 
 export default function CreateNewInvoice() {
   const [cartItems, setCart]: any = useState([]);
@@ -16,8 +17,10 @@ export default function CreateNewInvoice() {
     state: null,
     zip: null,
     cart: [],
-    services: [27, 28],
+    services: [],
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setInvoice((invoice: any) => ({ ...invoice, cart: cartItems }));
@@ -33,7 +36,9 @@ export default function CreateNewInvoice() {
         }}
       >
         <div className="ml-72">
-          <PrimaryButton>Back</PrimaryButton>
+          <PrimaryButton onClick={() => navigate(ERoute.INVOICE)}>
+            Back
+          </PrimaryButton>
         </div>
       </div>
       <div

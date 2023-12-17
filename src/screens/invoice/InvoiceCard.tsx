@@ -1,11 +1,8 @@
-import { Card, Space } from "antd";
+import { Button, Card } from "antd";
 import { PlayCircleOutlined } from "@ant-design/icons";
-import { Button, Modal } from "antd";
-import { useState } from "react";
-import InvoiceModal from "../modals/invoice/InvoiceModal";
 import { formatDate } from "../../util/helpers";
 import { uniqueId } from "lodash";
-// import { formatDate } from "../../util/helpers";
+import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
 
 export default function InvoiceCard({
   setCurrentInvoice,
@@ -13,18 +10,6 @@ export default function InvoiceCard({
   showModal,
 }: any) {
   function handleClick() {
-    // setCurrentInvoice((i: any) => {
-    //   const {
-    //     invoice_creation_date,
-    //     receiver_name,
-    //     invoice_services,
-    //     user_id,
-    //     ...rest
-    //   } = invoice;
-    //   return {
-    //     invoiceid: rest.invoice_id,
-    //   };
-    // });
     setCurrentInvoice(invoice.invoice_id);
   }
 
@@ -39,35 +24,42 @@ export default function InvoiceCard({
           </div>
         }
         actions={[
-          <PlayCircleOutlined
-            onClick={showModal}
-            style={{ fontSize: "1.5rem" }}
-          />,
+          <Button
+            className=" border-none" //text-sky-400
+            icon={
+              <PlayCircleOutlined
+                onClick={showModal}
+                style={{ fontSize: "1.5rem" }}
+                className=""
+              />
+            }
+          ></Button>,
         ]}
       >
         <div>
           <div
             style={{
-              //   display: "flex",
               textAlign: "center",
               width: "100%",
               height: "6rem",
-              //   backgroundColor: "red",
             }}
           >
-            <div style={{ marginTop: "1rem" }}>{invoice?.receiver_name}</div>
-            <div>{invoice?.invoice_id}</div>
+            <div style={{ marginTop: "1rem" }} className="text-2xl">
+              {invoice?.receiver_name}
+            </div>
+            <div className="text-lg">{invoice?.invoice_id}</div>
             <div
               style={{
                 display: "grid",
-                // backgroundColor: "red",
-                justifyContent: "center",
-                marginTop: "1rem",
-                gridTemplateColumns: "4rem 4rem 4rem",
+                justifyContent: "space-between",
+                gridTemplateColumns: "4rem  4rem  4rem",
               }}
+              className=""
             >
               {invoice?.invoice_services?.map((service: any) => (
-                <div key={uniqueId()}>{service} </div>
+                <div key={uniqueId()} className="">
+                  {service}{" "}
+                </div>
               ))}
             </div>
           </div>

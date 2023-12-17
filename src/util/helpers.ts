@@ -10,4 +10,6 @@ export const decimalThousandsCommaSeparated = (
 
 export const DATE_FORMAT = "YYYY-MM-DD";
 
-export const formatDate = (value: string) => moment(value).format(DATE_FORMAT);
+export const formatDate = (value: string) => 
+ moment(value).format(DATE_FORMAT);
+

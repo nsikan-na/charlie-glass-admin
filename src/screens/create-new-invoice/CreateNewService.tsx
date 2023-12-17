@@ -1,17 +1,15 @@
 import { Input } from "antd";
 import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
-import { Button, Tooltip } from "antd";
-import type { CheckboxValueType } from "antd/es/checkbox/Group";
-import CreateNewInvoiceModal from "../modals/invoice/CreateNewModal";
-import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import { uniqueId } from "lodash";
-import { PlusCircleOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { ERoute } from "../../routing/helpers";
 import AddedToCart from "./AddedToCart";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
+import { ERoute } from "../../routing/helpers";
 import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
+import CreateNewInvoiceModal from "../modals/invoice/CreateNewModal";
+import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
+import { PlusCircleOutlined } from "@ant-design/icons";
 
 export default function InvoiceServicesInput({
   setInvoice,
@@ -19,7 +17,6 @@ export default function InvoiceServicesInput({
   setCart,
   cartItems,
 }: any) {
-  const [checked, setChecked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [checkedServices, setCheckedServices] = useState([]);
@@ -33,11 +30,9 @@ export default function InvoiceServicesInput({
   };
 
   const onChange = (checkedValue: any) => {
-    // console.log(checkedValue);
     setCheckedServices(checkedValue);
   };
   useEffect(() => {
-    console.log(checkedServices);
     setInvoice((invoice: any) => ({ ...invoice, services: checkedServices }));
   }, [checkedServices, setInvoice]);
 
@@ -54,7 +49,6 @@ export default function InvoiceServicesInput({
       />
       <div
         style={{
-          // backgroundColor: "blue",
           marginTop: "4rem",
           display: "grid",
           gridTemplateRows: "4rem 9rem 2rem",
@@ -66,8 +60,6 @@ export default function InvoiceServicesInput({
             onChange={onChange}
             value={checkedServices}
             style={{
-              // height: "6rem",
-
               display: "grid",
               gridTemplateColumns: "12rem 12rem 12rem",
             }}
@@ -88,7 +80,7 @@ export default function InvoiceServicesInput({
           />
         ))}
         <div className="mt-8" style={{ justifySelf: "center" }}>
-          <SecondaryButton onClick={showModal}>+ Add Item</SecondaryButton>
+          <SecondaryButton onClick={showModal}>Add Item</SecondaryButton>
         </div>
         <div style={{ justifySelf: "end" }}>
           <Link to={ERoute.INVOICE}>
