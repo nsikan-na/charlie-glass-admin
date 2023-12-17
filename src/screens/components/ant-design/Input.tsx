@@ -6,7 +6,7 @@ interface AntInputProps extends InputProps {
 
 const Input = ({ label, ...props }: AntInputProps) => {
   return (
-    <AntInput addonBefore={label} allowClear {...props} className="w-60" />
+    <AntInput addonBefore={label} allowClear {...props} className="w-72" />
   );
 };
 

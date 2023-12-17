@@ -6,6 +6,7 @@ import type { CheckboxValueType } from "antd/es/checkbox/Group";
 import CreateNewInvoiceModal from "./CreateNewModal";
 import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import { uniqueId } from "lodash";
+import { PlusCircleOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
 import AddedToCart from "./AddedToCart";
