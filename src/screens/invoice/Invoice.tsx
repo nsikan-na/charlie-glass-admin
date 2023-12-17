@@ -40,10 +40,6 @@ const Invoice = (): JSX.Element => {
     setFilters((prev: any) => ({ ...prev, fromDate: e[0], toDate: e[1] }));
   };
 
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
-
   return (
     <div>
       <InvoiceModal
@@ -71,7 +67,7 @@ const Invoice = (): JSX.Element => {
           </span>
         </div>
         <PrimaryButton onClick={() => navigate(ERoute.CREATE_INVOICE)}>
-          New
+          Create New Invoice
         </PrimaryButton>
       </div>
       <div className="flex flex-wrap justify-between items-center overflow-y-scroll h-3/4 p-6 my-4">

@@ -8,7 +8,7 @@ import {
 } from "@react-pdf/renderer";
 import { useContext, useEffect } from "react";
 import { Context } from "../../context";
-import { formatDate } from "../helpers";
+import { decimalThousandsCommaSeparated, formatDate } from "../helpers";
 import { TGetInvoiceByIdResponse } from "../../hooks/invoices/useGetInvoiceById";
 
 const PdfTemplate = ({ invoiceData }: any) => {
@@ -35,13 +35,14 @@ const PdfTemplate = ({ invoiceData }: any) => {
     receiver_zip,
   } = invoiceData;
 
-  const total = cart
-    ?.map((item: any) => Number(item.price))
-    .reduce((acc: any, cur: any) => {
-      acc += cur;
-      return acc;
-    }, 0)
-    .toFixed(2);
+  const total = decimalThousandsCommaSeparated(
+    cart
+      ?.map((item: any) => Number(item.price))
+      .reduce((acc: any, cur: any) => {
+        acc += cur;
+        return acc;
+      }, 0)
+  );
 
   return (
     <PDFViewer style={{ width: "100%", height: "60vh" }}>

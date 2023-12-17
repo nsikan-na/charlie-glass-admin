@@ -7,7 +7,7 @@ import AddedToCart from "./AddedToCart";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { ERoute } from "../../routing/helpers";
 import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
-import CreateNewInvoiceModal from "../modals/invoice/CreateNewModal";
+import CreateNewInvoiceModal from "../modals/invoice/InvoiceAddToCartModal";
 import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
