@@ -1,6 +1,7 @@
-import { Button, Modal, Input } from "antd";
+import { Button, Modal } from "antd";
 import { useState } from "react";
-
+import Input from "../components/ant-design/Input";
+import { Link } from "react-router-dom";
 export default function CreateNewInvoiceModal({
   closeModal,
   isModalOpen,
@@ -19,44 +20,47 @@ export default function CreateNewInvoiceModal({
       price,
     };
     setCart((cart: any) => [cartObj, ...cart]);
+    closeModal();
   }
 
   return (
     <>
       <Modal
-        width={"70%"}
-        style={{
-          height: "50rem",
-        }}
+        title="Add to Cart"
+        style={{}}
         onCancel={closeModal}
         open={isModalOpen}
         footer={() => {
           return (
-            <div className="flex">
+            <div className="flex justify-end">
               <Button onClick={closeModal}>Cancel</Button>
-              <Button onClick={handleSave}>Save</Button>
+
+              <Button type="primary" onClick={handleSave}>
+                Save
+              </Button>
             </div>
           );
         }}
       >
         <div className="grid grid-rows-3 gap-4">
+          {/* <div style={{ justifySelf: "center" }}>Filler Title</div> */}
           <Input
-            className="w-1/2"
+            label="Description"
             placeholder="Description"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e: any) => setDescription(e.target.value)}
           />
           <Input
-            className="w-1/5"
+            label="Quantity"
             placeholder="Quantity"
             value={quantity}
-            onChange={(e) => setQuantity(+e.target.value)}
+            onChange={(e: any) => setQuantity(+e.target.value)}
           />
           <Input
-            className="w-1/5"
+            label="Price"
             placeholder="Price"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e: any) => setPrice(e.target.value)}
           />
         </div>
       </Modal>

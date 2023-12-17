@@ -1,11 +1,15 @@
 import { Input } from "antd";
 import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import type { CheckboxValueType } from "antd/es/checkbox/Group";
 import CreateNewInvoiceModal from "./CreateNewModal";
 import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import { uniqueId } from "lodash";
+import { Link } from "react-router-dom";
+import { ERoute } from "../../routing/helpers";
+import AddedToCart from "./AddedToCart";
+import PrimaryButton from "../components/ant-design/PrimaryButton";
 
 export default function InvoiceServicesInput({
   setInvoice,
@@ -31,6 +35,7 @@ export default function InvoiceServicesInput({
     setCheckedServices(checkedValue);
   };
   useEffect(() => {
+    console.log(checkedServices);
     setInvoice((invoice: any) => ({ ...invoice, services: checkedServices }));
   }, [checkedServices, setInvoice]);
 
@@ -53,13 +58,14 @@ export default function InvoiceServicesInput({
           gridTemplateRows: "4rem 9rem 2rem",
         }}
       >
-        <div>Services</div>
-        <div>
+        <div style={{ justifySelf: "center" }}>Services</div>
+        <div style={{ justifySelf: "center" }}>
           <Checkbox.Group
             onChange={onChange}
             value={checkedServices}
             style={{
               // height: "6rem",
+
               display: "grid",
               gridTemplateColumns: "12rem 12rem 12rem",
             }}
@@ -71,18 +77,28 @@ export default function InvoiceServicesInput({
             ))}
           </Checkbox.Group>
         </div>
-        <div style={{ justifySelf: "center" }}>
+        <div style={{ justifySelf: "center" }}>Current Items</div>
+        {cartItems.map((item: any) => (
+          <AddedToCart
+            description={item.description}
+            quantity={item.quantity}
+            price={item.price}
+          />
+        ))}
+        <div className="mt-8" style={{ justifySelf: "center" }}>
           <Button onClick={showModal}>+ Add Item</Button>
         </div>
         <div style={{ justifySelf: "end" }}>
-          <Button
-            style={{ marginRight: "10rem" }}
-            onClick={() => {
-              add.mutate(invoice);
-            }}
-          >
-            Submit
-          </Button>
+          <Link to={ERoute.INVOICE}>
+            <PrimaryButton
+              style={{ marginRight: "10rem" }}
+              onClick={() => {
+                add.mutate(invoice);
+              }}
+            >
+              Submit
+            </PrimaryButton>
+          </Link>
         </div>
       </div>
     </>

@@ -11,8 +11,10 @@ export default function InvoiceModal({ isModalOpen, closeModal, pdf }: any) {
       onCancel={closeModal}
       footer={() => {
         return (
-          <div className="flex justify-center">
-            <Button onClick={closeModal}>Cancel</Button>
+          <div className="flex justify-end">
+            <Button className="mr-12" onClick={closeModal}>
+              Cancel
+            </Button>
           </div>
         );
       }}

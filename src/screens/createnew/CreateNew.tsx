@@ -1,8 +1,10 @@
-import { Input } from "antd";
+// import { Input } from "antd";
 import { Button } from "antd";
 import InvoiceDetailsInput from "./NewInvoiceDetails";
 import InvoiceServicesInput from "./CreateNewService";
 import { useEffect, useState } from "react";
+import Input from "../components/ant-design/Input";
+import AddedToCart from "./AddedToCart";
 
 export default function CreateNewInvoice() {
   const [name, setName] = useState("");
@@ -30,6 +32,17 @@ export default function CreateNewInvoice() {
   return (
     <>
       <div
+        style={{
+          marginTop: "3rem",
+          display: "flex",
+          justifyContent: "flex-start",
+        }}
+      >
+        <div className="ml-72">
+          <Button type="primary">Go Back</Button>
+        </div>
+      </div>
+      <div
         style={{ marginTop: "3rem", display: "flex", justifyContent: "center" }}
       >
         <div style={{ textAlign: "justify" }}>Create New</div>
@@ -47,7 +60,8 @@ export default function CreateNewInvoice() {
             marginRight: "0",
           }}
         >
-          <InvoiceDetailsInput
+          {/* <Input
+            label="Name"
             setInvoice={setInvoice}
             invoice={invoice}
             setName={setName}
@@ -55,12 +69,20 @@ export default function CreateNewInvoice() {
             setCity={setCity}
             setState={setState}
             setZip={setZip}
-          />
-          <InvoiceServicesInput
+          /> */}
+          {/* <Input
+            label="Street"
             setInvoice={setInvoice}
             invoice={invoice}
             setCart={setCart}
             cartItems={cartItems}
+          /> */}
+          <InvoiceDetailsInput setCart={setCart} setInvoice={setInvoice} />
+          <InvoiceServicesInput
+            invoice={invoice}
+            cartItems={cartItems}
+            setCart={setCart}
+            setInvoice={setInvoice}
           />
         </div>
       </div>

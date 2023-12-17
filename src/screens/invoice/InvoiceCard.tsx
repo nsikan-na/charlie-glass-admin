@@ -3,6 +3,7 @@ import { CaretRightOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd";
 import { useState } from "react";
 import InvoiceModal from "../modals/InvoiceModal";
+import { formatDate } from "../../util/helpers";
 
 export default function InvoiceCard({
   setCurrentInvoice,
@@ -33,7 +34,7 @@ export default function InvoiceCard({
         style={{ width: 350, margin: ".5rem 1rem" }}
         title={
           <div style={{ fontWeight: 400, fontSize: ".9rem" }}>
-            {invoice?.invoice_creation_date}
+            {formatDate(invoice?.invoice_creation_date)}
           </div>
         }
         actions={[

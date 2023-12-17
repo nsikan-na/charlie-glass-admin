@@ -6,7 +6,7 @@ import {
   Document,
   PDFViewer,
 } from "@react-pdf/renderer";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../../context";
 import { formatDate } from "../helpers";
 import { TGetInvoiceByIdResponse } from "../../hooks/invoices/useGetInvoiceById";
@@ -34,6 +34,14 @@ const PdfTemplate = ({ invoiceData }: any) => {
     receiver_state,
     receiver_zip,
   } = invoiceData;
+
+  const total = cart
+    ?.map((item: any) => Number(item.price))
+    .reduce((acc: any, cur: any) => {
+      acc += cur;
+      return acc;
+    }, 0)
+    .toFixed(2);
 
   return (
     <PDFViewer style={{ width: "100%", height: "60vh" }}>
@@ -188,7 +196,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
               >
                 <Text style={{ flex: 4 }}></Text>
                 <Text style={{ flex: 1 }}>Total</Text>
-                <Text style={{ flex: 1 }}>$64.86</Text>
+                <Text style={{ flex: 1 }}>${total}</Text>
               </View>
             </View>
             <View
