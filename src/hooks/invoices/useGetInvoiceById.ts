@@ -11,6 +11,7 @@ const useGetInvoiceById = (invoiceId: any) => {
 
   return useQuery({
     queryKey: [EQueryKey.GET_INVOICE_BY_ID, invoiceId],
+    enabled: !!user?.id && !!invoiceId,
     queryFn: async () =>
       await axios.get<TGetAllInvoicesResponse>(
         `${EBaseUrl.CGI_API}/api/v1/invoices/${user?.id}/${invoiceId}`,

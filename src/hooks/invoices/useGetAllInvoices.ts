@@ -9,6 +9,7 @@ const useGetAllInvoices = (params: any) => {
   const { user } = useContext(Context);
   return useQuery({
     queryKey: [EQueryKey.GET_ALL_INVOICES, params],
+    enabled: !!user?.id,
     queryFn: async () =>
       await axios.get<TGetAllInvoicesResponse>(
         `${EBaseUrl.CGI_API}/api/v1/invoices/${user?.id}`,
