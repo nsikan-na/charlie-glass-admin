@@ -141,6 +141,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
                 >
                   <Text style={{ flex: 1 }}></Text>
                   <Text style={{ flex: 3 }}>Product</Text>
+                  <Text style={{ flex: 1 }}></Text>
                   <Text style={{ flex: 1 }}>Quantity</Text>
                   <Text style={{ flex: 1 }}>Price</Text>
                 </View>
@@ -168,6 +169,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
                       >
                         <Text style={{ flex: 1 }}>{idx + 1}.</Text>
                         <Text style={{ flex: 3 }}>{description}</Text>
+                        <Text style={{ flex: 1 }}></Text>
                         <Text style={{ flex: 1 }}>{quantity}</Text>
                         <Text style={{ flex: 1 }}>{`$${price}`}</Text>
                       </View>
@@ -196,6 +198,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
                 }}
               >
                 <Text style={{ flex: 4 }}></Text>
+                <Text style={{ flex: 1 }}></Text>
                 <Text style={{ flex: 1 }}>Total</Text>
                 <Text style={{ flex: 1 }}>${total}</Text>
               </View>

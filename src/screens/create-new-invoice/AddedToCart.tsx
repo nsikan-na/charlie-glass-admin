@@ -1,3 +1,5 @@
+import { decimalThousandsCommaSeparated } from "../../util/helpers";
+
 export default function AddedToCart({
   addedToCart,
   description,
@@ -5,11 +7,11 @@ export default function AddedToCart({
   price,
 }: any) {
   return (
-    <div className="my-4">
-      <div>Description: {description}</div>
-      <div style={{ display: "flex" }}>
-        <div className="mr-20">Quantity: {quantity}</div>
-        <div>Price: {price}</div>
+    <div className="my-4 text-base grid grid-cols-7  ">
+      <div className="text-xl col-span-5">{description}</div>
+      <div className="col-span-1 text-center">x{quantity}</div>
+      <div className="col-span-1 text-center">
+        ${decimalThousandsCommaSeparated(price)}
       </div>
     </div>
   );

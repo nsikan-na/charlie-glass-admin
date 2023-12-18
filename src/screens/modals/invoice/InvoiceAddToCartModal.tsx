@@ -11,7 +11,7 @@ export default function CreateNewInvoiceModal({
 }: any) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState<number>(0);
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState<number>(0);
 
   function handleSave() {
     if (!description || !quantity || !price) return;
@@ -27,7 +27,7 @@ export default function CreateNewInvoiceModal({
   useEffect(() => {
     setDescription("");
     setQuantity(0);
-    setPrice("");
+    setPrice(0);
   }, [isModalOpen]);
 
   return (
@@ -70,7 +70,8 @@ export default function CreateNewInvoiceModal({
           <div>Price</div>
           <Input
             value={price}
-            onChange={(e: any) => setPrice(e.target.value)}
+            type="number"
+            onChange={(e: any) => setPrice(+e.target.value)}
             className="w-full"
             allowClear
           />

@@ -47,15 +47,9 @@ export default function InvoiceServicesInput({
         cartItems={cartItems}
         setInvoice={setInvoice}
       />
-      <div
-        style={{
-          marginTop: "4rem",
-          display: "grid",
-          gridTemplateRows: "4rem 9rem 2rem",
-        }}
-      >
+      <div className="my-10 text-center">
         <div style={{ justifySelf: "center" }}>Services</div>
-        <div style={{ justifySelf: "center" }}>
+        <div className="flex justify-center mt-4">
           <Checkbox.Group
             onChange={onChange}
             value={checkedServices}
@@ -71,30 +65,34 @@ export default function InvoiceServicesInput({
             ))}
           </Checkbox.Group>
         </div>
+      </div>
+      <div className="my-10">
         {cartItems > 0 ? (
           <div style={{ justifySelf: "center" }}>Current Items</div>
         ) : null}
-        {cartItems?.map((item: any) => (
-          <AddedToCart
-            description={item.description}
-            quantity={item.quantity}
-            price={item.price}
-          />
-        ))}
-        <div className="mt-8" style={{ justifySelf: "center" }}>
-          <SecondaryButton onClick={showModal}>Add Item</SecondaryButton>
+        <div className="">
+          {cartItems?.map((item: any) => (
+            <AddedToCart
+              description={item.description}
+              quantity={item.quantity}
+              price={item.price}
+            />
+          ))}
         </div>
-        <div style={{ justifySelf: "end" }}>
-          <PrimaryButton
-            style={{ marginRight: "10rem" }}
-            onClick={() => {
-              add.mutate(invoice);
-              navigate(ERoute.INVOICE);
-            }}
-          >
-            Submit
-          </PrimaryButton>
-        </div>
+      </div>
+      <div className="flex justify-center">
+        <SecondaryButton onClick={showModal}>Add Item</SecondaryButton>
+      </div>
+      <div style={{ justifySelf: "end" }}>
+        <PrimaryButton
+          style={{ marginRight: "10rem" }}
+          onClick={() => {
+            add.mutate(invoice);
+            navigate(ERoute.INVOICE);
+          }}
+        >
+          Submit
+        </PrimaryButton>
       </div>
     </>
   );
