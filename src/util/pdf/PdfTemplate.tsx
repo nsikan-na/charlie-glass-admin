@@ -170,7 +170,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
                         <Text style={{ flex: 1 }}>{idx + 1}.</Text>
                         <Text style={{ flex: 3 }}>{description}</Text>
                         <Text style={{ flex: 1 }}></Text>
-                        <Text style={{ flex: 1 }}>{quantity}</Text>
+                        <Text style={{ flex: 1 }}>x{quantity}</Text>
                         <Text style={{ flex: 1 }}>{`$${price}`}</Text>
                       </View>
                       <View
