@@ -2,7 +2,6 @@ import { Button, Card } from "antd";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import { formatDate } from "../../util/helpers";
 import { uniqueId } from "lodash";
-import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
 
 export default function InvoiceCard({
   setCurrentInvoice,

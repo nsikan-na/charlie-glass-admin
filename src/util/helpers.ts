@@ -1,5 +1,3 @@
-import moment from "moment";
-
 export const thousandsCommaSeparated = (string: string) =>
   string.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
@@ -10,6 +8,4 @@ export const decimalThousandsCommaSeparated = (
 
 export const DATE_FORMAT = "YYYY-MM-DD";
 
-export const formatDate = (value: string) => 
- moment(value).format(DATE_FORMAT);
-
+export const formatDate = (value: string) => value.split("T")[0];
