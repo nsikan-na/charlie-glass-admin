@@ -51,7 +51,7 @@ export default function InvoiceCard({
               style={{
                 display: "grid",
                 justifyContent: "space-between",
-                gridTemplateColumns: "4rem  4rem  4rem",
+                gridTemplateColumns: "6rem  6rem  6rem",
               }}
               className=""
             >
