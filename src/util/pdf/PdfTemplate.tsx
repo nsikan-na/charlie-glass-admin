@@ -81,7 +81,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
                     flex: 1,
                   }}
                 >
-                  <Text>{`${companyStreet}                   ${phoneNumber}`}</Text>
+                  <Text>{`${companyStreet}                                ${phoneNumber}`}</Text>
                 </View>
                 <View
                   style={{

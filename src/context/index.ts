@@ -8,8 +8,8 @@ export const useInitialStore = () => {
     companyDetails: {
       name: "Charlie Glass Inc",
       phoneNumber: "(917)-848-9128",
-      street: "330 7th Ave Unit B3",
-      city: "New York",
+      street: "326 50th st",
+      city: "Brooklyn",
       state: "New York",
       zip: "11220",
       email: "info@charlieglassinc.com",
