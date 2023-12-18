@@ -13,7 +13,7 @@ export default function InvoiceCard({
   }
 
   return (
-    <div>
+    <div className="flex justify-center">
       <Card
         onClick={handleClick}
         style={{ width: 350, margin: ".5rem 1rem" }}
