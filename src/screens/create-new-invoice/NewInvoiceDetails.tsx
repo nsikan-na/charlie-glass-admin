@@ -30,16 +30,16 @@ export default function InvoiceDetailsInput({ setInvoice }: any) {
         <div>
           <div>City</div>
           <div className="">
-            <Input onChange={handleInputChange("city")} className="w-60" />
+            <Input onChange={handleInputChange("city")} className="w-52" />
           </div>
         </div>
         <div>
           <div>State</div>
-          <Input onChange={handleInputChange("state")} className="w-60" />
+          <Input onChange={handleInputChange("state")} className="w-52" />
         </div>
         <div>
           <div>Zip</div>
-          <Input onChange={handleInputChange("zip")} className="w-60" />
+          <Input onChange={handleInputChange("zip")} className="w-52" />
         </div>
       </div>
     </>
