@@ -16,14 +16,14 @@ export default function CreateNewInvoice() {
     city: null,
     state: null,
     zip: null,
-    cart: [],
+    items: [],
     services: [],
   });
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setInvoice((invoice: any) => ({ ...invoice, cart: cartItems }));
+    setInvoice((invoice: any) => ({ ...invoice, items: cartItems }));
   }, [cartItems]);
 
   return (

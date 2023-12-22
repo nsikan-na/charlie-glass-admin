@@ -9,7 +9,7 @@ import {
 import { useContext, useEffect } from "react";
 import { Context } from "../../context";
 import { decimalThousandsCommaSeparated, formatDate } from "../helpers";
-import { TGetInvoiceByIdResponse } from "../../hooks/invoices/useGetInvoiceById";
+import { uniqueId } from "lodash";
 
 const PdfTemplate = ({ invoiceData }: any) => {
   const {
@@ -161,7 +161,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
                     { item_description, item_price, item_quantity }: any,
                     idx: number
                   ) => (
-                    <View>
+                    <View key={uniqueId()}>
                       <View
                         style={{
                           display: "flex",

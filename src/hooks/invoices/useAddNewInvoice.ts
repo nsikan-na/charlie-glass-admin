@@ -9,7 +9,7 @@ const useAddNewInvoice = () => {
   const queryClient = useQueryClient();
   const { user } = useContext(Context);
   return useMutation({
-    mutationFn: async (obj: TSaveInvoice) =>
+    mutationFn: async (obj: any) =>
       await axios.post(
         `${EBaseUrl.CGI_API}/api/v1/quotes/${user?.id}/add`,
         obj
@@ -22,19 +22,3 @@ const useAddNewInvoice = () => {
 };
 
 export default useAddNewInvoice;
-
-export type CartItem = {
-  description: string;
-  quantity: number;
-  price: string;
-};
-
-export type TSaveInvoice = {
-  receiver_name: string;
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
-  cart: CartItem[];
-  services: number[];
-};

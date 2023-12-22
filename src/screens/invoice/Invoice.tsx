@@ -40,14 +40,6 @@ const Invoice = (): JSX.Element => {
     setFilters((prev: any) => ({ ...prev, fromDate: e[0], toDate: e[1] }));
   };
 
-  useEffect(() => {
-    console.log(pdfData);
-  }, [pdfData]);
-
-  useEffect(() => {
-    console.log(currentInvoice);
-  }, [currentInvoice]);
-  
   return (
     <div>
       <InvoiceModal

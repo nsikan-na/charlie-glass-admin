@@ -38,6 +38,9 @@ export default function InvoiceServicesInput({
 
   const add = useAddNewInvoice();
 
+  useEffect(() => {
+    console.log(invoice);
+  }, [invoice]);
   return (
     <>
       <CreateNewInvoiceModal
@@ -48,7 +51,9 @@ export default function InvoiceServicesInput({
         setInvoice={setInvoice}
       />
       <div className="my-10 text-center">
-        <div style={{ justifySelf: "center" }}>Services</div>
+        <div style={{ justifySelf: "center" }} className="text-lg">
+          Services
+        </div>
         <div className="flex justify-center mt-4">
           <Checkbox.Group
             onChange={onChange}
@@ -67,12 +72,18 @@ export default function InvoiceServicesInput({
         </div>
       </div>
       <div className="my-10">
-        {cartItems > 0 ? (
-          <div style={{ justifySelf: "center" }}>Current Items</div>
+        {cartItems.length > 0 ? (
+          <div
+            style={{ justifySelf: "center" }}
+            className=" text-center text-lg"
+          >
+            Current Items
+          </div>
         ) : null}
         <div className="">
           {cartItems?.map((item: any) => (
             <AddedToCart
+              key={uniqueId()}
               description={item.description}
               quantity={item.quantity}
               price={item.price}
@@ -99,10 +110,10 @@ export default function InvoiceServicesInput({
 }
 
 const services = [
-  { id: 27, label: "Shower Doors" },
-  { id: 28, label: "Shelves" },
-  { id: 29, label: "Glass Partition" },
-  { id: 30, label: "Store Fronts" },
-  { id: 31, label: "Mirrors" },
-  { id: 32, label: "Others" },
+  { id: 1, label: "Shower Doors" },
+  { id: 2, label: "Shelves" },
+  { id: 3, label: "Glass Partition" },
+  { id: 4, label: "Store Fronts" },
+  { id: 5, label: "Mirrors" },
+  { id: 6, label: "Others" },
 ];
