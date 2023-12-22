@@ -11,7 +11,7 @@ const useGetAllInvoices = (params: any) => {
     queryKey: [EQueryKey.GET_ALL_INVOICES, params],
     enabled: !!user?.id,
     queryFn: async () =>
-      await axios.get<any>(`${EBaseUrl.CGI_API}/api/v1/quotes/${user?.id}`, {
+      await axios.get<any>(`${EBaseUrl.CGI_API}/api/v1/${user?.id}/quotes`, {
         headers: {
           "Content-Type": "application/json",
         },
