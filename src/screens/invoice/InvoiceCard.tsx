@@ -9,7 +9,7 @@ export default function InvoiceCard({
   showModal,
 }: any) {
   function handleClick() {
-    setCurrentInvoice(invoice.invoice_id);
+    setCurrentInvoice(invoice.quote_id);
   }
 
   return (

@@ -26,7 +26,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
   if (!invoiceData) return <div>Loading</div>;
   const {
     id: invoice_id,
-    cart,
+    items,
     receiver_name,
     creation_date,
     receiver_street,
@@ -36,8 +36,8 @@ const PdfTemplate = ({ invoiceData }: any) => {
   } = invoiceData;
 
   const total = decimalThousandsCommaSeparated(
-    cart
-      ?.map((item: any) => Number(item.price))
+    items
+      ?.map((item: any) => Number(item.item_price))
       .reduce((acc: any, cur: any) => {
         acc += cur;
         return acc;
@@ -156,8 +156,11 @@ const PdfTemplate = ({ invoiceData }: any) => {
                     style={{ flex: 6, color: "lightgray" }}
                   >{`_______________________________________________________________________`}</Text>
                 </View>
-                {cart?.map(
-                  ({ description, price, quantity }: any, idx: number) => (
+                {items?.map(
+                  (
+                    { item_description, item_price, item_quantity }: any,
+                    idx: number
+                  ) => (
                     <View>
                       <View
                         style={{
@@ -168,10 +171,10 @@ const PdfTemplate = ({ invoiceData }: any) => {
                         }}
                       >
                         <Text style={{ flex: 1 }}>{idx + 1}.</Text>
-                        <Text style={{ flex: 3 }}>{description}</Text>
+                        <Text style={{ flex: 3 }}>{item_description}</Text>
                         <Text style={{ flex: 1 }}></Text>
-                        <Text style={{ flex: 1 }}>x{quantity}</Text>
-                        <Text style={{ flex: 1 }}>{`$${price}`}</Text>
+                        <Text style={{ flex: 1 }}>x{item_quantity}</Text>
+                        <Text style={{ flex: 1 }}>{`$${item_price}`}</Text>
                       </View>
                       <View
                         style={{

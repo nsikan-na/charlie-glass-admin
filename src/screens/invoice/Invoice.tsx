@@ -40,6 +40,14 @@ const Invoice = (): JSX.Element => {
     setFilters((prev: any) => ({ ...prev, fromDate: e[0], toDate: e[1] }));
   };
 
+  useEffect(() => {
+    console.log(pdfData);
+  }, [pdfData]);
+
+  useEffect(() => {
+    console.log(currentInvoice);
+  }, [currentInvoice]);
+  
   return (
     <div>
       <InvoiceModal
@@ -50,9 +58,9 @@ const Invoice = (): JSX.Element => {
       <div className="flex justify-between m-4">
         <div>
           <Input
-            addonBefore="Invoice #"
+            addonBefore="Quote #"
             className="w-72"
-            onChange={onFilterChange("invoice_id")}
+            onChange={onFilterChange("quote_id")}
           />
           <span className="mx-8">
             <Input
