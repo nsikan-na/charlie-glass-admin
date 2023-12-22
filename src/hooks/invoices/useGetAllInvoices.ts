@@ -12,7 +12,7 @@ const useGetAllInvoices = (params: any) => {
     enabled: !!user?.id,
     queryFn: async () =>
       await axios.get<TGetAllInvoicesResponse>(
-        `${EBaseUrl.CGI_API}/api/v1/invoices/${user?.id}`,
+        `${EBaseUrl.CGI_API}/api/v1/quotes/${user?.id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -32,12 +32,13 @@ export type TGetAllInvoicesRequestParams = {
   toDate?: string;
   pageSize?: number;
   page?: number;
+  isSigned?: boolean;
 };
 
 export type TGetAllInvoicesResponse = {
   invoice_id: number;
   user_id: number;
-  invoice_creation_date: string;
+  creation_date: string;
   receiver_name: string | null;
   invoice_services: string[];
 }[];

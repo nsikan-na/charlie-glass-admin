@@ -3,7 +3,7 @@ import { createContext } from "react";
 export const useInitialStore = () => {
   return {
     user: {
-      id: 6,
+      id: 1,
     },
     companyDetails: {
       name: "Charlie Glass Inc",

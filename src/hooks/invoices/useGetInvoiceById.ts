@@ -14,7 +14,7 @@ const useGetInvoiceById = (invoiceId: any) => {
     enabled: !!user?.id && !!invoiceId,
     queryFn: async () =>
       await axios.get<TGetAllInvoicesResponse>(
-        `${EBaseUrl.CGI_API}/api/v1/invoices/${user?.id}/${invoiceId}`,
+        `${EBaseUrl.CGI_API}/api/v1/quotes/${user?.id}/${invoiceId}`,
         {
           headers: {
             "Content-Type": "application/json",

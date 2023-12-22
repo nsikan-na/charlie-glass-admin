@@ -19,7 +19,7 @@ export default function InvoiceCard({
         style={{ width: 350, margin: ".5rem 1rem" }}
         title={
           <div style={{ fontWeight: 400, fontSize: ".9rem" }}>
-            {formatDate(invoice?.invoice_creation_date)}
+            {formatDate(invoice?.creation_date)}
           </div>
         }
         actions={[
@@ -32,7 +32,7 @@ export default function InvoiceCard({
                 className=""
               />
             }
-          ></Button>,
+          />,
         ]}
       >
         <div>
@@ -46,7 +46,7 @@ export default function InvoiceCard({
             <div style={{ marginTop: "1rem" }} className="text-2xl">
               {invoice?.receiver_name}
             </div>
-            <div className="text-lg">{invoice?.invoice_id}</div>
+            <div className="text-lg">{invoice?.quote_id}</div>
             <div
               style={{
                 display: "grid",
@@ -55,9 +55,9 @@ export default function InvoiceCard({
               }}
               className=""
             >
-              {invoice?.invoice_services?.map((service: any) => (
+              {invoice?.services?.map((service: any) => (
                 <div key={uniqueId()} className="">
-                  {service}{" "}
+                  {service}
                 </div>
               ))}
             </div>
