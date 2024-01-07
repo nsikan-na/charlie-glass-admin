@@ -10,6 +10,7 @@ import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
 import CreateNewInvoiceModal from "../modals/invoice/InvoiceAddToCartModal";
 import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import { useGetServices } from "../../hooks/invoices/useGetServices";
 
 export default function InvoiceServicesInput({
   setInvoice,
@@ -20,6 +21,11 @@ export default function InvoiceServicesInput({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const [checkedServices, setCheckedServices] = useState([]);
+
+  const data: any = useGetServices();
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -63,7 +69,7 @@ export default function InvoiceServicesInput({
               gridTemplateColumns: "12rem 12rem 12rem",
             }}
           >
-            {services.map((service) => (
+            {data?.data?.map((service: any) => (
               <Checkbox key={uniqueId()} value={service.id}>
                 {service.label}
               </Checkbox>
@@ -89,6 +95,20 @@ export default function InvoiceServicesInput({
               price={item.price}
             />
           ))}
+        </div>
+      </div>
+      <div className="flex justify-end ">
+        <div className=" flex justify-between gap-5">
+          <div>Total</div>
+
+          <div>
+            $
+            {cartItems
+              .map((item: any) => item.price)
+              .reduce((acc: number, cur: number) => {
+                return acc + cur;
+              }, 0)}
+          </div>
         </div>
       </div>
       <div className="flex justify-center">
