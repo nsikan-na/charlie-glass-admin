@@ -23,9 +23,6 @@ export default function InvoiceServicesInput({
   const [checkedServices, setCheckedServices] = useState([]);
 
   const data: any = useGetServices();
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   const showModal = () => {
     setIsModalOpen(true);
