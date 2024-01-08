@@ -13,12 +13,22 @@ import RangePicker from "../components/ant-design/form/RangePicker";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Selector } from "../components/ant-design/form/Select";
-
+import SignModal from "../modals/SignModal";
 const Invoice = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
   const [input, setInput] = useState(null);
   const [filters, setFilters] = useState(null);
+
+  const [isSignModalOpen, setSignModalOpen] = useState(false);
+  const showSignModal = () => {
+    console.log("showSignModal");
+    setSignModalOpen(true);
+  };
+  const closeSignModal = () => {
+    setSignModalOpen(false);
+  };
+
   const navigate = useNavigate();
 
   const { data } = useGetAllInvoices(input);
@@ -50,6 +60,11 @@ const Invoice = (): JSX.Element => {
 
   return (
     <div>
+      <SignModal
+        currentInvoice={currentInvoice}
+        isSignModalOpen={isSignModalOpen}
+        closeSignModal={closeSignModal}
+      />
       <InvoiceModal
         closeModal={closeModal}
         isModalOpen={isModalOpen}
@@ -97,6 +112,7 @@ const Invoice = (): JSX.Element => {
             key={uniqueId()}
             setCurrentInvoice={setCurrentInvoice}
             showModal={showModal}
+            showSignModal={showSignModal}
             invoice={invoice}
           />
         ))}
