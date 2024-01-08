@@ -12,6 +12,7 @@ import Input from "../components/ant-design/form/Input";
 import RangePicker from "../components/ant-design/form/RangePicker";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
+import { Selector } from "../components/ant-design/form/Select";
 
 const Invoice = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,6 +41,13 @@ const Invoice = (): JSX.Element => {
     setFilters((prev: any) => ({ ...prev, fromDate: e[0], toDate: e[1] }));
   };
 
+  const handleSelectFilter = (key: string) => (value: string) => {
+    setFilters((prev: any) => ({
+      ...prev,
+      [key]: value === "undefined" ? undefined : value,
+    }));
+  };
+
   return (
     <div>
       <InvoiceModal
@@ -62,6 +70,19 @@ const Invoice = (): JSX.Element => {
             />
           </span>
           <RangePicker onChange={onRangeFilterChange} className="" />
+          <span className="mx-8">
+            <Selector
+              onChange={handleSelectFilter("isSigned")}
+              className="w-40"
+              defaultValue="All"
+              style={{ width: 120 }}
+              options={[
+                { label: "All", value: "undefined" },
+                { label: "Quote", value: false },
+                { label: "Invoice", value: true },
+              ]}
+            />
+          </span>
           <span className="ml-4">
             <SearchButton className="" onClick={() => setInput(filters)} />
           </span>
