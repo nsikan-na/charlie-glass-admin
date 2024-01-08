@@ -1,12 +1,14 @@
 import { Button, Card } from "antd";
-import { PlayCircleOutlined } from "@ant-design/icons";
+import { EditOutlined, PlayCircleOutlined } from "@ant-design/icons";
 import { formatDate } from "../../util/helpers";
 import { uniqueId } from "lodash";
+import { useEffect } from "react";
 
 export default function InvoiceCard({
   setCurrentInvoice,
   invoice,
   showModal,
+  showSignModal,
 }: any) {
   function handleClick() {
     setCurrentInvoice(invoice.quote_id);
@@ -15,6 +17,22 @@ export default function InvoiceCard({
   return (
     <div className="flex justify-center">
       <Card
+        extra={
+          invoice.isSigned === 0 ? (
+            <Button
+              className=" border-none" //text-sky-400
+              icon={
+                <EditOutlined
+                  onClick={showSignModal}
+                  style={{ fontSize: "1.5rem" }}
+                  className=""
+                />
+              }
+            />
+          ) : (
+            ""
+          )
+        }
         onClick={handleClick}
         style={{ width: 350, margin: ".5rem 1rem" }}
         title={
