@@ -11,8 +11,14 @@ const useSignQuote = (id: any) => {
   return useMutation({
     mutationFn: async (obj: any) =>
       await axios.post(
-        `${EBaseUrl.CGI_API}/api/v1/${user?.id}/quotes/${id}/sign`,
-        obj
+        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes/${id}/sign`,
+        obj,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user?.accessToken}`,
+          },
+        }
       ),
 
     onSuccess: () => {

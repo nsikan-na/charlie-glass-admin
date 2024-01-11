@@ -9,14 +9,18 @@ const useGetAllInvoices = (params: any) => {
   const { user } = useContext(Context);
   return useQuery({
     queryKey: [EQueryKey.GET_ALL_INVOICES, params],
-    enabled: !!user?.id,
+    enabled: !!user?.userId,
     queryFn: async () =>
-      await axios.get<any>(`${EBaseUrl.CGI_API}/api/v1/${user?.id}/quotes`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        params,
-      }),
+      await axios.get<any>(
+        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user?.accessToken}`,
+          },
+          params,
+        }
+      ),
   });
 };
 
