@@ -1,10 +1,11 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const useInitialStore = () => {
+  const [user, setUser] = useState<any>(null);
+
   return {
-    user: {
-      id: 1,
-    },
+    user,
+    setUser,
     companyDetails: {
       name: "Charlie Glass Inc",
       phoneNumber: "(917)-848-9128",
@@ -15,6 +16,13 @@ export const useInitialStore = () => {
       email: "info@charlieglassinc.com",
     },
   };
+};
+
+export const userInitalState = {
+  userId: null,
+  userName: null,
+  expirationMs: null,
+  accessToken: null,
 };
 
 export const Context = createContext<TContextProps>({
@@ -28,7 +36,10 @@ export const Context = createContext<TContextProps>({
     email: null,
   },
   user: {
-    id: null,
+    userId: null,
+    userName: null,
+    expirationMs: null,
+    accessToken: null,
   },
 });
 
@@ -43,6 +54,9 @@ type TContextProps = {
     email: string | null;
   };
   user: {
-    id: number | null;
+    userId: number | null;
+    userName: string | null;
+    expirationMs: string | null;
+    accessToken: string | null;
   };
 };
