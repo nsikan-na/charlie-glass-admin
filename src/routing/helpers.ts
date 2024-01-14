@@ -3,4 +3,5 @@ export enum ERoute {
   INVOICE = "/invoice",
   LOGIN = "/login",
   CREATE_INVOICE = "/invoice/create",
+  DASHBOARD = "/dashboard",
 }

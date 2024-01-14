@@ -19,7 +19,7 @@ export const useInitialStore = () => {
 };
 
 export const userInitalState = {
-  //Remove this
+//Remove this
   userId: 1,
   userName: null,
   expirationMs: null,
