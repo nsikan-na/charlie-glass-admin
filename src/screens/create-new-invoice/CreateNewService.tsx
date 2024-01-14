@@ -58,6 +58,7 @@ export default function InvoiceServicesInput({
           Services
         </div>
         <div className="flex justify-center mt-4">
+          {/* @ts-ignore */}
           <Checkbox.Group
             onChange={onChange}
             value={checkedServices}

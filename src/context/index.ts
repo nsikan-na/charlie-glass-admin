@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 export const useInitialStore = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(userInitalState);
 
   return {
     user,
@@ -19,7 +19,7 @@ export const useInitialStore = () => {
 };
 
 export const userInitalState = {
-  userId: null,
+  userId: 1,
   userName: null,
   expirationMs: null,
   accessToken: null,
@@ -35,12 +35,7 @@ export const Context = createContext<TContextProps>({
     zip: null,
     email: null,
   },
-  user: {
-    userId: null,
-    userName: null,
-    expirationMs: null,
-    accessToken: null,
-  },
+  user: userInitalState,
 });
 
 type TContextProps = {

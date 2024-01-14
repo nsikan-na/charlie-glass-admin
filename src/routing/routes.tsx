@@ -6,6 +6,7 @@ import Login from "../screens/login/LogIn";
 import { RouteObject } from "react-router";
 import Root from "../layout/Root";
 import { ERoute } from "./helpers";
+import Dashboard from "../screens/dashboard/Dashboard";
 
 export const routes: RouteObject[] = [
   {
@@ -13,9 +14,14 @@ export const routes: RouteObject[] = [
     element: <Layout />,
     children: [
       {
+        path: ERoute.DASHBOARD,
+        element: <Dashboard />,
+      },
+      {
         path: ERoute.ROOT,
         element: <Root />,
       },
+
       {
         path: ERoute.INVOICE,
         children: [
@@ -28,6 +34,7 @@ export const routes: RouteObject[] = [
       },
     ],
   },
+
   {
     path: ERoute.LOGIN,
     element: <Login />,
