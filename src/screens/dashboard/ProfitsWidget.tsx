@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RangePicker from "../components/ant-design/form/RangePicker";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Spin } from "antd";

@@ -8,7 +8,7 @@ import { useContext } from "react";
 export const useGetServices = () => {
   const { user } = useContext(Context);
   return useQuery({
-    queryKey: [EQueryKey.SERVICES],
+    queryKey: [EQueryKey.SERVICES, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () => {
       const response = await axios.get(

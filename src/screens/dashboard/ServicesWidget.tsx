@@ -3,7 +3,6 @@ import RangePicker from "../components/ant-design/form/RangePicker";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { useState } from "react";
 import useGetServices from "../../hooks/reports/useGetServices";
-import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 
 export default function ServicesWidget() {

@@ -9,7 +9,7 @@ const useGetInvoiceById = (invoiceId: any) => {
   const { user } = useContext(Context);
 
   return useQuery({
-    queryKey: [EQueryKey.GET_INVOICE_BY_ID, invoiceId],
+    queryKey: [EQueryKey.GET_INVOICE_BY_ID, invoiceId, user?.userId],
     enabled: !!user?.userId && !!invoiceId,
     queryFn: async () =>
       await axios.get<any>(
