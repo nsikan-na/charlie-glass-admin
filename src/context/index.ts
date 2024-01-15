@@ -20,7 +20,7 @@ export const useInitialStore = () => {
 
 export const userInitalState = {
   userId: 1,
-  userName: null,
+  userName: "Charlie",
   expirationMs: null,
   accessToken: null,
 };

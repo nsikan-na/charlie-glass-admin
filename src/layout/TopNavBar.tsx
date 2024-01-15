@@ -1,9 +1,12 @@
 import { Layout } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ERoute } from "../routing/helpers";
+import { useContext } from "react";
+import { Context } from "../context";
 const { Header } = Layout;
 
 const TopNavBar = () => {
+  const { user } = useContext(Context);
   const navigate = useNavigate();
 
   return (
@@ -16,8 +19,15 @@ const TopNavBar = () => {
           Charlie Glass Admin
         </div>
         <div>
-          <span className="mr-4">Admin</span>
-          <span className="cursor-pointer">Log Out</span>
+          <span className="mr-4">{`${user.userName}`}</span>
+          <span
+            className="cursor-pointer"
+            onClick={() => {
+              navigate(ERoute.LOGIN);
+            }}
+          >
+            Log Out
+          </span>
         </div>
       </div>
     </Header>
