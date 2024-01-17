@@ -24,6 +24,13 @@ const useAddNewInvoice = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET_ALL_INVOICES] });
     },
+    onError: (error: any) => {
+      if (error.response && error.response.status === 401) {
+        // Redirect to the login page
+        // history.push("/login");
+        
+      }
+    },
   });
 };
 
