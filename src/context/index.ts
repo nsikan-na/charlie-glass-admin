@@ -1,7 +1,10 @@
 import { createContext, useState } from "react";
+import getLocalStorage from "../hooks/localstorage/getLocalStorage";
 
 export const useInitialStore = () => {
-  const [user, setUser] = useState<any>(userInitialState);
+  const [user, setUser] = useState<any>(
+    getLocalStorage("user") || userInitialState
+  );
 
   return {
     user,
