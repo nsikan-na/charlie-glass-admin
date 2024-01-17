@@ -2,11 +2,13 @@ import { Layout } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ERoute } from "../routing/helpers";
 import { useContext } from "react";
-import { Context } from "../context";
+import { Context, userInitialState } from "../context";
+import setLocalStorage from "../hooks/localstorage/setLocalStorage";
+
 const { Header } = Layout;
 
 const TopNavBar = () => {
-  const { user } = useContext(Context);
+  const { user }: any = useContext(Context);
   const navigate = useNavigate();
 
   return (
@@ -23,6 +25,7 @@ const TopNavBar = () => {
           <span
             className="cursor-pointer"
             onClick={() => {
+              setLocalStorage("user", userInitialState);
               navigate(ERoute.LOGIN);
             }}
           >
