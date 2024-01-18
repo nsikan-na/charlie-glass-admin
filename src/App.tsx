@@ -16,8 +16,10 @@ function App() {
       onError: (error) => {
         const axiosError = error as any;
         if (axiosError.response.status === 401) {
-          window.location.href = ERoute.LOGIN;
-          return;
+          return (window.location.href = ERoute.LOGIN);
+        }
+        if (axiosError.response.status === 404) {
+          return (window.location.href = ERoute.ROOT);
         }
       },
     }),
