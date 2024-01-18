@@ -18,9 +18,6 @@ function App() {
         if (axiosError.response.status === 401) {
           return (window.location.href = ERoute.LOGIN);
         }
-        if (axiosError.response.status === 404) {
-          return (window.location.href = ERoute.ROOT);
-        }
       },
     }),
   });
