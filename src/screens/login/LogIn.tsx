@@ -1,11 +1,13 @@
 import { Button, Form } from "antd";
 import Input from "../components/ant-design/form/Input";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useLogin from "../../hooks/login/useLogin";
 import { useNavigate } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
+import { Context } from "../../context";
 
 const Login: React.FC = () => {
+  const { user } = useContext(Context);
   const navigate = useNavigate();
   const [input, setInput] = useState({
     username: "",
@@ -13,7 +15,7 @@ const Login: React.FC = () => {
   });
 
   useEffect(() => {
-    navigate(ERoute.ROOT);
+    if (user?.userId) navigate(ERoute.ROOT);
   }, []);
 
   const handleInputChange = (key: string) => (e: any) => {
