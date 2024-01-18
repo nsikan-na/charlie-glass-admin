@@ -24,7 +24,6 @@ const Invoice = (): JSX.Element => {
 
   const [isSignModalOpen, setSignModalOpen] = useState(false);
   const showSignModal = () => {
-    console.log("showSignModal");
     setSignModalOpen(true);
   };
   const closeSignModal = () => {

@@ -4,12 +4,10 @@ import { EQueryKey } from "../queryKey";
 import { EBaseUrl } from "../baseUrl";
 import { useContext } from "react";
 import { Context } from "../../context";
-import { useNavigate } from "react-router-dom";
-import { ERoute } from "../../routing/helpers";
 
 const useGetAllInvoices = (params: any) => {
   const { user, activeTab }: any = useContext(Context);
-  const navigate = useNavigate();
+
   const { data, isLoading } = useQuery({
     queryKey: [EQueryKey.GET_ALL_INVOICES, params, user?.userId, activeTab],
     enabled: !!user?.userId,

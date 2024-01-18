@@ -2,15 +2,14 @@ import { Input } from "antd";
 import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
 import { uniqueId } from "lodash";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AddedToCart from "./AddedToCart";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { ERoute } from "../../routing/helpers";
 import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
 import CreateNewInvoiceModal from "../modals/invoice/InvoiceAddToCartModal";
 import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
-import { PlusCircleOutlined } from "@ant-design/icons";
-import { useGetServices } from "../../hooks/invoices/useGetServices";
+import useGetServices from "../../hooks/invoices/useGetServices";
 
 export default function InvoiceServicesInput({
   setInvoice,
@@ -22,7 +21,7 @@ export default function InvoiceServicesInput({
   const navigate = useNavigate();
   const [checkedServices, setCheckedServices] = useState([]);
 
-  const data: any = useGetServices();
+  const { data }: any = useGetServices();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -41,9 +40,6 @@ export default function InvoiceServicesInput({
 
   const add = useAddNewInvoice();
 
-  useEffect(() => {
-    console.log(invoice);
-  }, [invoice]);
   return (
     <>
       <CreateNewInvoiceModal
@@ -126,12 +122,3 @@ export default function InvoiceServicesInput({
     </>
   );
 }
-
-const services = [
-  { id: 1, label: "Shower Doors" },
-  { id: 2, label: "Shelves" },
-  { id: 3, label: "Glass Partition" },
-  { id: 4, label: "Store Fronts" },
-  { id: 5, label: "Mirrors" },
-  { id: 6, label: "Others" },
-];

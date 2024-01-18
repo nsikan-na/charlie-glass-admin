@@ -4,6 +4,7 @@ import { ERoute } from "../routing/helpers";
 import { useContext } from "react";
 import { Context, userInitialState } from "../context";
 import setLocalStorage from "../hooks/localstorage/setLocalStorage";
+import ELocalStorage from "../util/enums/localStorage";
 
 const { Header } = Layout;
 
@@ -25,7 +26,7 @@ const TopNavBar = () => {
           <span
             className="cursor-pointer"
             onClick={() => {
-              setLocalStorage("user", userInitialState);
+              setLocalStorage(ELocalStorage.USER, userInitialState);
               navigate(ERoute.LOGIN);
             }}
           >

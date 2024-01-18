@@ -10,11 +10,11 @@ export const useGetServices = () => {
   return useQuery({
     queryKey: [EQueryKey.SERVICES, user?.userId, activeTab],
     enabled: !!user?.userId,
-    queryFn: async () => {
-      const response = await axios.get(
+    queryFn: async () =>
+      await axios.get(
         `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes/services`
-      );
-      return response.data;
-    },
+      ),
   });
 };
+
+export default useGetServices;

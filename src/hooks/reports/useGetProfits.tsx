@@ -15,10 +15,6 @@ const useGetProfits = (params: any) => {
       await axios.get<any>(
         `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/reports/profit`,
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user?.accessToken}`,
-          },
           params,
         }
       ),

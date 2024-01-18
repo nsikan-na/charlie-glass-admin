@@ -1,10 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import getLocalStorage from "../hooks/localstorage/getLocalStorage";
 import axios from "axios";
+import ELocalStorage from "../util/enums/localStorage";
 
 export const useInitialStore = () => {
   const [user, setUser] = useState<any>(
-    getLocalStorage("user") || userInitialState
+    getLocalStorage(ELocalStorage.USER) || userInitialState
   );
 
   const [activeTab, setActiveTab] = useState<any>("/invoice");
