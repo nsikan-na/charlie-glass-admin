@@ -25,10 +25,6 @@ const useGetAllInvoices = (params: any) => {
         }
       ),
   });
-  const { isError, error } = response as any;
-  if (isError && error?.response?.status === 401) {
-    return navigate(ERoute.LOGIN);
-  }
 
   return response;
 };
