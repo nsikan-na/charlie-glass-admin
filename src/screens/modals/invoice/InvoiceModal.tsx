@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 
-import PdfTemplate from "../../../util/pdf/PdfTemplate";
+import PdfTemplate from "./pdf/PdfTemplate";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
 
 export default function InvoiceModal({ isModalOpen, closeModal, pdf }: any) {
