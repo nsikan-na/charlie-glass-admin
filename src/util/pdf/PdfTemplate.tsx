@@ -12,6 +12,7 @@ import { decimalThousandsCommaSeparated, formatDate } from "../helpers";
 import { uniqueId } from "lodash";
 
 const PdfTemplate = ({ invoiceData }: any) => {
+  console.log(invoiceData);
   const {
     companyDetails: {
       email,
@@ -72,7 +73,9 @@ const PdfTemplate = ({ invoiceData }: any) => {
               }}
             >
               <View style={{ flex: 3, fontSize: 10 }}>
-                <Text style={{ fontSize: 35 }}>INVOICE</Text>
+                <Text style={{ fontSize: 35 }}>
+                  {invoiceData.isSigned === 0 ? "QUOTE" : "INVOICE"}
+                </Text>
                 <View
                   style={{
                     display: "flex",
@@ -214,7 +217,24 @@ const PdfTemplate = ({ invoiceData }: any) => {
                 marginTop: "70",
               }}
             >
-              <Text style={{ fontSize: 10 }}>Thank you for your business.</Text>
+              {invoiceData.isSigned === 0 ? (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginTop: 20,
+                  }}
+                >
+                  <Text style={{ marginRight: 10, fontSize: 10 }}>
+                    Thank You x_______________________
+                  </Text>
+                  <View style={{ borderBottomWidth: 1, flex: 1 }} />
+                </View>
+              ) : (
+                <Text style={{ fontSize: 10 }}>
+                  Thank you for your bussiness
+                </Text>
+              )}
             </View>
           </View>
         </Page>
