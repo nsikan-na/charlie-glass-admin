@@ -7,12 +7,20 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { routes } from "./routing/routes";
 import { Context, useInitialStore } from "./context";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ERoute } from "./routing/helpers";
+import axios from "axios";
 
 function App() {
+  axios.defaults.headers.common["Authorization"] = "application/json";
+
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
       onError: (error) => {
-        console.log(error);
+        const axiosError = error as any;
+        if (axiosError.response.status === 401) {
+          window.location.href = ERoute.LOGIN;
+          return;
+        }
       },
     }),
   });
