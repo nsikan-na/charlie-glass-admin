@@ -6,9 +6,9 @@ import { useContext } from "react";
 import { Context } from "../../context";
 
 const useGetServices = (params: any) => {
-  const { user } = useContext(Context);
+  const { user, activeTab }: any = useContext(Context);
   return useQuery({
-    queryKey: [EQueryKey.SERVICES, params, user?.userId],
+    queryKey: [EQueryKey.SERVICES, params, user?.userId, activeTab],
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get<any>(

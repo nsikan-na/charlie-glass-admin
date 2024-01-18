@@ -5,6 +5,7 @@ import TopNavBar from "./TopNavBar";
 import Login from "../screens/login/LogIn";
 import { useContext } from "react";
 import { Context } from "../context";
+import Tabs from "./Tabs";
 
 const { Content } = AntLayout;
 
@@ -17,6 +18,7 @@ const Layout = () => {
       ) : (
         <>
           <TopNavBar />
+          <Tabs />
           <main className="flex">
             {/* <Sidebar /> */}
             <Content className="w-4/6">

@@ -7,12 +7,16 @@ export const useInitialStore = () => {
     getLocalStorage("user") || userInitialState
   );
 
+  const [activeTab, setActiveTab] = useState<any>("/invoice");
+
   useEffect(() => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + user?.accessToken;
   }, [user]);
 
   return {
+    activeTab,
+    setActiveTab,
     user,
     setUser,
     companyDetails: {
