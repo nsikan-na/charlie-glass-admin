@@ -10,7 +10,7 @@ import { ERoute } from "../../routing/helpers";
 const useGetAllInvoices = (params: any) => {
   const { user, activeTab }: any = useContext(Context);
   const navigate = useNavigate();
-  const response = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: [EQueryKey.GET_ALL_INVOICES, params, user?.userId, activeTab],
     enabled: !!user?.userId,
     queryFn: async () =>
@@ -21,8 +21,8 @@ const useGetAllInvoices = (params: any) => {
         }
       ),
   });
-
-  return response;
+  console.log(isLoading, data);
+  return { data, isLoading };
 };
 
 export default useGetAllInvoices;
