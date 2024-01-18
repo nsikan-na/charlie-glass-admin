@@ -12,7 +12,6 @@ import { decimalThousandsCommaSeparated, formatDate } from "../helpers";
 import { uniqueId } from "lodash";
 
 const PdfTemplate = ({ invoiceData }: any) => {
-  console.log(invoiceData);
   const {
     companyDetails: {
       email,
