@@ -25,8 +25,7 @@ const useLogin = () => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET_ALL_INVOICES] });
 
       setUser(data?.data);
-      setLocalStorage("user", data?.data);
-
+      setLocalStorage(ELocalStorage.USER, data?.data);
       navigate(ERoute.ROOT);
     },
   });

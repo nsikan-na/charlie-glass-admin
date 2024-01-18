@@ -14,6 +14,7 @@ import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Selector } from "../components/ant-design/form/Select";
 import SignModal from "../modals/SignModal";
+import useGetServices from "../../hooks/invoices/useGetServices";
 const Invoice = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
@@ -22,7 +23,6 @@ const Invoice = (): JSX.Element => {
 
   const [isSignModalOpen, setSignModalOpen] = useState(false);
   const showSignModal = () => {
-    console.log("showSignModal");
     setSignModalOpen(true);
   };
   const closeSignModal = () => {
@@ -30,6 +30,8 @@ const Invoice = (): JSX.Element => {
   };
 
   const navigate = useNavigate();
+
+  useGetServices(); // fetch services so they are cashed, don't remove
 
   const { data }: any = useGetAllInvoices(input);
 

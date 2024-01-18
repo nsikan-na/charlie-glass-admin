@@ -25,7 +25,7 @@ const TopNavBar = () => {
           <span
             className="cursor-pointer"
             onClick={() => {
-              setLocalStorage("user", userInitialState);
+              setLocalStorage(ELocalStorage.USER, userInitialState);
               navigate(ERoute.LOGIN);
             }}
           >

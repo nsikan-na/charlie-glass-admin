@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const useInitialStore = () => {
   const [user, setUser] = useState<any>(
-    getLocalStorage("user") || userInitialState
+    getLocalStorage(ELocalStorage.USER) || userInitialState
   );
 
   useEffect(() => {

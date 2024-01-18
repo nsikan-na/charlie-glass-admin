@@ -1,0 +1,3 @@
+enum ELocalStorage {
+  USER = "user",
+}
