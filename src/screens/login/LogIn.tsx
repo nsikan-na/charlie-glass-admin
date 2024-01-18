@@ -1,13 +1,21 @@
 import { Button, Form } from "antd";
 import Input from "../components/ant-design/form/Input";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useLogin from "../../hooks/login/useLogin";
+import { Context } from "../../context";
+import { useNavigate } from "react-router-dom";
+import { ERoute } from "../../routing/helpers";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     username: "",
     password: "",
   });
+
+  useEffect(() => {
+    navigate(ERoute.ROOT);
+  }, []);
 
   const handleInputChange = (key: string) => (e: any) => {
     setInput((i) => ({ ...i, [key]: e.target.value }));

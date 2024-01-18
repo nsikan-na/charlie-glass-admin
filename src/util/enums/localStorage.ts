@@ -1,5 +1,5 @@
 enum ELocalStorage {
-  USER = "user",
+  USER = "charlie-glass-user",
 }
 
 export default ELocalStorage;
