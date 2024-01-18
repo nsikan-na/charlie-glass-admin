@@ -4,10 +4,13 @@ import { EQueryKey } from "../queryKey";
 import { EBaseUrl } from "../baseUrl";
 import { useContext } from "react";
 import { Context } from "../../context";
+import { useNavigate } from "react-router-dom";
+import { ERoute } from "../../routing/helpers";
 
 const useGetAllInvoices = (params: any) => {
   const { user } = useContext(Context);
-  return useQuery({
+  const navigate = useNavigate();
+  const response = useQuery({
     queryKey: [EQueryKey.GET_ALL_INVOICES, params, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
@@ -22,6 +25,12 @@ const useGetAllInvoices = (params: any) => {
         }
       ),
   });
+  const { isError, error } = response as any;
+  if (isError && error?.response?.status === 401) {
+    return navigate(ERoute.LOGIN);
+  }
+
+  return response;
 };
 
 export default useGetAllInvoices;

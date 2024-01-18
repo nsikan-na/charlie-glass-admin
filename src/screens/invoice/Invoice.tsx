@@ -31,7 +31,7 @@ const Invoice = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  const { data } = useGetAllInvoices(input);
+  const { data }: any = useGetAllInvoices(input);
 
   const showModal = () => {
     setIsModalOpen(true);
