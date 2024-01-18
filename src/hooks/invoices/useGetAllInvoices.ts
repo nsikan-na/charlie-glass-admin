@@ -17,10 +17,6 @@ const useGetAllInvoices = (params: any) => {
       await axios.get<any>(
         `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes`,
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user?.accessToken}`,
-          },
           params,
         }
       ),

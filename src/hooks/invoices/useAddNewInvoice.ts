@@ -12,13 +12,7 @@ const useAddNewInvoice = () => {
     mutationFn: async (obj: any) =>
       await axios.post(
         `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes/add`,
-        obj,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user?.accessToken}`,
-          },
-        }
+        obj
       ),
 
     onSuccess: () => {

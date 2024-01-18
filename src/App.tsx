@@ -11,8 +11,6 @@ import { ERoute } from "./routing/helpers";
 import axios from "axios";
 
 function App() {
-  axios.defaults.headers.common["Authorization"] = "application/json";
-
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
       onError: (error) => {
