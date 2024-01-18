@@ -1,23 +1,22 @@
 import { Column } from "@ant-design/plots";
 import RangePicker from "../components/ant-design/form/RangePicker";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
+import { useState } from "react";
+import useGetServices from "../../hooks/reports/useGetServices";
+import { Spin } from "antd";
 
-export default function ServicesWidget({
-  data,
-  onRangeFilterChange,
-  setInput,
-  filters,
-}: any) {
-  if (!data) {
-    return <div>Loading...</div>;
-  }
+export default function ServicesWidget() {
+  const [input, setInput] = useState(null);
+  const [filters, setFilters] = useState(null);
+  const { data } = useGetServices(input);
+  const onRangeFilterChange = (_: unknown, e: any) => {
+    setFilters((prev: any) => ({ ...prev, fromDate: e[0], toDate: e[1] }));
+  };
   const config = {
     data: data?.data,
     xField: "service_label",
     yField: "service_count",
     label: {
-      // position: "middle",
-
       style: {
         fill: "#FFFFFF",
         opacity: 0.6,
@@ -39,7 +38,15 @@ export default function ServicesWidget({
         </div>
         <SearchButton className="" onClick={() => setInput(filters)} />
       </div>
-      <Column {...config} />
+      {!data ? (
+        <div className="flex justify-center items-center mt-12">
+          <Spin />
+        </div>
+      ) : (
+        <Column {...config} />
+      )}
     </div>
   );
 }
+
+//  indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}

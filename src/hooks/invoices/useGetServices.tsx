@@ -8,17 +8,11 @@ import { useContext } from "react";
 export const useGetServices = () => {
   const { user } = useContext(Context);
   return useQuery({
-    queryKey: [EQueryKey.SERVICES],
+    queryKey: [EQueryKey.SERVICES, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () => {
       const response = await axios.get(
-        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes/services`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user?.accessToken}`,
-          },
-        }
+        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes/services`
       );
       return response.data;
     },

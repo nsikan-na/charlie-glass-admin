@@ -1,7 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import getLocalStorage from "../hooks/localstorage/getLocalStorage";
+import axios from "axios";
 
 export const useInitialStore = () => {
-  const [user, setUser] = useState<any>(userInitalState);
+  const [user, setUser] = useState<any>(
+    getLocalStorage("user") || userInitialState
+  );
+
+  useEffect(() => {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + user?.accessToken;
+  }, [user]);
 
   return {
     user,
@@ -18,9 +27,9 @@ export const useInitialStore = () => {
   };
 };
 
-export const userInitalState = {
-//Remove this
-  userId: 1,
+export const userInitialState = {
+  //Remove this
+  userId: null,
   userName: null,
   expirationMs: null,
   accessToken: null,
@@ -36,7 +45,7 @@ export const Context = createContext<TContextProps>({
     zip: null,
     email: null,
   },
-  user: userInitalState,
+  user: userInitialState,
 });
 
 type TContextProps = {

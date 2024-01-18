@@ -36,7 +36,9 @@ const Login: React.FC = () => {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button
                 htmlType="submit"
-                onClick={() => checkLogin.mutate(input)}
+                onClick={() => {
+                  checkLogin.mutate(input);
+                }}
               >
                 Log In
               </Button>
