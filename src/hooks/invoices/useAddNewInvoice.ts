@@ -16,7 +16,7 @@ const useAddNewInvoice = () => {
       ),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [EQueryKey.GET_ALL_INVOICES] });
+      queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
     },
   });
 };

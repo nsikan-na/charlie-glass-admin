@@ -1,4 +1,5 @@
 export enum EQueryKey {
+  GET,
   GET_ALL_INVOICES,
   GET_INVOICE_BY_ID,
   SERVICES,
