@@ -6,6 +6,8 @@ import Login from "../screens/login/LogIn";
 import { RouteObject } from "react-router";
 import { ERoute } from "./helpers";
 import Main from "../screens/invoice/Main";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const routes: RouteObject[] = [
   {
@@ -13,8 +15,8 @@ export const routes: RouteObject[] = [
     element: <Layout />,
     children: [
       {
-        path: ERoute.LOGIN,
-        element: <Login />,
+        path: ERoute.ROOT,
+        element: <Root />,
       },
       {
         path: ERoute.INVOICE,
@@ -28,4 +30,19 @@ export const routes: RouteObject[] = [
       },
     ],
   },
+  {
+    path: ERoute.LOGIN,
+    element: <Login />,
+  },
 ];
+
+function Root() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    navigate(ERoute.INVOICE);
+  }, [location]);
+
+  return <></>;
+}

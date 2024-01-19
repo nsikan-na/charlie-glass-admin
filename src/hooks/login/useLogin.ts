@@ -23,7 +23,7 @@ const useLogin = () => {
     mutationFn: async (obj: TLoginInput) =>
       await axios.post(`${EBaseUrl.CGI_API}/api/v1/login`, obj),
     onSuccess: (data: any) => {
-      queryClient.invalidateQueries({ queryKey: [EQueryKey.GET_ALL_INVOICES] });
+      queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
 
       setUser(data?.data);
       setLocalStorage(ELocalStorage.USER, data?.data);

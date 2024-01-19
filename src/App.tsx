@@ -11,6 +11,11 @@ import { ERoute } from "./routing/helpers";
 
 function App() {
   const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+      },
+    },
     queryCache: new QueryCache({
       onError: (error) => {
         const axiosError = error as any;

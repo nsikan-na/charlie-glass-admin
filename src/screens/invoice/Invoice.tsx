@@ -46,7 +46,6 @@ const Invoice = (): JSX.Element => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
   const { data: pdfData }: any = useGetInvoiceById(currentInvoice as any);
 
   const onFilterChange = (key: string) => (e: any) => {

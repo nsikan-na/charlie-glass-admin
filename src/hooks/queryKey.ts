@@ -1,7 +1,8 @@
 export enum EQueryKey {
-  GET_ALL_INVOICES,
-  GET_INVOICE_BY_ID,
-  SERVICES,
-  REPORT_PROFITS,
-  REPORT_SERVICES,
+  GET = "get",
+  GET_ALL_INVOICES = "getAllInvoices",
+  GET_INVOICE_BY_ID = "getInvoiceById",
+  SERVICES = "getAllServices",
+  REPORT_PROFITS = "getReportProfits",
+  REPORT_SERVICES = "getReportServices",
 }

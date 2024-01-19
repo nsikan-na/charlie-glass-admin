@@ -8,18 +8,11 @@ import { Context } from "../../context";
 const useGetReportServices = (params: any) => {
   const { user } = useContext(Context);
   return useQuery({
-    queryKey: [EQueryKey.REPORT_SERVICES, params, user?.userId],
+    queryKey: [EQueryKey.GET, EQueryKey.REPORT_SERVICES, params, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get<any>(
-        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/reports/services`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user?.accessToken}`,
-          },
-          params,
-        }
+        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/reports/services`
       ),
   });
 };
