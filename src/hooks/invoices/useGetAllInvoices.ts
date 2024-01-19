@@ -6,9 +6,9 @@ import { useContext } from "react";
 import { Context } from "../../context";
 
 const useGetAllInvoices = (params: any) => {
-  const { user }: any = useContext(Context);
+  const { user } = useContext(Context);
 
-  const data = useQuery({
+  return useQuery({
     queryKey: [EQueryKey.GET_ALL_INVOICES, params, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
@@ -19,8 +19,6 @@ const useGetAllInvoices = (params: any) => {
         }
       ),
   });
-
-  return data;
 };
 
 export default useGetAllInvoices;

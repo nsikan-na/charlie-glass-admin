@@ -8,16 +8,12 @@ export const useInitialStore = () => {
     getLocalStorage(ELocalStorage.USER) || userInitialState
   );
 
-  const [activeTab, setActiveTab] = useState<any>("/invoice");
-
   useEffect(() => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + user?.accessToken;
   }, [user]);
 
   return {
-    activeTab,
-    setActiveTab,
     user,
     setUser,
     companyDetails: {
@@ -33,7 +29,6 @@ export const useInitialStore = () => {
 };
 
 export const userInitialState = {
-  //Remove this
   userId: null,
   userName: null,
   expirationMs: null,

@@ -6,7 +6,7 @@ import { Context } from "../../context";
 import { useContext } from "react";
 
 const useGetInvoiceById = (invoiceId: any) => {
-  const { user }: any = useContext(Context);
+  const { user } = useContext(Context);
 
   return useQuery({
     queryKey: [EQueryKey.GET_INVOICE_BY_ID, invoiceId, user?.userId],

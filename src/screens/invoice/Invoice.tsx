@@ -7,7 +7,6 @@ import { ERoute } from "../../routing/helpers";
 import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
 import useGetInvoiceById from "../../hooks/invoices/useGetInvoiceById";
 import { uniqueId } from "lodash";
-import { formatDate } from "../../util/helpers";
 import Input from "../components/ant-design/form/Input";
 import RangePicker from "../components/ant-design/form/RangePicker";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
@@ -15,7 +14,6 @@ import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Selector } from "../components/ant-design/form/Select";
 import SignModal from "../modals/SignModal";
 
-import { Alert, Flex, Spin } from "antd";
 import useGetServices from "../../hooks/invoices/useGetServices";
 
 const Invoice = (): JSX.Element => {

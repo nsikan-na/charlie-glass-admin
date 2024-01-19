@@ -5,10 +5,10 @@ import { EBaseUrl } from "../baseUrl";
 import { useContext } from "react";
 import { Context } from "../../context";
 
-const useGetServices = (params: any) => {
-  const { user }: any = useContext(Context);
+const useGetReportServices = (params: any) => {
+  const { user } = useContext(Context);
   return useQuery({
-    queryKey: [EQueryKey.SERVICES, params, user?.userId],
+    queryKey: [EQueryKey.REPORT_SERVICES, params, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get<any>(
@@ -24,4 +24,4 @@ const useGetServices = (params: any) => {
   });
 };
 
-export default useGetServices;
+export default useGetReportServices;

@@ -6,10 +6,10 @@ import { useContext } from "react";
 import { Context } from "../../context";
 
 const useGetProfits = (params: any) => {
-  const { user }: any = useContext(Context);
+  const { user } = useContext(Context);
 
   return useQuery({
-    queryKey: [EQueryKey.PROFITS_REPORTS, params, user?.userId],
+    queryKey: [EQueryKey.REPORT_PROFITS, params, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get<any>(

@@ -6,21 +6,17 @@ import Invoice from "./Invoice";
 export default function Main() {
   const items: TabsProps["items"] = [
     {
-      key: "/invoice",
+      key: "1",
       label: "Invoices",
       children: <Invoice />,
     },
 
     {
-      key: "/dashboard",
+      key: "2",
       label: "Dashboard",
       children: <Dashboard />,
     },
   ];
 
-  return (
-    <div>
-      <AntTabs className="ml-10" defaultActiveKey="/invoice" items={items} />
-    </div>
-  );
+  return <AntTabs className="ml-10" defaultActiveKey={"1"} items={items} />;
 }
