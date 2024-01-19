@@ -7,6 +7,7 @@ import { RouteObject } from "react-router";
 import Root from "../layout/Root";
 import { ERoute } from "./helpers";
 import Dashboard from "../screens/dashboard/Dashboard";
+import Main from "../screens/invoice/Main";
 
 export const routes: RouteObject[] = [
   {
@@ -25,7 +26,7 @@ export const routes: RouteObject[] = [
       {
         path: ERoute.INVOICE,
         children: [
-          { path: ERoute.INVOICE, element: <Invoice /> },
+          { path: ERoute.INVOICE, element: <Main /> },
           {
             path: ERoute.CREATE_INVOICE,
             element: <CreateNewInvoice />,

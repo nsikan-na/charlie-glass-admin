@@ -1,22 +1,20 @@
 import { Tabs as AntTabs } from "antd";
 import type { TabsProps } from "antd";
+import Dashboard from "../dashboard/Dashboard";
+import Invoice from "./Invoice";
 
 export default function Main() {
   const items: TabsProps["items"] = [
     {
       key: "/invoice",
       label: "Invoices",
-      children: "",
+      children: <Invoice />,
     },
-    {
-      key: "/invoice/create",
-      label: "Create New",
-      children: "",
-    },
+
     {
       key: "/dashboard",
       label: "Dashboard",
-      children: "",
+      children: <Dashboard />,
     },
   ];
 

@@ -14,7 +14,7 @@ import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Selector } from "../components/ant-design/form/Select";
 import SignModal from "../modals/SignModal";
-import { Skeleton } from "antd";
+
 import { Alert, Flex, Spin } from "antd";
 const Invoice = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -107,19 +107,17 @@ const Invoice = (): JSX.Element => {
           Create New Invoice
         </PrimaryButton>
       </div>
-      <Skeleton loading={isLoading}>
-        <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
-          {data?.data?.map((invoice: any) => (
-            <InvoiceCard
-              key={uniqueId()}
-              setCurrentInvoice={setCurrentInvoice}
-              showModal={showModal}
-              showSignModal={showSignModal}
-              invoice={invoice}
-            />
-          ))}
-        </div>
-      </Skeleton>
+      <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
+        {data?.data?.map((invoice: any) => (
+          <InvoiceCard
+            key={uniqueId()}
+            setCurrentInvoice={setCurrentInvoice}
+            showModal={showModal}
+            showSignModal={showSignModal}
+            invoice={invoice}
+          />
+        ))}
+      </div>
     </div>
   );
 };
