@@ -1,7 +1,7 @@
 import { Tabs as AntTabs } from "antd";
 import type { TabsProps } from "antd";
 
-export default function Tabs() {
+export default function Main() {
   const items: TabsProps["items"] = [
     {
       key: "/invoice",
@@ -19,7 +19,10 @@ export default function Tabs() {
       children: "",
     },
   ];
+
   return (
-    <AntTabs className="ml-10" defaultActiveKey="/invoice" items={items} />
+    <div>
+      <AntTabs className="ml-10" defaultActiveKey="/invoice" items={items} />
+    </div>
   );
 }

@@ -6,10 +6,10 @@ import { useContext } from "react";
 import { Context } from "../../context";
 
 const useGetAllInvoices = (params: any) => {
-  const { user, activeTab }: any = useContext(Context);
+  const { user }: any = useContext(Context);
 
-  const { data, isLoading } = useQuery({
-    queryKey: [EQueryKey.GET_ALL_INVOICES, params, user?.userId, activeTab],
+  const data = useQuery({
+    queryKey: [EQueryKey.GET_ALL_INVOICES, params, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get<any>(
@@ -19,8 +19,8 @@ const useGetAllInvoices = (params: any) => {
         }
       ),
   });
-  console.log(isLoading, data);
-  return { data, isLoading };
+
+  return data;
 };
 
 export default useGetAllInvoices;

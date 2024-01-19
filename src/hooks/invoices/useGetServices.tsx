@@ -5,10 +5,10 @@ import { EBaseUrl } from "../baseUrl";
 import { Context } from "../../context";
 import { useContext } from "react";
 
-export const useGetServices = () => {
-  const { user, activeTab }: any = useContext(Context);
+const useGetServices = () => {
+  const { user }: any = useContext(Context);
   return useQuery({
-    queryKey: [EQueryKey.SERVICES, user?.userId, activeTab],
+    queryKey: [EQueryKey.SERVICES, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get(

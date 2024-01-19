@@ -6,10 +6,10 @@ import { Context } from "../../context";
 import { useContext } from "react";
 
 const useGetInvoiceById = (invoiceId: any) => {
-  const { user, activeTab }: any = useContext(Context);
+  const { user }: any = useContext(Context);
 
   return useQuery({
-    queryKey: [EQueryKey.GET_INVOICE_BY_ID, invoiceId, user?.userId, activeTab],
+    queryKey: [EQueryKey.GET_INVOICE_BY_ID, invoiceId, user?.userId],
     enabled: !!user?.userId && !!invoiceId,
     queryFn: async () =>
       await axios.get<any>(

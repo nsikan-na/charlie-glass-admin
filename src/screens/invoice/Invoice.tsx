@@ -107,9 +107,7 @@ const Invoice = (): JSX.Element => {
           Create New Invoice
         </PrimaryButton>
       </div>
-      {isLoading ? (
-        <Skeleton />
-      ) : (
+      <Skeleton loading={isLoading}>
         <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
           {data?.data?.map((invoice: any) => (
             <InvoiceCard
@@ -121,7 +119,7 @@ const Invoice = (): JSX.Element => {
             />
           ))}
         </div>
-      )}
+      </Skeleton>
     </div>
   );
 };
