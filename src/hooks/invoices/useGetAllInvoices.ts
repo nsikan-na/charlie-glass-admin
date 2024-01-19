@@ -7,6 +7,7 @@ import { Context } from "../../context";
 
 const useGetAllInvoices = (params: any) => {
   const { user } = useContext(Context);
+
   return useQuery({
     queryKey: [EQueryKey.GET_ALL_INVOICES, params, user?.userId],
     enabled: !!user?.userId,

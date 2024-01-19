@@ -14,10 +14,6 @@ const Login: React.FC = () => {
     password: "",
   });
 
-  useEffect(() => {
-    if (user?.userId) navigate(ERoute.ROOT);
-  }, []);
-
   const handleInputChange = (key: string) => (e: any) => {
     setInput((i) => ({ ...i, [key]: e.target.value }));
   };

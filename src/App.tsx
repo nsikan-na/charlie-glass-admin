@@ -8,7 +8,6 @@ import { routes } from "./routing/routes";
 import { Context, useInitialStore } from "./context";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ERoute } from "./routing/helpers";
-import axios from "axios";
 
 function App() {
   const queryClient = new QueryClient({

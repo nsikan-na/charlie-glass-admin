@@ -1,5 +1,5 @@
 export enum ERoute {
-  ROOT = "/",
+  ROOT = "/invoice",
   INVOICE = "/invoice",
   LOGIN = "/login",
   CREATE_INVOICE = "/invoice/add",

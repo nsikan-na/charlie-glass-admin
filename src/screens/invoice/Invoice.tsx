@@ -7,15 +7,17 @@ import { ERoute } from "../../routing/helpers";
 import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
 import useGetInvoiceById from "../../hooks/invoices/useGetInvoiceById";
 import { uniqueId } from "lodash";
-import { formatDate } from "../../util/helpers";
 import Input from "../components/ant-design/form/Input";
 import RangePicker from "../components/ant-design/form/RangePicker";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Selector } from "../components/ant-design/form/Select";
 import SignModal from "../modals/SignModal";
+
 import useGetServices from "../../hooks/invoices/useGetServices";
+
 const Invoice = (): JSX.Element => {
+  useGetServices();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
   const [input, setInput] = useState(null);
@@ -31,9 +33,7 @@ const Invoice = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  useGetServices(); // fetch services so they are cashed, don't remove
-
-  const { data }: any = useGetAllInvoices(input);
+  const { data, isLoading }: any = useGetAllInvoices(input);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -42,7 +42,6 @@ const Invoice = (): JSX.Element => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
   const { data: pdfData }: any = useGetInvoiceById(currentInvoice as any);
 
   const onFilterChange = (key: string) => (e: any) => {

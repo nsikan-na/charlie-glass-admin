@@ -2,7 +2,7 @@ import { Column } from "@ant-design/plots";
 import RangePicker from "../components/ant-design/form/RangePicker";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { useState } from "react";
-import useGetServices from "../../hooks/reports/useGetServices";
+import useGetServices from "../../hooks/reports/useGetReportServices";
 import { Spin } from "antd";
 
 export default function ServicesWidget() {

@@ -4,7 +4,7 @@ import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Spin } from "antd";
 import { Tag } from "antd";
 import { formatDate } from "../../util/helpers";
-import useGetProfits from "../../hooks/reports/useGetProfits";
+import useGetProfits from "../../hooks/reports/useGetReportProfits";
 
 export default function ProfitsWidget() {
   const [input, setInput] = useState(null);

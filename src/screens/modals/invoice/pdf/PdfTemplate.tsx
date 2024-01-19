@@ -75,7 +75,9 @@ const PdfTemplate = ({ invoiceData }: any) => {
               }}
             >
               <View style={{ flex: 3, fontSize: 10 }}>
-                <Text style={{ fontSize: 35 }}>INVOICE</Text>
+                <Text style={{ fontSize: 35 }}>
+                  {invoiceData.isSigned === 0 ? "QUOTE" : "INVOICE"}
+                </Text>
                 <View
                   style={{
                     display: "flex",
@@ -209,15 +211,19 @@ const PdfTemplate = ({ invoiceData }: any) => {
                 <Text style={{ flex: 1 }}>${total}</Text>
               </View>
             </View>
+
             <View
               style={{
-                display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-between",
-                marginTop: "70",
+                alignItems: "center",
+                marginTop: 20,
               }}
             >
-              <Text style={{ fontSize: 10 }}>Thank you for your business.</Text>
+              <Text style={{ marginRight: 10, fontSize: 10 }}>
+                {invoiceData.isSigned === 0
+                  ? " x_______________________"
+                  : "Thank you for your bussiness"}
+              </Text>
             </View>
           </View>
         </Page>
