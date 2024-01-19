@@ -19,10 +19,6 @@ export const routes: RouteObject[] = [
         element: <Root />,
       },
       {
-        path: ERoute.LOGIN,
-        element: <Login />,
-      },
-      {
         path: ERoute.INVOICE,
         children: [
           { path: ERoute.INVOICE, element: <Main /> },
@@ -33,6 +29,10 @@ export const routes: RouteObject[] = [
         ],
       },
     ],
+  },
+  {
+    path: ERoute.LOGIN,
+    element: <Login />,
   },
 ];
 
