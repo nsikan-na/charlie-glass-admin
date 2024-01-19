@@ -17,7 +17,6 @@ import SignModal from "../modals/SignModal";
 import useGetServices from "../../hooks/invoices/useGetServices";
 
 const Invoice = (): JSX.Element => {
-  useGetServices();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
   const [input, setInput] = useState(null);
@@ -33,6 +32,7 @@ const Invoice = (): JSX.Element => {
 
   const navigate = useNavigate();
 
+  useGetServices();
   const { data, isLoading }: any = useGetAllInvoices(input);
 
   const showModal = () => {

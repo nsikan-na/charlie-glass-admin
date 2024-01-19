@@ -9,7 +9,7 @@ const useGetReportProfits = (params: any) => {
   const { user } = useContext(Context);
 
   return useQuery({
-    queryKey: [EQueryKey.GET, EQueryKey.REPORT_PROFITS, params, user?.userId],
+    queryKey: [EQueryKey.GET, EQueryKey.REPORT_PROFITS, params, user],
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get<any>(
