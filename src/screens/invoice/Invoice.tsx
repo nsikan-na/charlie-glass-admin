@@ -16,7 +16,10 @@ import { Selector } from "../components/ant-design/form/Select";
 import SignModal from "../modals/SignModal";
 
 import { Alert, Flex, Spin } from "antd";
+import useGetServices from "../../hooks/invoices/useGetServices";
+
 const Invoice = (): JSX.Element => {
+  useGetServices();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
   const [input, setInput] = useState(null);
@@ -41,7 +44,6 @@ const Invoice = (): JSX.Element => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
   const { data: pdfData }: any = useGetInvoiceById(currentInvoice as any);
 
   const onFilterChange = (key: string) => (e: any) => {
