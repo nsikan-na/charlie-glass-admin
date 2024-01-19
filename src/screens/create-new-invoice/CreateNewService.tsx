@@ -1,4 +1,4 @@
-import { Input } from "antd";
+import { Input, Spin } from "antd";
 import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
 import { uniqueId } from "lodash";
@@ -21,7 +21,11 @@ export default function InvoiceServicesInput({
   const navigate = useNavigate();
   const [checkedServices, setCheckedServices] = useState([]);
 
-  const { data }: any = useGetServices();
+  const { data, isLoading }: any = useGetServices();
+  const [test, setTest] = useState(isLoading);
+  useEffect(() => {
+    setTest(isLoading);
+  }, [isLoading]);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -54,21 +58,23 @@ export default function InvoiceServicesInput({
           Services
         </div>
         <div className="flex justify-center mt-4">
-          {/* @ts-ignore */}
-          <Checkbox.Group
-            onChange={onChange}
-            value={checkedServices}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "12rem 12rem 12rem",
-            }}
-          >
-            {data?.data?.map((service: any) => (
-              <Checkbox key={uniqueId()} value={service.id}>
-                {service.label}
-              </Checkbox>
-            ))}
-          </Checkbox.Group>
+          <Spin tip="Loading" size="large" spinning={test}>
+            {/* @ts-ignore */}
+            <Checkbox.Group
+              onChange={onChange}
+              value={checkedServices}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "12rem 12rem 12rem",
+              }}
+            >
+              {data?.data?.map((service: any) => (
+                <Checkbox key={uniqueId()} value={service.id}>
+                  {service.label}
+                </Checkbox>
+              ))}
+            </Checkbox.Group>
+          </Spin>
         </div>
       </div>
       <div className="my-10">

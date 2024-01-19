@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RangePicker from "../components/ant-design/form/RangePicker";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Spin } from "antd";
@@ -9,7 +9,11 @@ import useGetProfits from "../../hooks/reports/useGetReportProfits";
 export default function ProfitsWidget() {
   const [input, setInput] = useState(null);
   const [filters, setFilters] = useState(null);
-  const { data } = useGetProfits(input);
+  const { data, isLoading } = useGetProfits(input);
+  const [test, setTest] = useState(isLoading);
+  useEffect(() => {
+    setTest(isLoading);
+  }, [isLoading]);
 
   const onFiltersChange = (_: unknown, e: any) => {
     setFilters((prev: any) => ({
@@ -20,30 +24,32 @@ export default function ProfitsWidget() {
   };
 
   return (
-    <div className="mt-40">
-      <div className="flex space-x-2 ">
-        <div className="ml-8 ">
-          <RangePicker onChange={onFiltersChange} />
+    <Spin tip="Loading" size="large" spinning={test}>
+      <div className="mt-40">
+        <div className="flex space-x-2 ">
+          <div className="ml-8 ">
+            <RangePicker onChange={onFiltersChange} />
+          </div>
+          <SearchButton className="" onClick={() => setInput(filters)} />
         </div>
-        <SearchButton className="" onClick={() => setInput(filters)} />
-      </div>
-      {!data ? (
-        <div className="flex justify-center items-center mt-12">
-          <Spin />
-        </div>
-      ) : (
-        <div className=" flex justify-center mt-14">
-          <div className=" w-10/12 grid grid-cols-1 justify-center">
-            {data?.data?.rows.map((row: any) => {
-              return <Profit row={row} />;
-            })}
-            <div className="mt-5">
-              <Totals data={data} />
+        {!data ? (
+          <div className="flex justify-center items-center mt-12">
+            <Spin />
+          </div>
+        ) : (
+          <div className=" flex justify-center mt-14">
+            <div className=" w-10/12 grid grid-cols-1 justify-center">
+              {data?.data?.rows.map((row: any) => {
+                return <Profit row={row} />;
+              })}
+              <div className="mt-5">
+                <Totals data={data} />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </Spin>
   );
 }
 

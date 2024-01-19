@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Spin } from "antd";
 import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/invoice/InvoiceModal";
 import { useState, useEffect } from "react";
@@ -34,6 +34,10 @@ const Invoice = (): JSX.Element => {
   const navigate = useNavigate();
 
   const { data, isLoading }: any = useGetAllInvoices(input);
+  const [test, setTest] = useState(isLoading);
+  useEffect(() => {
+    setTest(isLoading);
+  }, [isLoading]);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -42,6 +46,7 @@ const Invoice = (): JSX.Element => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   const { data: pdfData }: any = useGetInvoiceById(currentInvoice as any);
 
   const onFilterChange = (key: string) => (e: any) => {
@@ -109,13 +114,15 @@ const Invoice = (): JSX.Element => {
       </div>
       <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
         {data?.data?.map((invoice: any) => (
-          <InvoiceCard
-            key={uniqueId()}
-            setCurrentInvoice={setCurrentInvoice}
-            showModal={showModal}
-            showSignModal={showSignModal}
-            invoice={invoice}
-          />
+          <Spin tip="Loading" size="large" spinning={test}>
+            <InvoiceCard
+              key={uniqueId()}
+              setCurrentInvoice={setCurrentInvoice}
+              showModal={showModal}
+              showSignModal={showSignModal}
+              invoice={invoice}
+            />
+          </Spin>
         ))}
       </div>
     </div>
