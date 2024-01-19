@@ -9,7 +9,7 @@ const useGetProfits = (params: any) => {
   const { user }: any = useContext(Context);
 
   return useQuery({
-    queryKey: [EQueryKey.GET_ALL_INVOICES, params, user?.userId],
+    queryKey: [EQueryKey.PROFITS_REPORTS, params, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get<any>(
