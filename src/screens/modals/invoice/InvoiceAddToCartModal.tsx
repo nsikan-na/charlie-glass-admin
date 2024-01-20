@@ -37,8 +37,10 @@ export default function CreateNewInvoiceModal({
       open={isModalOpen}
       footer={() => {
         return (
-          <div className="flex justify-end gap-4">
-            <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
+          <div className="flex justify-end ">
+            <SecondaryButton className="mr-2" onClick={closeModal}>
+              Cancel
+            </SecondaryButton>
             <PrimaryButton onClick={handleSave}>Save</PrimaryButton>
           </div>
         );
