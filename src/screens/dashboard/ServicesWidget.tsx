@@ -5,7 +5,7 @@ import useGetReportServices from "../../hooks/reports/useGetReportServices";
 import Spinner from "../components/ant-design/loading/spinner";
 import Empty from "../components/ant-design/loading/empty";
 
-export default function ServicesWidget({ filters, setFilters, input }: any) {
+export default function ServicesWidget({ input }: any) {
   const { data, isLoading } = useGetReportServices(input);
 
   const config = {

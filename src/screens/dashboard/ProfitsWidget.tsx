@@ -5,7 +5,7 @@ import useGetProfits from "../../hooks/reports/useGetReportProfits";
 import Spinner from "../components/ant-design/loading/spinner";
 import { uniqueId } from "lodash";
 
-export default function ProfitsWidget({ filters, setFilters, input }: any) {
+export default function ProfitsWidget({ input }: any) {
   const { data, isLoading } = useGetProfits(input);
 
   return (
