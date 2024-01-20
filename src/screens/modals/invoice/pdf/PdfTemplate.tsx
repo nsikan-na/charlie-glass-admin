@@ -49,7 +49,13 @@ const PdfTemplate = ({ invoiceData }: any) => {
 
   return (
     <PDFViewer style={{ width: "100%", height: "60vh" }}>
-      <Document title={`Invoice #${invoice_id}`}>
+      <Document
+        title={
+          invoiceData.isSigned === 0
+            ? `Quote #${invoice_id}`
+            : `Invoice #${invoice_id}`
+        }
+      >
         <Page size={"A4"}>
           <View style={{ paddingTop: 70, paddingLeft: 50 }}>
             <Image

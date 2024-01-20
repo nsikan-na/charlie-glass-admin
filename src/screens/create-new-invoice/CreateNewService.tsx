@@ -1,4 +1,3 @@
-import { Input } from "antd";
 import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
 import { uniqueId } from "lodash";
@@ -11,6 +10,8 @@ import CreateNewInvoiceModal from "../modals/invoice/InvoiceAddToCartModal";
 import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import useGetServices from "../../hooks/invoices/useGetServices";
 
+import Spinner from "../components/ant-design/loading/spinner";
+
 export default function InvoiceServicesInput({
   setInvoice,
   invoice,
@@ -21,7 +22,7 @@ export default function InvoiceServicesInput({
   const navigate = useNavigate();
   const [checkedServices, setCheckedServices] = useState([]);
 
-  const { data }: any = useGetServices();
+  const { data, isLoading }: any = useGetServices();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -54,21 +55,23 @@ export default function InvoiceServicesInput({
           Services
         </div>
         <div className="flex justify-center mt-4">
-          {/* @ts-ignore */}
-          <Checkbox.Group
-            onChange={onChange}
-            value={checkedServices}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "12rem 12rem 12rem",
-            }}
-          >
-            {data?.data?.map((service: any) => (
-              <Checkbox key={uniqueId()} value={service.id}>
-                {service.label}
-              </Checkbox>
-            ))}
-          </Checkbox.Group>
+          <Spinner spinning={isLoading}>
+            {/* @ts-ignore */}
+            <Checkbox.Group
+              onChange={onChange}
+              value={checkedServices}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "12rem 12rem 12rem",
+              }}
+            >
+              {data?.data?.map((service: any) => (
+                <Checkbox key={uniqueId()} value={service.id}>
+                  {service.label}
+                </Checkbox>
+              ))}
+            </Checkbox.Group>
+          </Spinner>
         </div>
       </div>
       <div className="my-10">

@@ -2,7 +2,6 @@ import { Button, Card } from "antd";
 import { EditOutlined, PlayCircleOutlined } from "@ant-design/icons";
 import { formatDate } from "../../util/helpers";
 import { uniqueId } from "lodash";
-import { useEffect } from "react";
 
 export default function InvoiceCard({
   setCurrentInvoice,

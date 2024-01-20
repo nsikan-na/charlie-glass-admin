@@ -1,7 +1,6 @@
-import { Button } from "antd";
 import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/invoice/InvoiceModal";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
 import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
@@ -16,7 +15,10 @@ import SignModal from "../modals/SignModal";
 
 import useGetServices from "../../hooks/invoices/useGetServices";
 
+import Spinner from "../components/ant-design/loading/spinner";
+
 const Invoice = (): JSX.Element => {
+  useGetServices();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
   const [input, setInput] = useState(null);
@@ -32,7 +34,6 @@ const Invoice = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  useGetServices();
   const { data, isLoading }: any = useGetAllInvoices(input);
 
   const showModal = () => {
@@ -61,16 +62,6 @@ const Invoice = (): JSX.Element => {
 
   return (
     <div>
-      <SignModal
-        currentInvoice={currentInvoice}
-        isSignModalOpen={isSignModalOpen}
-        closeSignModal={closeSignModal}
-      />
-      <InvoiceModal
-        closeModal={closeModal}
-        isModalOpen={isModalOpen}
-        pdf={pdfData?.data}
-      />
       <div className="flex justify-between m-4">
         <div>
           <Input
@@ -99,7 +90,7 @@ const Invoice = (): JSX.Element => {
               ]}
             />
           </span>
-          <span className="ml-4">
+          <span>
             <SearchButton className="" onClick={() => setInput(filters)} />
           </span>
         </div>
@@ -107,17 +98,30 @@ const Invoice = (): JSX.Element => {
           Create New Invoice
         </PrimaryButton>
       </div>
-      <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
-        {data?.data?.map((invoice: any) => (
-          <InvoiceCard
-            key={uniqueId()}
-            setCurrentInvoice={setCurrentInvoice}
-            showModal={showModal}
-            showSignModal={showSignModal}
-            invoice={invoice}
-          />
-        ))}
-      </div>
+      <Spinner spinning={isLoading}>
+        <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
+          {data?.data?.map((invoice: any) => (
+            <InvoiceCard
+              key={uniqueId()}
+              setCurrentInvoice={setCurrentInvoice}
+              showModal={showModal}
+              showSignModal={showSignModal}
+              invoice={invoice}
+              isLoading={isLoading}
+            />
+          ))}
+        </div>
+      </Spinner>
+      <SignModal
+        currentInvoice={currentInvoice}
+        isSignModalOpen={isSignModalOpen}
+        closeSignModal={closeSignModal}
+      />
+      <InvoiceModal
+        closeModal={closeModal}
+        isModalOpen={isModalOpen}
+        pdf={pdfData?.data}
+      />
     </div>
   );
 };

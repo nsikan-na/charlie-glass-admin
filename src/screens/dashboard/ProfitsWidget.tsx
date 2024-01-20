@@ -1,49 +1,32 @@
-import { useState } from "react";
-import RangePicker from "../components/ant-design/form/RangePicker";
-import { SearchButton } from "../components/ant-design/buttons/SearchButton";
-import { Spin } from "antd";
 import { Tag } from "antd";
-import { formatDate } from "../../util/helpers";
+import { decimalThousandsCommaSeparated, formatDate } from "../../util/helpers";
 import useGetProfits from "../../hooks/reports/useGetReportProfits";
 
-export default function ProfitsWidget() {
-  const [input, setInput] = useState(null);
-  const [filters, setFilters] = useState(null);
-  const { data } = useGetProfits(input);
+import Spinner from "../components/ant-design/loading/spinner";
+import { uniqueId } from "lodash";
 
-  const onFiltersChange = (_: unknown, e: any) => {
-    setFilters((prev: any) => ({
-      ...prev,
-      fromDate: e[0],
-      toDate: e[1],
-    }));
-  };
+export default function ProfitsWidget({ input }: any) {
+  const { data, isLoading } = useGetProfits(input);
 
   return (
-    <div className="mt-40">
-      <div className="flex space-x-2 ">
-        <div className="ml-8 ">
-          <RangePicker onChange={onFiltersChange} />
-        </div>
-        <SearchButton className="" onClick={() => setInput(filters)} />
-      </div>
-      {!data ? (
-        <div className="flex justify-center items-center mt-12">
-          <Spin />
-        </div>
-      ) : (
-        <div className=" flex justify-center mt-14">
-          <div className=" w-10/12 grid grid-cols-1 justify-center">
-            {data?.data?.rows.map((row: any) => {
-              return <Profit row={row} />;
-            })}
-            <div className="mt-5">
-              <Totals data={data} />
+    <Spinner spinning={isLoading}>
+      <div className="mt-8">
+        {!data ? (
+          <div className="flex justify-center items-center mt-12"></div>
+        ) : (
+          <div className=" flex justify-center mt-14">
+            <div className=" w-10/12 grid grid-cols-1 justify-center">
+              {data?.data?.rows.map((row: any) => {
+                return <Profit row={row} key={uniqueId()} />;
+              })}
+              <div className="mt-5">
+                <Totals data={data} />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </Spinner>
   );
 }
 
@@ -99,7 +82,7 @@ function Totals({ data }: any) {
           Total Revenue
           <div>
             <Tag className=" text-lg w-8/12 h-7" color="blue">
-              {data?.data?.totalRevenue}
+              {decimalThousandsCommaSeparated(data?.data?.totalRevenue)}
             </Tag>
           </div>
         </div>
@@ -109,7 +92,7 @@ function Totals({ data }: any) {
           Total Expense
           <div>
             <Tag className=" text-lg w-8/12 h-7" color="red">
-              {data?.data?.totalExpense}
+              {decimalThousandsCommaSeparated(data?.data?.totalExpense)}
             </Tag>
           </div>
         </div>
@@ -119,7 +102,7 @@ function Totals({ data }: any) {
           Total Profit
           <div>
             <Tag className=" text-lg w-8/12 h-7" color="green">
-              {data?.data?.totalProfit}
+              {decimalThousandsCommaSeparated(data?.data?.totalProfit)}
             </Tag>
           </div>
         </div>
