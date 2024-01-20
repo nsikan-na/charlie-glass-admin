@@ -10,6 +10,7 @@ import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
 import CreateNewInvoiceModal from "../modals/invoice/InvoiceAddToCartModal";
 import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import useGetServices from "../../hooks/invoices/useGetServices";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function InvoiceServicesInput({
   setInvoice,
@@ -58,7 +59,11 @@ export default function InvoiceServicesInput({
           Services
         </div>
         <div className="flex justify-center mt-4">
-          <Spin tip="Loading" size="large" spinning={test}>
+          <Spin
+            size="large"
+            spinning={test}
+            indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
+          >
             {/* @ts-ignore */}
             <Checkbox.Group
               onChange={onChange}

@@ -20,8 +20,16 @@ const Login: React.FC = () => {
 
   const checkLogin = useLogin();
   return (
-    <div className="bg-gray-300 h-screen flex justify-center items-center">
-      <div className="flex justify-center items-center p-20 rounded-lg bg-white bg-opacity-90">
+    <div
+      className="bg-gray-300 h-screen flex justify-center items-center"
+      style={{
+        backgroundImage: `url(/iStock-502706671.jpg)`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="flex justify-center items-center p-20 rounded-lg bg-white bg-opacity-100">
         <div style={{ margin: "auto" }}>
           <Form>
             <div className="text-center text-2xl my-3">Log In</div>

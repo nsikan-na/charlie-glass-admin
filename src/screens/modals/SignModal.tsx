@@ -30,7 +30,7 @@ export default function SignModal({
     <Modal
       title={"Signed"}
       open={isSignModalOpen}
-      width={"60%"}
+      width={"20%"}
       onCancel={closeSignModal}
       footer={() => (
         <div className="flex justify-end">
@@ -45,15 +45,18 @@ export default function SignModal({
         </div>
       )}
     >
-      <div>
+      <div className="my-4 w-full">
+        <div>Signature Date </div>
+        <DatePicker onChange={onChange} />
+      </div>
+      <div className="my-4  w-full">
+        <div>Expense</div>
         <Input
           type="number"
           min={0}
           onChange={handleInputChange("expense")}
-          className="w-40"
           allowClear
         />
-        <DatePicker onChange={onChange} />
       </div>
     </Modal>
   );

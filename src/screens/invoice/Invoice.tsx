@@ -15,6 +15,7 @@ import { Selector } from "../components/ant-design/form/Select";
 import SignModal from "../modals/SignModal";
 
 import useGetServices from "../../hooks/invoices/useGetServices";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Invoice = (): JSX.Element => {
   useGetServices();
@@ -103,7 +104,7 @@ const Invoice = (): JSX.Element => {
               ]}
             />
           </span>
-          <span className="ml-4">
+          <span>
             <SearchButton className="" onClick={() => setInput(filters)} />
           </span>
         </div>
@@ -113,7 +114,11 @@ const Invoice = (): JSX.Element => {
       </div>
       <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
         {data?.data?.map((invoice: any) => (
-          <Spin tip="Loading" size="large" spinning={test}>
+          <Spin
+            size="large"
+            spinning={test}
+            indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
+          >
             <InvoiceCard
               key={uniqueId()}
               setCurrentInvoice={setCurrentInvoice}

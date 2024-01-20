@@ -2,13 +2,14 @@ import { Column } from "@ant-design/plots";
 import RangePicker from "../components/ant-design/form/RangePicker";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { useEffect, useState } from "react";
-import useGetServices from "../../hooks/reports/useGetReportServices";
-import { Spin } from "antd";
 
-export default function ServicesWidget() {
-  const [input, setInput] = useState(null);
-  const [filters, setFilters] = useState(null);
-  const { data, isLoading } = useGetServices(input);
+import { Spin } from "antd";
+import useGetReportServices from "../../hooks/reports/useGetReportServices";
+import { LoadingOutlined } from "@ant-design/icons";
+
+export default function ServicesWidget({ filters, setFilters, input }: any) {
+  const { data, isLoading } = useGetReportServices(input);
+
   const [test, setTest] = useState(isLoading);
   useEffect(() => {
     setTest(isLoading);
@@ -36,14 +37,12 @@ export default function ServicesWidget() {
   };
 
   return (
-    <Spin tip="Loading" size="large" spinning={test}>
-      <div>
-        <div className="flex space-x-2 mt-8">
-          <div className="ml-8 ">
-            <RangePicker onChange={onRangeFilterChange} />
-          </div>
-          <SearchButton className="" onClick={() => setInput(filters)} />
-        </div>
+    <Spin
+      size="large"
+      spinning={test}
+      indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
+    >
+      <div className="w-full">
         {!data ? (
           <div className="flex justify-center items-center mt-12"></div>
         ) : (
