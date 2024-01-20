@@ -2,6 +2,7 @@ import { Button, Card } from "antd";
 import { EditOutlined, PlayCircleOutlined } from "@ant-design/icons";
 import { formatDate } from "../../util/helpers";
 import { uniqueId } from "lodash";
+import Spinner from "../components/ant-design/loading/spinner";
 
 export default function InvoiceCard({
   setCurrentInvoice,

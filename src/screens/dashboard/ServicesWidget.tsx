@@ -1,23 +1,16 @@
 import { Column } from "@ant-design/plots";
-import RangePicker from "../components/ant-design/form/RangePicker";
-import { SearchButton } from "../components/ant-design/buttons/SearchButton";
+
 import { useEffect, useState } from "react";
 
 import { Spin } from "antd";
 import useGetReportServices from "../../hooks/reports/useGetReportServices";
 import { LoadingOutlined } from "@ant-design/icons";
+import Spinner from "../components/ant-design/loading/spinner";
+import Empty from "../components/ant-design/loading/empty";
 
 export default function ServicesWidget({ filters, setFilters, input }: any) {
   const { data, isLoading } = useGetReportServices(input);
 
-  const [test, setTest] = useState(isLoading);
-  useEffect(() => {
-    setTest(isLoading);
-  }, [isLoading]);
-
-  const onRangeFilterChange = (_: unknown, e: any) => {
-    setFilters((prev: any) => ({ ...prev, fromDate: e[0], toDate: e[1] }));
-  };
   const config = {
     data: data?.data,
     xField: "service_label",
@@ -37,19 +30,21 @@ export default function ServicesWidget({ filters, setFilters, input }: any) {
   };
 
   return (
-    <Spin
+    <Spinner
       size="large"
-      spinning={test}
+      spinning={isLoading}
       indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
     >
       <div className="w-full">
-        {!data ? (
-          <div className="flex justify-center items-center mt-12"></div>
+        {!data || data.data.length === 0 ? (
+          <div className="flex justify-center items-center mt-12">
+            <Empty />
+          </div>
         ) : (
           <Column {...config} />
         )}
       </div>
-    </Spin>
+    </Spinner>
   );
 }
 

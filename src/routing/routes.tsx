@@ -11,7 +11,7 @@ import { useEffect } from "react";
 
 export const routes: RouteObject[] = [
   {
-    path: "/",
+    path: ERoute.ROOT,
     element: <Layout />,
     children: [
       {

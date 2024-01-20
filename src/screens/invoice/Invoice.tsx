@@ -1,7 +1,6 @@
-import { Spin } from "antd";
 import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/invoice/InvoiceModal";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
 import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
@@ -16,6 +15,7 @@ import SignModal from "../modals/SignModal";
 
 import useGetServices from "../../hooks/invoices/useGetServices";
 import { LoadingOutlined } from "@ant-design/icons";
+import Spinner from "../components/ant-design/loading/spinner";
 
 const Invoice = (): JSX.Element => {
   useGetServices();
@@ -35,10 +35,6 @@ const Invoice = (): JSX.Element => {
   const navigate = useNavigate();
 
   const { data, isLoading }: any = useGetAllInvoices(input);
-  const [test, setTest] = useState(isLoading);
-  useEffect(() => {
-    setTest(isLoading);
-  }, [isLoading]);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -66,16 +62,6 @@ const Invoice = (): JSX.Element => {
 
   return (
     <div>
-      <SignModal
-        currentInvoice={currentInvoice}
-        isSignModalOpen={isSignModalOpen}
-        closeSignModal={closeSignModal}
-      />
-      <InvoiceModal
-        closeModal={closeModal}
-        isModalOpen={isModalOpen}
-        pdf={pdfData?.data}
-      />
       <div className="flex justify-between m-4">
         <div>
           <Input
@@ -112,23 +98,30 @@ const Invoice = (): JSX.Element => {
           Create New Invoice
         </PrimaryButton>
       </div>
-      <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
-        {data?.data?.map((invoice: any) => (
-          <Spin
-            size="large"
-            spinning={test}
-            indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
-          >
+      <Spinner spinning={isLoading}>
+        <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
+          {data?.data?.map((invoice: any) => (
             <InvoiceCard
               key={uniqueId()}
               setCurrentInvoice={setCurrentInvoice}
               showModal={showModal}
               showSignModal={showSignModal}
               invoice={invoice}
+              isLoading={isLoading}
             />
-          </Spin>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Spinner>
+      <SignModal
+        currentInvoice={currentInvoice}
+        isSignModalOpen={isSignModalOpen}
+        closeSignModal={closeSignModal}
+      />
+      <InvoiceModal
+        closeModal={closeModal}
+        isModalOpen={isModalOpen}
+        pdf={pdfData?.data}
+      />
     </div>
   );
 };

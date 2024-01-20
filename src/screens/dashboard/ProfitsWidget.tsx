@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import RangePicker from "../components/ant-design/form/RangePicker";
-import { SearchButton } from "../components/ant-design/buttons/SearchButton";
-import { Spin } from "antd";
+
 import { Tag } from "antd";
-import { formatDate } from "../../util/helpers";
+import { decimalThousandsCommaSeparated, formatDate } from "../../util/helpers";
 import useGetProfits from "../../hooks/reports/useGetReportProfits";
 import { LoadingOutlined } from "@ant-design/icons";
+import Spinner from "../components/ant-design/loading/spinner";
+import { uniqueId } from "lodash";
 
 export default function ProfitsWidget({ filters, setFilters, input }: any) {
   const { data, isLoading } = useGetProfits(input);
@@ -16,7 +16,7 @@ export default function ProfitsWidget({ filters, setFilters, input }: any) {
   }, [isLoading]);
 
   return (
-    <Spin
+    <Spinner
       size="large"
       spinning={test}
       indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
@@ -28,7 +28,7 @@ export default function ProfitsWidget({ filters, setFilters, input }: any) {
           <div className=" flex justify-center mt-14">
             <div className=" w-10/12 grid grid-cols-1 justify-center">
               {data?.data?.rows.map((row: any) => {
-                return <Profit row={row} />;
+                return <Profit row={row} key={uniqueId()} />;
               })}
               <div className="mt-5">
                 <Totals data={data} />
@@ -37,7 +37,7 @@ export default function ProfitsWidget({ filters, setFilters, input }: any) {
           </div>
         )}
       </div>
-    </Spin>
+    </Spinner>
   );
 }
 
@@ -93,7 +93,7 @@ function Totals({ data }: any) {
           Total Revenue
           <div>
             <Tag className=" text-lg w-8/12 h-7" color="blue">
-              {data?.data?.totalRevenue.toFixed(2)}
+              {decimalThousandsCommaSeparated(data?.data?.totalRevenue)}
             </Tag>
           </div>
         </div>
@@ -103,7 +103,7 @@ function Totals({ data }: any) {
           Total Expense
           <div>
             <Tag className=" text-lg w-8/12 h-7" color="red">
-              {data?.data?.totalExpense.toFixed(2)}
+              {decimalThousandsCommaSeparated(data?.data?.totalExpense)}
             </Tag>
           </div>
         </div>
@@ -113,7 +113,7 @@ function Totals({ data }: any) {
           Total Profit
           <div>
             <Tag className=" text-lg w-8/12 h-7" color="green">
-              {data?.data?.totalProfit.toFixed(2)}
+              {decimalThousandsCommaSeparated(data?.data?.totalProfit)}
             </Tag>
           </div>
         </div>
