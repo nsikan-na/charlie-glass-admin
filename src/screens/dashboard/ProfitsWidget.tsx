@@ -1,26 +1,15 @@
-import { useEffect, useState } from "react";
-
 import { Tag } from "antd";
 import { decimalThousandsCommaSeparated, formatDate } from "../../util/helpers";
 import useGetProfits from "../../hooks/reports/useGetReportProfits";
-import { LoadingOutlined } from "@ant-design/icons";
+
 import Spinner from "../components/ant-design/loading/spinner";
 import { uniqueId } from "lodash";
 
 export default function ProfitsWidget({ filters, setFilters, input }: any) {
   const { data, isLoading } = useGetProfits(input);
 
-  const [test, setTest] = useState(isLoading);
-  useEffect(() => {
-    setTest(isLoading);
-  }, [isLoading]);
-
   return (
-    <Spinner
-      size="large"
-      spinning={test}
-      indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
-    >
+    <Spinner spinning={isLoading}>
       <div className="mt-8">
         {!data ? (
           <div className="flex justify-center items-center mt-12"></div>
