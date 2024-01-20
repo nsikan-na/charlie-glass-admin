@@ -6,6 +6,7 @@ import type { DatePickerProps } from "antd";
 import DatePicker from "../components/ant-design/form/DatePicker";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useSignQuote from "../../hooks/invoices/useSignQuote";
+import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 
 export default function SignModal({
   isSignModalOpen,
@@ -30,24 +31,30 @@ export default function SignModal({
     <Modal
       title={"Signed"}
       open={isSignModalOpen}
-      width={"20%"}
       onCancel={closeSignModal}
       footer={() => (
-        <div className="flex justify-end">
-          <SecondaryButton
+        <div className="flex justify-end ">
+          <SecondaryButton className="mr-2" onClick={closeSignModal}>
+            Cancel
+          </SecondaryButton>
+          <PrimaryButton
             onClick={() => {
               add.mutate(input);
               closeSignModal();
             }}
           >
             Submit
-          </SecondaryButton>
+          </PrimaryButton>
         </div>
       )}
     >
       <div className="my-4 w-full">
         <div>Signature Date </div>
-        <DatePicker onChange={onChange} />
+        <DatePicker
+          onChange={onChange}
+          className="w-full"
+          style={{ width: "100%" }}
+        />
       </div>
       <div className="my-4  w-full">
         <div>Expense</div>
