@@ -21,7 +21,9 @@ const useLogin = () => {
 
   return useMutation({
     mutationFn: async (obj: TLoginInput) =>
-      await axios.post(`${EBaseUrl.CGI_API}/api/v1/login`, obj),
+      await axios.post(`${EBaseUrl.CGI_API}/api/v1/login`, obj, {
+        headers: { Authorization: undefined },
+      }),
     onSuccess: (data: any) => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
 

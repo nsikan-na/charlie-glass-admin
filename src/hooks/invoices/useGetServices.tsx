@@ -12,7 +12,7 @@ const useGetServices = () => {
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get(
-        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes/services`
+        `${EBaseUrl.CGI_API}/api/v1/quotes/services`
       ),
   });
 };

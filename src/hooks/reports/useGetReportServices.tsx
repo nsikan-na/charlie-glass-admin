@@ -12,7 +12,7 @@ const useGetReportServices = (params: any) => {
     enabled: !!user?.userId,
     queryFn: async () =>
       await axios.get<any>(
-        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/reports/services`,
+        `${EBaseUrl.CGI_API}/api/v1/reports/services`,
         {
           params,
         }

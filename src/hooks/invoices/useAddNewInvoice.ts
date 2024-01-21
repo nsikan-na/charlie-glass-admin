@@ -11,7 +11,7 @@ const useAddNewInvoice = () => {
   return useMutation({
     mutationFn: async (obj: any) =>
       await axios.post(
-        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes/add`,
+        `${EBaseUrl.CGI_API}/api/v1/quotes/add`,
         obj
       ),
 
