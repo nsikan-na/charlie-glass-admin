@@ -18,7 +18,6 @@ import useGetServices from "../../hooks/invoices/useGetServices";
 import Spinner from "../components/ant-design/loading/spinner";
 
 const Invoice = (): JSX.Element => {
-  useGetServices();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
   const [input, setInput] = useState(null);
