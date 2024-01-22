@@ -20,7 +20,9 @@ function useQueryString() {
     navigate({ search: newQuery.toString() });
   };
 
-  return [query, updateQuery];
+  const getQuery = (key: string) => query.get(key);
+
+  return { getQuery, setQuery: updateQuery };
 }
 
 export default useQueryString;
