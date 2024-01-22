@@ -34,6 +34,7 @@ export const routes: RouteObject[] = [
     path: ERoute.LOGIN,
     element: <Login />,
   },
+  { path: ERoute.ANY, element: <Root /> },
 ];
 
 function Root() {
