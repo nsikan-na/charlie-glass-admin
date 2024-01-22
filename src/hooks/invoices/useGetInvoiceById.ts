@@ -18,7 +18,7 @@ const useGetInvoiceById = (invoiceId: any) => {
     enabled: !!user?.userId && !!invoiceId,
     queryFn: async () =>
       await axios.get<any>(
-        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes/${invoiceId}`
+        `${EBaseUrl.CGI_API}/api/v1/quotes/${invoiceId}`
       ),
   });
 };

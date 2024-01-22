@@ -11,7 +11,7 @@ const useSignQuote = (id: any) => {
   return useMutation({
     mutationFn: async (obj: any) =>
       await axios.post(
-        `${EBaseUrl.CGI_API}/api/v1/${user?.userId}/quotes/${id}/sign`,
+        `${EBaseUrl.CGI_API}/api/v1/quotes/${id}/sign`,
         obj
       ),
 
