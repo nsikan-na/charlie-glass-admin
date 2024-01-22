@@ -12,10 +12,11 @@ import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Selector } from "../components/ant-design/form/Select";
 import SignModal from "../modals/SignModal";
-
+import useGetServices from "../../hooks/invoices/useGetServices";
 import Spinner from "../components/ant-design/loading/spinner";
 
 const Invoice = (): JSX.Element => {
+  useGetServices();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
   const [input, setInput] = useState(null);
