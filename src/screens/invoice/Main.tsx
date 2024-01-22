@@ -4,19 +4,21 @@ import Dashboard from "../dashboard/Dashboard";
 import Invoice from "./Invoice";
 import useQueryString from "../../hooks/queryString/useQueryString";
 
+const tabKey = "tab";
+
 export default function Main() {
   const [query, updateQuery] = useQueryString();
 
-  const changeQuery = (key: any, value: any) => {
-    updateQuery(key, value);
+  const changeQuery = (value: string) => {
+    updateQuery(tabKey, value);
   };
 
   return (
     <AntTabs
       className="ml-10"
-      defaultActiveKey={query.get("tab")}
+      defaultActiveKey={query.get(tabKey)}
       items={items}
-      onChange={(key: string) => changeQuery("tab", key)}
+      onChange={changeQuery}
     />
   );
 }
@@ -28,7 +30,7 @@ const items: TabsProps["items"] = [
     children: <Dashboard />,
   },
   {
-    key: "invoice-listing",
+    key: "listing",
     label: "Invoices",
     children: <Invoice />,
   },

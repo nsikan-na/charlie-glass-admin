@@ -10,7 +10,7 @@ function useQueryString() {
     setQuery(new URLSearchParams(location.search));
   }, [location.search]);
 
-  const updateQuery: any = (key: any, value: any) => {
+  const updateQuery: any = (key: string, value: string) => {
     const newQuery = new URLSearchParams(location.search);
     if (value === undefined || value === null) {
       newQuery.delete(key);
