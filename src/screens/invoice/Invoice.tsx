@@ -18,7 +18,8 @@ import Table from "../components/ant-design/Table";
 import Empty from "../components/ant-design/loading/empty";
 import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
 import { formatDate } from "../../util/helpers";
-import { Tag } from "antd";
+import { Tag, Tooltip } from "antd";
+import { EColors } from "../../util/enums/colors";
 
 const Invoice = (): JSX.Element => {
   useGetServices();
@@ -75,9 +76,13 @@ const Invoice = (): JSX.Element => {
       key: "isSigned",
       render: (isSigned: number) => {
         return isSigned === 1 ? (
-          <FileOutlined style={{ color: "#40c057" }} />
+          <Tooltip title={"Invoice"}>
+            <FileOutlined style={{ color: EColors.blue }} />
+          </Tooltip>
         ) : (
-          <FileOutlined style={{ color: "#228be6" }} />
+          <Tooltip title={"Quote"}>
+            <FileOutlined style={{ color: EColors.green_6 }} />
+          </Tooltip>
         );
       },
     },
@@ -170,7 +175,7 @@ const Invoice = (): JSX.Element => {
       <div className="flex justify-between m-4">
         <div>
           <Input
-            addonBefore="Quote #"
+            addonBefore="Id"
             className="w-72"
             onChange={onFilterChange("quote_id")}
           />
@@ -221,7 +226,7 @@ const Invoice = (): JSX.Element => {
         {!data?.data ? (
           <Empty />
         ) : (
-          <Table dataSource={data?.data} noScroll={false} columns={columns} />
+          <Table dataSource={data?.data} columns={columns} pagination={false} />
         )}
       </Spinner>
       <SignModal

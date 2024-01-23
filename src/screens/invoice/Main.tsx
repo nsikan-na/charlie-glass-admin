@@ -10,6 +10,7 @@ export default function Main() {
   const { getQuery, setQuery } = useQueryString();
 
   const changeQuery = (value: string) => setQuery(tabKey, value);
+
   return (
     <AntTabs
       className="ml-10"
@@ -19,16 +20,20 @@ export default function Main() {
     />
   );
 }
+enum ETabs {
+  DASHBOARD = "dashboard",
+  LISTING = "listing",
+}
 
 const items: TabsProps["items"] = [
   {
-    key: "dashboard",
+    key: ETabs.DASHBOARD,
     label: "Dashboard",
     children: <Dashboard />,
   },
   {
-    key: "listing",
-    label: "Invoices",
+    key: ETabs.LISTING,
+    label: "Listing",
     children: <Invoice />,
   },
 ];

@@ -2,9 +2,8 @@ import { Table as AntTable, TableProps } from "antd";
 import _ from "lodash";
 
 interface AntTableProps<T> extends TableProps<T> {
-  noScroll: boolean;
-  dataSource: T[];
-  columns: [];
+  noScroll?: boolean;
+  dataSource?: T[];
 }
 
 const Table = <T extends object>({
@@ -13,7 +12,7 @@ const Table = <T extends object>({
 
   ...props
 }: AntTableProps<T>) => {
-  const dataSource = data.map((item) => ({
+  const dataSource = data?.map((item) => ({
     ...item,
     key: _.uniqueId(),
   }));
@@ -27,7 +26,7 @@ const Table = <T extends object>({
         y: !noScroll ? "50vh" : undefined,
       }}
       {...props}
-      dataSource={dataSource}
+      dataSource={dataSource || []}
     />
   );
 };
