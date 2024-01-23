@@ -1,4 +1,5 @@
 export enum ERoute {
+  ANY = "*",
   ROOT = "/",
   INVOICE = "/invoice",
   LOGIN = "/login",
