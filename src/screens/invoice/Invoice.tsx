@@ -14,6 +14,12 @@ import { Selector } from "../components/ant-design/form/Select";
 import SignModal from "../modals/SignModal";
 import useGetServices from "../../hooks/invoices/useGetServices";
 import Spinner from "../components/ant-design/loading/spinner";
+import Table from "../components/ant-design/Table";
+import Empty from "../components/ant-design/loading/empty";
+import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
+import { formatDate } from "../../util/helpers";
+import { Tag, Tooltip } from "antd";
+import { EColors } from "../../util/enums/colors";
 
 const Invoice = (): JSX.Element => {
   useGetServices();
@@ -34,7 +40,8 @@ const Invoice = (): JSX.Element => {
 
   const { data, isLoading }: any = useGetAllInvoices(input);
 
-  const showModal = () => {
+  const showModal = (invoice: any) => {
+    setCurrentInvoice(invoice);
     setIsModalOpen(true);
   };
 
@@ -57,13 +64,118 @@ const Invoice = (): JSX.Element => {
       [key]: value === "undefined" ? undefined : value,
     }));
   };
+  function handleClick(invoice: any) {
+    setCurrentInvoice(invoice.quote_id);
+  }
+
+  const columns: any["columns"] = [
+    {
+      title: "Status",
+      dataIndex: "isSigned",
+      width: 60,
+      key: "isSigned",
+      render: (isSigned: number) => {
+        return isSigned === 1 ? (
+          <Tooltip title={"Invoice"}>
+            <FileOutlined style={{ color: EColors.blue }} />
+          </Tooltip>
+        ) : (
+          <Tooltip title={"Quote"}>
+            <FileOutlined style={{ color: EColors.green_6 }} />
+          </Tooltip>
+        );
+      },
+    },
+    {
+      title: "Id",
+      dataIndex: "quote_id",
+      key: "quote_id",
+      width: 50,
+    },
+    {
+      title: "Name",
+      dataIndex: "receiver_name",
+      key: "receiver_name",
+    },
+    {
+      title: "Revenue",
+      dataIndex: "revenue",
+      key: "revenue",
+      render: (revenue: " string") => {
+        return <Tag color="blue">{revenue} </Tag>;
+      },
+    },
+
+    {
+      title: "Expense",
+      dataIndex: "expense",
+      key: "expense",
+      render: (expense: "string") => {
+        return expense === null ? (
+          <div>{"-"}</div>
+        ) : (
+          <Tag color="red">{expense}</Tag>
+        );
+      },
+    },
+    {
+      title: "Profit",
+      dataIndex: "profit",
+      key: "profit",
+      render: (profit: "string") => {
+        return profit === null ? (
+          <div>{"-"}</div>
+        ) : (
+          <Tag color="green">{profit}</Tag>
+        );
+      },
+    },
+    {
+      title: "Signature Date",
+      dataIndex: "signature_date",
+      key: "signature_date",
+      render: (sigDate: "string") => {
+        return sigDate === null ? (
+          <div>{"-"}</div>
+        ) : (
+          <div>{formatDate(sigDate)}</div>
+        );
+      },
+    },
+
+    {
+      title: "Creation Date",
+      dataIndex: "creation_date",
+      key: "creation_date",
+
+      render: (creationDate: "string") => {
+        return <div>{formatDate(creationDate)}</div>;
+      },
+    },
+    {
+      title: "Actions",
+      key: "actions",
+      render: (text: any, record: any) => (
+        <div className="flex gap-5" onClick={() => handleClick(record)}>
+          <EyeOutlined
+            style={{ fontSize: "1.2rem", cursor: "pointer" }}
+            onClick={showModal}
+          />
+          <EditOutlined
+            onClick={showSignModal}
+            style={{ fontSize: "1.2rem", cursor: "pointer" }}
+          />
+        </div>
+      ),
+    },
+  ];
 
   return (
     <div>
       <div className="flex justify-between m-4">
         <div>
           <Input
-            addonBefore="Quote #"
+            addonBefore="Id"
             className="w-72"
             onChange={onFilterChange("quote_id")}
           />
@@ -96,7 +208,7 @@ const Invoice = (): JSX.Element => {
           Create New Invoice
         </PrimaryButton>
       </div>
-      <Spinner spinning={isLoading}>
+      {/* <Spinner spinning={isLoading}>
         <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
           {data?.data?.map((invoice: any) => (
             <InvoiceCard
@@ -109,6 +221,13 @@ const Invoice = (): JSX.Element => {
             />
           ))}
         </div>
+      </Spinner> */}
+      <Spinner spinning={isLoading}>
+        {!data?.data ? (
+          <Empty />
+        ) : (
+          <Table dataSource={data?.data} columns={columns} pagination={false} />
+        )}
       </Spinner>
       <SignModal
         currentInvoice={currentInvoice}
