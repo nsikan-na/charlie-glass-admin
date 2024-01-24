@@ -1,5 +1,5 @@
-import { LoadingOutlined } from "@ant-design/icons";
-import { Spin as LoadingSpinner } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin as LoadingSpinner } from 'antd';
 
 const Spinner = ({ ...props }: any) => {
   return (

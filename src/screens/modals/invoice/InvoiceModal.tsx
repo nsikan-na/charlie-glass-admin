@@ -1,20 +1,20 @@
-import { Button, Modal } from "antd";
+import { Button, Modal } from 'antd';
 
-import PdfTemplate from "./pdf/PdfTemplate";
-import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
-import Spinner from "../../components/ant-design/loading/spinner";
+import PdfTemplate from './pdf/PdfTemplate';
+import SecondaryButton from '../../components/ant-design/buttons/SecondaryButton';
+import Spinner from '../../components/ant-design/loading/spinner';
 
 export default function InvoiceModal({
   isModalOpen,
   closeModal,
   pdf,
-  isLoading,
+  isLoading
 }: any) {
   return (
     <Modal
       title={<div className="invisible">.</div>}
       open={isModalOpen}
-      width={"60%"}
+      width={'60%'}
       onCancel={closeModal}
       footer={() => (
         <div className="flex justify-end">

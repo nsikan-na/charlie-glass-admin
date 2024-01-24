@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import { Layout as AntLayout } from "antd";
-import TopNavBar from "./TopNavBar";
-import Login from "../screens/login/LogIn";
-import { useContext } from "react";
-import { Context } from "../context";
+import { Outlet } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import { Layout as AntLayout } from 'antd';
+import TopNavBar from './TopNavBar';
+import Login from '../screens/login/LogIn';
+import { useContext } from 'react';
+import { Context } from '../context';
 
 const { Content } = AntLayout;
 

@@ -1,5 +1,5 @@
-import { Table as AntTable, TableProps } from "antd";
-import _ from "lodash";
+import { Table as AntTable, TableProps } from 'antd';
+import _ from 'lodash';
 
 interface AntTableProps<T> extends TableProps<T> {
   noScroll?: boolean;
@@ -14,7 +14,7 @@ const Table = <T extends object>({
 }: AntTableProps<T>) => {
   const dataSource = data?.map((item) => ({
     ...item,
-    key: _.uniqueId(),
+    key: _.uniqueId()
   }));
 
   return (
@@ -22,8 +22,8 @@ const Table = <T extends object>({
       className=""
       size="small"
       scroll={{
-        x: !noScroll ? "100%" : undefined,
-        y: !noScroll ? "50vh" : undefined,
+        x: !noScroll ? '100%' : undefined,
+        y: !noScroll ? '50vh' : undefined
       }}
       {...props}
       dataSource={dataSource || []}

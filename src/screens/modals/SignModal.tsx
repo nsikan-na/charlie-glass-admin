@@ -1,26 +1,26 @@
-import { Modal } from "antd";
-import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
-import Input from "../components/ant-design/form/Input";
-import { useEffect, useState } from "react";
-import type { DatePickerProps } from "antd";
-import DatePicker from "../components/ant-design/form/DatePicker";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useSignQuote from "../../hooks/invoices/useSignQuote";
-import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
+import { Modal } from 'antd';
+import SecondaryButton from '../components/ant-design/buttons/SecondaryButton';
+import Input from '../components/ant-design/form/Input';
+import { useEffect, useState } from 'react';
+import type { DatePickerProps } from 'antd';
+import DatePicker from '../components/ant-design/form/DatePicker';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import useSignQuote from '../../hooks/invoices/useSignQuote';
+import PrimaryButton from '../components/ant-design/buttons/PrimaryButton';
 
 export default function SignModal({
   isSignModalOpen,
   closeSignModal,
-  currentInvoice,
+  currentInvoice
 }: any) {
   const [input, setInput] = useState({
     expense: 0,
-    signature_date: "",
+    signature_date: ''
   });
   const handleInputChange = (key: string) => (e: any) => {
     setInput((i) => ({ ...i, [key]: e.target.value }));
   };
-  const onChange: DatePickerProps["onChange"] = (key: any, dateString) => {
+  const onChange: DatePickerProps['onChange'] = (key: any, dateString) => {
     setInput((i) => ({ ...i, signature_date: dateString }));
   };
 
@@ -28,7 +28,7 @@ export default function SignModal({
 
   return (
     <Modal
-      title={"Signed"}
+      title={'Signed'}
       open={isSignModalOpen}
       onCancel={closeSignModal}
       footer={() => (
@@ -51,7 +51,7 @@ export default function SignModal({
         <DatePicker
           onChange={onChange}
           className="w-full"
-          style={{ width: "100%" }}
+          style={{ width: '100%' }}
         />
       </div>
       <div className="my-4  w-full">
@@ -59,7 +59,7 @@ export default function SignModal({
         <Input
           type="number"
           min={0}
-          onChange={handleInputChange("expense")}
+          onChange={handleInputChange('expense')}
           allowClear
         />
       </div>

@@ -1,4 +1,4 @@
-import { Button as AntButton, ButtonProps } from "antd";
+import { Button as AntButton, ButtonProps } from 'antd';
 
 interface AntButtonProps extends ButtonProps {}
 

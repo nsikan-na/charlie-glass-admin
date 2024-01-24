@@ -1,11 +1,11 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { EQueryKey } from "../queryKey";
-import { EBaseUrl } from "../baseUrl";
-import { useContext } from "react";
-import { Context } from "../../context";
-import showSuccessNotification from "../../screens/components/ant-design/notifications/showSuccessNoti";
-import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNoti";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+import { EQueryKey } from '../queryKey';
+import { EBaseUrl } from '../baseUrl';
+import { useContext } from 'react';
+import { Context } from '../../context';
+import showSuccessNotification from '../../screens/components/ant-design/notifications/showSuccessNoti';
+import showErrorNotification from '../../screens/components/ant-design/notifications/showErrorNoti';
 
 const useSignQuote = (id: any, onSuccess?: () => void) => {
   const queryClient = useQueryClient();
@@ -19,14 +19,14 @@ const useSignQuote = (id: any, onSuccess?: () => void) => {
 
       onSuccess && onSuccess();
       showSuccessNotification({
-        description: "Quote signed successfully",
+        description: 'Quote signed successfully'
       });
     },
     onError: () => {
       showErrorNotification({
-        description: "Please complete all fields",
+        description: 'Please complete all fields'
       });
-    },
+    }
   });
 };
 

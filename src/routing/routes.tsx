@@ -1,13 +1,13 @@
-import Invoice from "../screens/invoice/listing/Listing";
-import Layout from "../layout/Layout";
-import CreateNewInvoice from "../screens/invoice/create-new-invoice/CreateNewInvoice";
+import Invoice from '../screens/invoice/listing/Listing';
+import Layout from '../layout/Layout';
+import CreateNewInvoice from '../screens/invoice/create-new-invoice/CreateNewInvoice';
 
-import Login from "../screens/login/LogIn";
-import { RouteObject } from "react-router";
-import { ERoute } from "./helpers";
-import Main from "../screens/invoice/Main";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import Login from '../screens/login/LogIn';
+import { RouteObject } from 'react-router';
+import { ERoute } from './helpers';
+import Main from '../screens/invoice/Main';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const routes: RouteObject[] = [
   {
@@ -16,19 +16,19 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: ERoute.ROOT,
-        element: <Root />,
+        element: <Root />
       },
       {
         path: ERoute.INVOICE,
-        children: [{ path: ERoute.INVOICE, element: <Main /> }],
-      },
-    ],
+        children: [{ path: ERoute.INVOICE, element: <Main /> }]
+      }
+    ]
   },
   {
     path: ERoute.LOGIN,
-    element: <Login />,
+    element: <Login />
   },
-  { path: ERoute.ANY, element: <Root /> },
+  { path: ERoute.ANY, element: <Root /> }
 ];
 
 function Root() {

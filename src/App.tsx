@@ -1,20 +1,20 @@
 import {
   QueryClient,
   QueryClientProvider,
-  QueryCache,
-} from "@tanstack/react-query";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { routes } from "./routing/routes";
-import { Context, useInitialStore } from "./context";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ERoute } from "./routing/helpers";
+  QueryCache
+} from '@tanstack/react-query';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { routes } from './routing/routes';
+import { Context, useInitialStore } from './context';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ERoute } from './routing/helpers';
 
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: Infinity,
-      },
+        staleTime: Infinity
+      }
     },
     queryCache: new QueryCache({
       onError: (error) => {
@@ -22,8 +22,8 @@ function App() {
         if (axiosError.response.status === 401) {
           return (window.location.href = ERoute.LOGIN);
         }
-      },
-    }),
+      }
+    })
   });
   return (
     <Context.Provider value={useInitialStore()}>

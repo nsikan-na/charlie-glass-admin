@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type TDefault = [
   {
     key: string;
     value: string;
-  },
+  }
 ];
 
 function useQueryParam(defaultTabs?: TDefault) {

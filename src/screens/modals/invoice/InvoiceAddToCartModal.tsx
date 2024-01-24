@@ -1,36 +1,36 @@
-import { Input, Modal } from "antd";
-import { useEffect, useState } from "react";
-import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
-import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
-import showErrorNotification from "../../components/ant-design/notifications/showErrorNoti";
+import { Input, Modal } from 'antd';
+import { useEffect, useState } from 'react';
+import SecondaryButton from '../../components/ant-design/buttons/SecondaryButton';
+import PrimaryButton from '../../components/ant-design/buttons/PrimaryButton';
+import showErrorNotification from '../../components/ant-design/notifications/showErrorNoti';
 export default function CreateNewInvoiceModal({
   closeModal,
   isModalOpen,
   setCart,
   cartItems,
-  setInvoice,
+  setInvoice
 }: any) {
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
 
   function handleSave() {
     if (!description || !quantity || !price)
       return showErrorNotification({
-        description: "Please complete all fields",
+        description: 'Please complete all fields'
       });
 
     const cartObj = {
       description,
       quantity,
-      price,
+      price
     };
     setCart((cart: any) => [cartObj, ...cart]);
     closeModal();
   }
 
   useEffect(() => {
-    setDescription("");
+    setDescription('');
     setQuantity(0);
     setPrice(0);
   }, [isModalOpen]);

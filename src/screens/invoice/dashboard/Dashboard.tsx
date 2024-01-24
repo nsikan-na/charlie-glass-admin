@@ -1,8 +1,8 @@
-import ServicesWidget from "./ServicesWidget";
-import ProfitsWidget from "./ProfitsWidget";
-import { useState } from "react";
-import RangePicker from "../../components/ant-design/form/RangePicker";
-import { SearchButton } from "../../components/ant-design/buttons/SearchButton";
+import ServicesWidget from './ServicesWidget';
+import ProfitsWidget from './ProfitsWidget';
+import { useState } from 'react';
+import RangePicker from '../../components/ant-design/form/RangePicker';
+import { SearchButton } from '../../components/ant-design/buttons/SearchButton';
 
 export default function Dashboard() {
   const [filters, setFilters]: any = useState(null);
@@ -11,7 +11,7 @@ export default function Dashboard() {
     setFilters((prev: any) => ({
       ...prev,
       fromDate: e[0],
-      toDate: e[1],
+      toDate: e[1]
     }));
   };
   return (

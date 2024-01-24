@@ -1,5 +1,5 @@
-import { UserOutlined } from "@ant-design/icons";
-import { ERoute } from "./helpers";
+import { UserOutlined } from '@ant-design/icons';
+import { ERoute } from './helpers';
 
 type TProps = {
   icon: any;
@@ -12,6 +12,6 @@ export const menuItems: TProps = [
   {
     icon: UserOutlined,
     path: ERoute.INVOICE,
-    label: "Invoice",
-  },
+    label: 'Invoice'
+  }
 ];

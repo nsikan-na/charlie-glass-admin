@@ -1,7 +1,7 @@
-import { createContext, useEffect, useState } from "react";
-import getLocalStorage from "../hooks/localstorage/getLocalStorage";
-import axios from "axios";
-import ELocalStorage from "../util/enums/localStorage";
+import { createContext, useEffect, useState } from 'react';
+import getLocalStorage from '../hooks/localstorage/getLocalStorage';
+import axios from 'axios';
+import ELocalStorage from '../util/enums/localStorage';
 
 export const useInitialStore = () => {
   const [user, setUser] = useState<any>(
@@ -9,22 +9,22 @@ export const useInitialStore = () => {
   );
 
   useEffect(() => {
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer " + user?.accessToken;
+    axios.defaults.headers.common['Authorization'] =
+      'Bearer ' + user?.accessToken;
   }, [user]);
 
   return {
     user,
     setUser,
     companyDetails: {
-      name: "Charlie Glass Inc",
-      phoneNumber: "(917)-848-9128",
-      street: "326 50th st",
-      city: "Brooklyn",
-      state: "New York",
-      zip: "11220",
-      email: "info@charlieglassinc.com",
-    },
+      name: 'Charlie Glass Inc',
+      phoneNumber: '(917)-848-9128',
+      street: '326 50th st',
+      city: 'Brooklyn',
+      state: 'New York',
+      zip: '11220',
+      email: 'info@charlieglassinc.com'
+    }
   };
 };
 
@@ -32,7 +32,7 @@ export const userInitialState = {
   userId: null,
   userName: null,
   expirationMs: null,
-  accessToken: null,
+  accessToken: null
 };
 
 export const Context = createContext<TContextProps>({
@@ -43,9 +43,9 @@ export const Context = createContext<TContextProps>({
     city: null,
     state: null,
     zip: null,
-    email: null,
+    email: null
   },
-  user: userInitialState,
+  user: userInitialState
 });
 
 type TContextProps = {
@@ -65,4 +65,3 @@ type TContextProps = {
     accessToken: string | null;
   };
 };
-

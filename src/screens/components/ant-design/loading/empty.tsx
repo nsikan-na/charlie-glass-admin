@@ -1,4 +1,4 @@
-import { Empty as AntEmpty } from "antd";
+import { Empty as AntEmpty } from 'antd';
 
 const Empty = ({ ...props }: any) => {
   return <AntEmpty {...props} />;
