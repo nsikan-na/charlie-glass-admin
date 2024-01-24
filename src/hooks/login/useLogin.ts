@@ -5,9 +5,9 @@ import { EQueryKey } from "../queryKey";
 import { useContext } from "react";
 import { Context } from "../../context";
 import { useNavigate } from "react-router-dom";
-import { ERoute } from "../../routing/helpers";
 import setLocalStorage from "../localstorage/setLocalStorage";
 import ELocalStorage from "../../util/enums/localStorage";
+import { ERoute } from "../../util/enums/routes";
 
 type TLoginInput = {
   username: string;

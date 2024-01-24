@@ -12,12 +12,9 @@ const useGetReportProfits = (params: any) => {
     queryKey: [EQueryKey.GET, EQueryKey.REPORT_PROFITS, params, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
-      await axios.get<any>(
-        `${EBaseUrl.CGI_API}/api/v1/reports/profit`,
-        {
-          params,
-        }
-      ),
+      await axios.get<any>(`${EBaseUrl.CGI_API}/api/v1/reports/profit`, {
+        params,
+      }),
   });
 };
 

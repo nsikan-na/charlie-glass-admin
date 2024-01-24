@@ -3,7 +3,7 @@ export const thousandsCommaSeparated = (string: string) =>
 
 export const decimalThousandsCommaSeparated = (
   number?: number | null,
-  decimalPlaces?: number
+  decimalPlaces?: number,
 ) => thousandsCommaSeparated((number || 0).toFixed(decimalPlaces || 2));
 
 export const DATE_FORMAT = "YYYY-MM-DD";

@@ -1,6 +1,6 @@
 import { notification } from "antd";
 import { ArgsProps } from "antd/lib/notification/interface";
-import { EColors } from "../../util/enums/colors";
+import { EColors } from "../../../../util/enums/colors";
 import { CheckCircleOutlined } from "@ant-design/icons";
 
 const showSuccessNotification = ({

@@ -1,23 +1,29 @@
 import { Tag } from "antd";
-import { decimalThousandsCommaSeparated, formatDate } from "../../util/helpers";
-import useGetProfits from "../../hooks/reports/useGetReportProfits";
+import {
+  decimalThousandsCommaSeparated,
+  formatDate,
+} from "../../../util/helpers";
+import useGetProfits from "../../../hooks/reports/useGetReportProfits";
 
-import Spinner from "../components/ant-design/loading/spinner";
+import Spinner from "../../components/ant-design/loading/spinner";
 import { uniqueId } from "lodash";
 
 export default function ProfitsWidget({ input }: any) {
   const { data, isLoading } = useGetProfits(input);
 
   return (
-    <div className="mt-8">
+    <div className="mt-8  ">
       <Spinner spinning={isLoading}>
         <div className=" flex justify-center mt-14">
-          <div className=" w-10/12 grid grid-cols-1 justify-center">
+          <div
+            className=" w-10/12 grid grid-cols-1 justify-center "
+            style={{ height: "40vh" }}
+          >
             {data?.data?.rows.map((row: any) => {
               return <Profit row={row} key={uniqueId()} />;
             })}
             <div className="mt-5">
-              <Totals data={data} />
+              {data?.data?.rows && <Totals data={data} />}
             </div>
           </div>
         </div>

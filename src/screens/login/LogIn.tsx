@@ -1,14 +1,9 @@
 import { Button, Form } from "antd";
 import Input from "../components/ant-design/form/Input";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import useLogin from "../../hooks/login/useLogin";
-import { useNavigate } from "react-router-dom";
-import { ERoute } from "../../routing/helpers";
-import { Context } from "../../context";
 
 const Login: React.FC = () => {
-  const { user } = useContext(Context);
-  const navigate = useNavigate();
   const [input, setInput] = useState({
     username: "",
     password: "",
@@ -29,7 +24,7 @@ const Login: React.FC = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="flex justify-center items-center p-20 rounded-lg bg-white bg-opacity-100">
+      <div className="flex justify-center items-center p-20 rounded-lg bg-white ">
         <div style={{ margin: "auto" }}>
           <Form>
             <div className="text-center text-2xl my-3">Log In</div>

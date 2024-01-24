@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 
 import PdfTemplate from "./pdf/PdfTemplate";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";

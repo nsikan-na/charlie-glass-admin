@@ -45,7 +45,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
       .reduce((acc: any, cur: any) => {
         acc += cur;
         return acc;
-      }, 0)
+      }, 0),
   );
 
   return (
@@ -171,7 +171,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
                 {items?.map(
                   (
                     { item_description, item_price, item_quantity }: any,
-                    idx: number
+                    idx: number,
                   ) => (
                     <View key={uniqueId()}>
                       <View
@@ -200,7 +200,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
                         >{`_______________________________________________________________________`}</Text>
                       </View>
                     </View>
-                  )
+                  ),
                 )}
               </View>
               <View

@@ -11,12 +11,9 @@ const useGetReportServices = (params: any) => {
     queryKey: [EQueryKey.GET, EQueryKey.REPORT_SERVICES, params, user?.userId],
     enabled: !!user?.userId,
     queryFn: async () =>
-      await axios.get<any>(
-        `${EBaseUrl.CGI_API}/api/v1/reports/services`,
-        {
-          params,
-        }
-      ),
+      await axios.get<any>(`${EBaseUrl.CGI_API}/api/v1/reports/services`, {
+        params,
+      }),
   });
 };
 

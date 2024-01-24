@@ -1,11 +1,7 @@
-// import { Input } from "antd";
-import { Button } from "antd";
 import InvoiceDetailsInput from "./NewInvoiceDetails";
 import InvoiceServicesInput from "./CreateNewService";
 import { useEffect, useState } from "react";
-import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
-import { useNavigate } from "react-router-dom";
-import { ERoute } from "../../routing/helpers";
+import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
 
 export default function CreateNewInvoice({ handleIsCreateScreenOpen }: any) {
   const [cartItems, setCart]: any = useState([]);
@@ -20,8 +16,6 @@ export default function CreateNewInvoice({ handleIsCreateScreenOpen }: any) {
     services: [],
   });
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     setInvoice((invoice: any) => ({ ...invoice, items: cartItems }));
   }, [cartItems]);
@@ -33,7 +27,9 @@ export default function CreateNewInvoice({ handleIsCreateScreenOpen }: any) {
           width: "70%",
         }}
       >
-        <PrimaryButton onClick={handleIsCreateScreenOpen}>Back</PrimaryButton>
+        <SecondaryButton onClick={handleIsCreateScreenOpen}>
+          Back
+        </SecondaryButton>
       </div>
       <div
         style={{ marginTop: "3rem", display: "flex", justifyContent: "center" }}

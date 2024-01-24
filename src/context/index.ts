@@ -5,7 +5,7 @@ import ELocalStorage from "../util/enums/localStorage";
 
 export const useInitialStore = () => {
   const [user, setUser] = useState<any>(
-    getLocalStorage(ELocalStorage.USER) || userInitialState
+    getLocalStorage(ELocalStorage.USER) || userInitialState,
   );
 
   useEffect(() => {
@@ -65,4 +65,3 @@ type TContextProps = {
     accessToken: string | null;
   };
 };
-
