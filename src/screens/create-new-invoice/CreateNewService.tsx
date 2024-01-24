@@ -45,13 +45,14 @@ export default function InvoiceServicesInput({
 
   function handleSubmit() {
     if (
-      invoice.receiver === null ||
-      invoice.city === null ||
-      invoice.items === null ||
-      invoice.services === null ||
-      invoice.state === null ||
-      invoice.street === null ||
-      invoice.zip === null
+      !invoice ||
+      !invoice?.receiver ||
+      !invoice?.city ||
+      !invoice?.items ||
+      !invoice?.services ||
+      !invoice?.state ||
+      !invoice?.street ||
+      !invoice?.zip
     )
       return showErrorNotification({
         description: "Please complete all fields",
