@@ -7,7 +7,7 @@ import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { useNavigate } from "react-router-dom";
 import { ERoute } from "../../routing/helpers";
 
-export default function CreateNewInvoice() {
+export default function CreateNewInvoice({ handleIsCreateScreenOpen }: any) {
   const [cartItems, setCart]: any = useState([]);
 
   const [invoice, setInvoice]: any = useState({
@@ -33,9 +33,7 @@ export default function CreateNewInvoice() {
           width: "70%",
         }}
       >
-        <PrimaryButton onClick={() => navigate(ERoute.INVOICE)}>
-          Back
-        </PrimaryButton>
+        <PrimaryButton onClick={handleIsCreateScreenOpen}>Back</PrimaryButton>
       </div>
       <div
         style={{ marginTop: "3rem", display: "flex", justifyContent: "center" }}

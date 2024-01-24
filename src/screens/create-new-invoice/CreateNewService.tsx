@@ -11,6 +11,8 @@ import useAddNewInvoice from "../../hooks/invoices/useAddNewInvoice";
 import useGetServices from "../../hooks/invoices/useGetServices";
 
 import Spinner from "../components/ant-design/loading/spinner";
+import showErrorNotification from "../../hooks/notifications/showErrorNoti";
+import showSuccessNotification from "../../hooks/notifications/showSuccessNoti";
 
 export default function InvoiceServicesInput({
   setInvoice,
@@ -40,6 +42,28 @@ export default function InvoiceServicesInput({
   }, [checkedServices, setInvoice]);
 
   const add = useAddNewInvoice();
+
+  function handleSubmit() {
+    if (
+      !invoice ||
+      !invoice?.receiver ||
+      !invoice?.city ||
+      !invoice?.items ||
+      !invoice?.services ||
+      !invoice?.state ||
+      !invoice?.street ||
+      !invoice?.zip
+    )
+      return showErrorNotification({
+        description: "Please complete all fields",
+      });
+
+    add.mutate(invoice);
+    navigate(ERoute.INVOICE);
+    showSuccessNotification({
+      description: "Invoice submitted successfully",
+    });
+  }
 
   return (
     <>
@@ -112,13 +136,7 @@ export default function InvoiceServicesInput({
         <SecondaryButton onClick={showModal}>Add Item</SecondaryButton>
       </div>
       <div style={{ justifySelf: "end" }}>
-        <PrimaryButton
-          style={{ marginRight: "10rem" }}
-          onClick={() => {
-            add.mutate(invoice);
-            navigate(ERoute.INVOICE);
-          }}
-        >
+        <PrimaryButton style={{ marginRight: "10rem" }} onClick={handleSubmit}>
           Submit
         </PrimaryButton>
       </div>

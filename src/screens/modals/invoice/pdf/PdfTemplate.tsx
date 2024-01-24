@@ -6,7 +6,7 @@ import {
   Document,
   PDFViewer,
 } from "@react-pdf/renderer";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Context } from "../../../../context";
 import {
   decimalThousandsCommaSeparated,
@@ -26,7 +26,8 @@ const PdfTemplate = ({ invoiceData }: any) => {
     },
   } = useContext(Context);
 
-  if (!invoiceData) return <div>Loading</div>;
+  if (!invoiceData) return <div></div>;
+
   const {
     id: invoice_id,
     items,

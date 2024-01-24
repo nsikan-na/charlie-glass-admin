@@ -2,12 +2,12 @@ import { Tabs as AntTabs } from "antd";
 import type { TabsProps } from "antd";
 import Dashboard from "../dashboard/Dashboard";
 import Invoice from "./Invoice";
-import useQueryString from "../../hooks/queryString/useQueryString";
-
-const tabKey = "tab";
+import useQueryParam from "../../hooks/queryParam/useQueryParam";
 
 export default function Main() {
-  const { getQuery, setQuery } = useQueryString();
+  const { getQuery, setQuery } = useQueryParam([
+    { key: tabKey, value: ETabs.DASHBOARD },
+  ]);
 
   const changeQuery = (value: string) => setQuery(tabKey, value);
 
@@ -20,11 +20,12 @@ export default function Main() {
     />
   );
 }
+const tabKey = "tab";
+
 enum ETabs {
   DASHBOARD = "dashboard",
   LISTING = "listing",
 }
-
 const items: TabsProps["items"] = [
   {
     key: ETabs.DASHBOARD,

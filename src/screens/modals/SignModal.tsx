@@ -22,10 +22,9 @@ export default function SignModal({
   };
   const onChange: DatePickerProps["onChange"] = (key: any, dateString) => {
     setInput((i) => ({ ...i, signature_date: dateString }));
-    console.log(dateString);
   };
 
-  const add = useSignQuote(currentInvoice);
+  const add = useSignQuote(currentInvoice, closeSignModal);
 
   return (
     <Modal
@@ -40,7 +39,6 @@ export default function SignModal({
           <PrimaryButton
             onClick={() => {
               add.mutate(input);
-              closeSignModal();
             }}
           >
             Submit

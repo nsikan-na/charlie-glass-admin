@@ -9,24 +9,20 @@ export default function ProfitsWidget({ input }: any) {
   const { data, isLoading } = useGetProfits(input);
 
   return (
-    <Spinner spinning={isLoading}>
-      <div className="mt-8">
-        {!data ? (
-          <div className="flex justify-center items-center mt-12"></div>
-        ) : (
-          <div className=" flex justify-center mt-14">
-            <div className=" w-10/12 grid grid-cols-1 justify-center">
-              {data?.data?.rows.map((row: any) => {
-                return <Profit row={row} key={uniqueId()} />;
-              })}
-              <div className="mt-5">
-                <Totals data={data} />
-              </div>
+    <div className="mt-8">
+      <Spinner spinning={isLoading}>
+        <div className=" flex justify-center mt-14">
+          <div className=" w-10/12 grid grid-cols-1 justify-center">
+            {data?.data?.rows.map((row: any) => {
+              return <Profit row={row} key={uniqueId()} />;
+            })}
+            <div className="mt-5">
+              <Totals data={data} />
             </div>
           </div>
-        )}
-      </div>
-    </Spinner>
+        </div>
+      </Spinner>
+    </div>
   );
 }
 
