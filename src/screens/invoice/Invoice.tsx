@@ -21,12 +21,19 @@ import { formatDate } from "../../util/helpers";
 import { Tag, Tooltip } from "antd";
 import { EColors } from "../../util/enums/colors";
 
+import CreateNewInvoice from "../create-new-invoice/CreateNewInvoice";
+
 const Invoice = (): JSX.Element => {
   useGetServices();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
   const [input, setInput] = useState(null);
   const [filters, setFilters] = useState(null);
+
+  const [isCreateScreenOpen, setIsCreateScreenOpen] = useState(true);
+  function handleIsCreateScreenOpen(): void {
+    setIsCreateScreenOpen((isOpen) => !isOpen);
+  }
 
   const [isSignModalOpen, setSignModalOpen] = useState(false);
   const showSignModal = () => {
@@ -175,75 +182,71 @@ const Invoice = (): JSX.Element => {
   ];
 
   return (
-    <div>
-      <div className="flex justify-between m-4">
+    <>
+      {isCreateScreenOpen ? (
         <div>
-          <Input
-            addonBefore="Id"
-            className="w-72"
-            onChange={onFilterChange("quote_id")}
+          <div className="flex justify-between m-4">
+            <div>
+              <Input
+                addonBefore="Id"
+                className="w-72"
+                onChange={onFilterChange("quote_id")}
+              />
+              <span className="mx-8">
+                <Input
+                  addonBefore="Name"
+                  className="w-72"
+                  onChange={onFilterChange("name")}
+                />
+              </span>
+              <RangePicker onChange={onRangeFilterChange} className="" />
+              <span className="mx-8">
+                <Selector
+                  onChange={handleSelectFilter("isSigned")}
+                  className="w-40"
+                  defaultValue="All"
+                  style={{ width: 120 }}
+                  options={[
+                    { label: "All", value: "undefined" },
+                    { label: "Quote", value: false },
+                    { label: "Invoice", value: true },
+                  ]}
+                />
+              </span>
+              <span>
+                <SearchButton className="" onClick={() => setInput(filters)} />
+              </span>
+            </div>
+            <PrimaryButton onClick={handleIsCreateScreenOpen}>
+              Create New Invoice
+            </PrimaryButton>
+          </div>
+          <Spinner spinning={isLoading}>
+            {!data?.data ? (
+              <Empty />
+            ) : (
+              <Table
+                dataSource={data?.data}
+                columns={columns}
+                pagination={false}
+              />
+            )}
+          </Spinner>
+          <SignModal
+            currentInvoice={currentInvoice}
+            isSignModalOpen={isSignModalOpen}
+            closeSignModal={closeSignModal}
           />
-          <span className="mx-8">
-            <Input
-              addonBefore="Name"
-              className="w-72"
-              onChange={onFilterChange("name")}
-            />
-          </span>
-          <RangePicker onChange={onRangeFilterChange} className="" />
-          <span className="mx-8">
-            <Selector
-              onChange={handleSelectFilter("isSigned")}
-              className="w-40"
-              defaultValue="All"
-              style={{ width: 120 }}
-              options={[
-                { label: "All", value: "undefined" },
-                { label: "Quote", value: false },
-                { label: "Invoice", value: true },
-              ]}
-            />
-          </span>
-          <span>
-            <SearchButton className="" onClick={() => setInput(filters)} />
-          </span>
+          <InvoiceModal
+            closeModal={closeModal}
+            isModalOpen={isModalOpen}
+            pdf={pdfData?.data}
+          />
         </div>
-        <PrimaryButton onClick={() => navigate(ERoute.CREATE_INVOICE)}>
-          Create New Invoice
-        </PrimaryButton>
-      </div>
-      {/* <Spinner spinning={isLoading}>
-        <div className="grid grid-cols-3 overflow-y-scroll h-3/4 p-6 my-4">
-          {data?.data?.map((invoice: any) => (
-            <InvoiceCard
-              key={uniqueId()}
-              setCurrentInvoice={setCurrentInvoice}
-              showModal={showModal}
-              showSignModal={showSignModal}
-              invoice={invoice}
-              isLoading={isLoading}
-            />
-          ))}
-        </div>
-      </Spinner> */}
-      <Spinner spinning={isLoading}>
-        {!data?.data ? (
-          <Empty />
-        ) : (
-          <Table dataSource={data?.data} columns={columns} pagination={false} />
-        )}
-      </Spinner>
-      <SignModal
-        currentInvoice={currentInvoice}
-        isSignModalOpen={isSignModalOpen}
-        closeSignModal={closeSignModal}
-      />
-      <InvoiceModal
-        closeModal={closeModal}
-        isModalOpen={isModalOpen}
-        pdf={pdfData?.data}
-      />
-    </div>
+      ) : (
+        <CreateNewInvoice handleIsCreateScreenOpen={handleIsCreateScreenOpen} />
+      )}
+    </>
   );
 };
 

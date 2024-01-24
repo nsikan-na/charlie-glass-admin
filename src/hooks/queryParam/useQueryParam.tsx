@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function useQueryString() {
+type TDefault = [
+  {
+    key: string;
+    value: string;
+  },
+];
+
+function useQueryParam(defaultTabs?: TDefault) {
   const location = useLocation();
   const navigate = useNavigate();
   const [query, setQuery] = useState(new URLSearchParams(location.search));
@@ -9,6 +16,14 @@ function useQueryString() {
   useEffect(() => {
     setQuery(new URLSearchParams(location.search));
   }, [location.search]);
+
+  useEffect(() => {
+    defaultTabs?.forEach(({ key, value }) => {
+      if (!getQuery(key)) {
+        updateQuery(key, value);
+      }
+    });
+  }, []);
 
   const updateQuery: any = (key: string, value: string) => {
     const newQuery = new URLSearchParams(location.search);
@@ -25,4 +40,4 @@ function useQueryString() {
   return { getQuery, setQuery: updateQuery };
 }
 
-export default useQueryString;
+export default useQueryParam;

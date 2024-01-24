@@ -20,13 +20,7 @@ export const routes: RouteObject[] = [
       },
       {
         path: ERoute.INVOICE,
-        children: [
-          { path: ERoute.INVOICE, element: <Main /> },
-          {
-            path: ERoute.CREATE_INVOICE,
-            element: <CreateNewInvoice />,
-          },
-        ],
+        children: [{ path: ERoute.INVOICE, element: <Main /> }],
       },
     ],
   },
