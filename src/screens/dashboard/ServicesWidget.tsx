@@ -9,7 +9,7 @@ export default function ServicesWidget({ input }: any) {
   const { data, isLoading } = useGetReportServices(input);
 
   const config = {
-    data: data?.data,
+    data: data?.data || [],
     xField: "service_label",
     yField: "service_count",
     label: {
@@ -27,18 +27,16 @@ export default function ServicesWidget({ input }: any) {
   };
 
   return (
-    <Spinner spinning={isLoading}>
-      <div className="w-full">
-        {!data || data?.data?.length === 0 ? (
-          <div className="flex justify-center items-center mt-12">
-            <Empty />
-          </div>
-        ) : (
+    <div className="w-full">
+      {(!data || data?.data?.length === 0) && !isLoading ? (
+        <div className="flex justify-center items-center mt-12">
+          <Empty />
+        </div>
+      ) : (
+        <Spinner spinning={isLoading}>
           <Column {...config} />
-        )}
-      </div>
-    </Spinner>
+        </Spinner>
+      )}
+    </div>
   );
 }
-
-//  indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}

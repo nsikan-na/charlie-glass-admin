@@ -1,18 +1,17 @@
-import InvoiceCard from "./InvoiceCard";
 import InvoiceModal from "../modals/invoice/InvoiceModal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ERoute } from "../../routing/helpers";
+
 import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
 import useGetInvoiceById from "../../hooks/invoices/useGetInvoiceById";
-import { uniqueId } from "lodash";
+
 import Input from "../components/ant-design/form/Input";
 import RangePicker from "../components/ant-design/form/RangePicker";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Selector } from "../components/ant-design/form/Select";
 import SignModal from "../modals/SignModal";
-import useGetServices from "../../hooks/invoices/useGetServices";
+
 import Spinner from "../components/ant-design/loading/spinner";
 import Table from "../components/ant-design/Table";
 import Empty from "../components/ant-design/loading/empty";
@@ -24,7 +23,6 @@ import { EColors } from "../../util/enums/colors";
 import CreateNewInvoice from "../create-new-invoice/CreateNewInvoice";
 
 const Invoice = (): JSX.Element => {
-  useGetServices();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
   const [input, setInput] = useState(null);
@@ -221,17 +219,14 @@ const Invoice = (): JSX.Element => {
               Create New Invoice
             </PrimaryButton>
           </div>
-          <Spinner spinning={isLoading}>
-            {!data?.data ? (
-              <Empty />
-            ) : (
-              <Table
-                dataSource={data?.data}
-                columns={columns}
-                pagination={false}
-              />
-            )}
-          </Spinner>
+
+          <Table
+            dataSource={data?.data}
+            columns={columns}
+            pagination={false}
+            loading={isLoading}
+          />
+
           <SignModal
             currentInvoice={currentInvoice}
             isSignModalOpen={isSignModalOpen}
