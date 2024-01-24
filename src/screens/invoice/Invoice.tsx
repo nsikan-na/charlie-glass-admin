@@ -53,7 +53,9 @@ const Invoice = (): JSX.Element => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const { data: pdfData }: any = useGetInvoiceById(currentInvoice as any);
+  const { data: pdfData, isLoading: pdfLoading }: any = useGetInvoiceById(
+    currentInvoice as any
+  );
 
   const onFilterChange = (key: string) => (e: any) => {
     setFilters((prev: any) => ({ ...prev, [key]: e.target.value }));
@@ -236,6 +238,7 @@ const Invoice = (): JSX.Element => {
             closeModal={closeModal}
             isModalOpen={isModalOpen}
             pdf={pdfData?.data}
+            isLoading={pdfLoading}
           />
         </div>
       ) : (
