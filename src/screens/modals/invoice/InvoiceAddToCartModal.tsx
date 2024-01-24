@@ -2,6 +2,7 @@ import { Input, Modal } from "antd";
 import { useEffect, useState } from "react";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
+import showErrorNotification from "../../../hooks/notifications/showErrorNoti";
 export default function CreateNewInvoiceModal({
   closeModal,
   isModalOpen,
@@ -14,7 +15,11 @@ export default function CreateNewInvoiceModal({
   const [price, setPrice] = useState<number>(0);
 
   function handleSave() {
-    if (!description || !quantity || !price) return;
+    if (!description || !quantity || !price)
+      return showErrorNotification({
+        description: "Please complete all fields",
+      });
+
     const cartObj = {
       description,
       quantity,

@@ -25,7 +25,7 @@ export default function SignModal({
     console.log(dateString);
   };
 
-  const add = useSignQuote(currentInvoice);
+  const add = useSignQuote(currentInvoice, closeSignModal);
 
   return (
     <Modal
@@ -40,7 +40,6 @@ export default function SignModal({
           <PrimaryButton
             onClick={() => {
               add.mutate(input);
-              closeSignModal();
             }}
           >
             Submit

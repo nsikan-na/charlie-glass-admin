@@ -155,16 +155,20 @@ const Invoice = (): JSX.Element => {
     {
       title: "Actions",
       key: "actions",
-      render: (text: any, record: any) => (
+      render: (text: any, record: any, isSigned: any) => (
         <div className="flex gap-5" onClick={() => handleClick(record)}>
           <EyeOutlined
             style={{ fontSize: "1.2rem", cursor: "pointer" }}
             onClick={showModal}
           />
-          <EditOutlined
-            onClick={showSignModal}
-            style={{ fontSize: "1.2rem", cursor: "pointer" }}
-          />
+          {record.isSigned === 0 ? (
+            <EditOutlined
+              onClick={showSignModal}
+              style={{ fontSize: "1.2rem", cursor: "pointer" }}
+            />
+          ) : (
+            ""
+          )}
         </div>
       ),
     },
