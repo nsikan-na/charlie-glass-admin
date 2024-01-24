@@ -173,9 +173,7 @@ const Invoice = (): JSX.Element => {
               onClick={showSignModal}
               style={{ fontSize: "1.2rem", cursor: "pointer" }}
             />
-          ) : (
-            ""
-          )}
+          ) : null}
         </div>
       ),
     },
