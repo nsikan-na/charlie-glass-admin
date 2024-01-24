@@ -1,11 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import { Layout as AntLayout } from 'antd';
 import TopNavBar from './TopNavBar';
 import Login from '../screens/login/LogIn';
 import { useContext } from 'react';
 import { Context } from '../context';
-
-const { Content } = AntLayout;
+import Sidebar from './Sidebar';
+import { Content } from 'antd/es/layout/layout';
 
 const Layout = () => {
   const { user }: any = useContext(Context);
@@ -18,7 +17,7 @@ const Layout = () => {
           <TopNavBar />
           <main className="flex">
             {/* <Sidebar /> */}
-            <Content className="w-4/6">
+            <Content className="w-full m-0 p-0">
               <Outlet />
             </Content>
           </main>

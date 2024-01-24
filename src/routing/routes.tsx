@@ -2,10 +2,10 @@ import Layout from '../layout/Layout';
 
 import Login from '../screens/login/LogIn';
 import { RouteObject } from 'react-router';
-import { ERoute } from './helpers';
 import Main from '../screens/invoice/Main';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { ERoute } from '../util/enums/routes';
 
 export const routes: RouteObject[] = [
   {

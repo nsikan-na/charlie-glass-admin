@@ -17,7 +17,9 @@ export default function Dashboard() {
   return (
     <div>
       <RangePicker onChange={onRangeFilterChange} />
-      <SearchButton className="" onClick={() => setInput(filters)} />
+      <span className="ml-2">
+        <SearchButton onClick={() => setInput(filters)} />
+      </span>
       <div className="flex justify-center">
         <div className="w-full">
           <ProfitsWidget input={input} />

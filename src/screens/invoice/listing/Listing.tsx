@@ -193,7 +193,7 @@ const Invoice = (): JSX.Element => {
                 className="w-72"
                 onChange={onFilterChange('quote_id')}
               />
-              <span className="mx-8">
+              <span className="mx-2">
                 <Input
                   addonBefore="Name"
                   className="w-72"
@@ -201,7 +201,7 @@ const Invoice = (): JSX.Element => {
                 />
               </span>
               <RangePicker onChange={onRangeFilterChange} className="" />
-              <span className="mx-8">
+              <span className="mx-2">
                 <Selector
                   onChange={handleSelectFilter('isSigned')}
                   className="w-40"

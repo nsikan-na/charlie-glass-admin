@@ -13,7 +13,7 @@ export default function Main() {
 
   return (
     <AntTabs
-      className="ml-10"
+      className="ml-10 bg-white"
       defaultActiveKey={getQuery(tabKey) || undefined}
       items={items}
       onChange={changeQuery}

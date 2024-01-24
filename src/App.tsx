@@ -7,7 +7,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { routes } from './routing/routes';
 import { Context, useInitialStore } from './context';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ERoute } from './routing/helpers';
+import { ERoute } from './util/enums/routes';
+import { ConfigProvider } from 'antd';
+import { EColors } from './util/enums/colors';
 
 function App() {
   const queryClient = new QueryClient({
@@ -29,10 +31,18 @@ function App() {
     <Context.Provider value={useInitialStore()}>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <RouterProvider router={createBrowserRouter(routes)} />
+        <ConfigProvider theme={theme}>
+          <RouterProvider router={createBrowserRouter(routes)} />
+        </ConfigProvider>
       </QueryClientProvider>
     </Context.Provider>
   );
 }
 
 export default App;
+
+const theme = {
+  token: {
+    colorPrimary: EColors.primary
+  }
+};
