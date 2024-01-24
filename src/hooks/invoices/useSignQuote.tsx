@@ -4,8 +4,8 @@ import { EQueryKey } from "../queryKey";
 import { EBaseUrl } from "../baseUrl";
 import { useContext } from "react";
 import { Context } from "../../context";
-import showSuccessNotification from "../notifications/showSuccessNoti";
-import showErrorNotification from "../notifications/showErrorNoti";
+import showSuccessNotification from "../../screens/components/ant-design/notifications/showSuccessNoti";
+import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNoti";
 
 const useSignQuote = (id: any, onSuccess?: () => void) => {
   const queryClient = useQueryClient();

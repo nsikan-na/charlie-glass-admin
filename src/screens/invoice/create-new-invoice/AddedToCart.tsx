@@ -1,4 +1,4 @@
-import { decimalThousandsCommaSeparated } from "../../util/helpers";
+import { decimalThousandsCommaSeparated } from "../../../util/helpers";
 
 export default function AddedToCart({
   addedToCart,

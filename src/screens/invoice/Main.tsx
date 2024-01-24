@@ -1,7 +1,7 @@
 import { Tabs as AntTabs } from "antd";
 import type { TabsProps } from "antd";
-import Dashboard from "../dashboard/Dashboard";
-import Invoice from "./Invoice";
+import Dashboard from "./dashboard/Dashboard";
+import Invoice from "./listing/Listing";
 import useQueryParam from "../../hooks/queryParam/useQueryParam";
 
 export default function Main() {

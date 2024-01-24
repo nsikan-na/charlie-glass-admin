@@ -2,7 +2,7 @@ import { Input, Modal } from "antd";
 import { useEffect, useState } from "react";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
-import showErrorNotification from "../../../hooks/notifications/showErrorNoti";
+import showErrorNotification from "../../components/ant-design/notifications/showErrorNoti";
 export default function CreateNewInvoiceModal({
   closeModal,
   isModalOpen,
