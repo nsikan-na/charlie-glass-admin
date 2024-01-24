@@ -1,12 +1,12 @@
-import { Avatar, Layout } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { Context, userInitialState } from '../context';
-import setLocalStorage from '../hooks/localstorage/setLocalStorage';
-import ELocalStorage from '../util/enums/localStorage';
-import { ERoute } from '../util/enums/routes';
-import { EColors } from '../util/enums/colors';
-import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Layout } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Context, userInitialState } from "../context";
+import setLocalStorage from "../hooks/localstorage/setLocalStorage";
+import ELocalStorage from "../util/enums/localStorage";
+import { ERoute } from "../util/enums/routes";
+import { EColors } from "../util/enums/colors";
+import { UserOutlined } from "@ant-design/icons";
 
 const { Header } = Layout;
 
@@ -19,7 +19,7 @@ const TopNavBar = () => {
       className="bg-white "
       style={{
         borderBottom: `.1rem solid ${EColors.gray_4}`,
-        borderTop: `.5rem solid ${EColors.primary}`
+        borderTop: `.5rem solid ${EColors.primary}`,
       }}
     >
       <div className="flex justify-between">

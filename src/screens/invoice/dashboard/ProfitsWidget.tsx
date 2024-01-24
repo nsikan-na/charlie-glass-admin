@@ -1,12 +1,12 @@
-import { Tag } from 'antd';
+import { Tag } from "antd";
 import {
   decimalThousandsCommaSeparated,
-  formatDate
-} from '../../../util/helpers';
-import useGetProfits from '../../../hooks/reports/useGetReportProfits';
+  formatDate,
+} from "../../../util/helpers";
+import useGetProfits from "../../../hooks/reports/useGetReportProfits";
 
-import Spinner from '../../components/ant-design/loading/spinner';
-import { uniqueId } from 'lodash';
+import Spinner from "../../components/ant-design/loading/spinner";
+import { uniqueId } from "lodash";
 
 export default function ProfitsWidget({ input }: any) {
   const { data, isLoading } = useGetProfits(input);
@@ -17,7 +17,7 @@ export default function ProfitsWidget({ input }: any) {
         <div className=" flex justify-center mt-14">
           <div
             className=" w-10/12 grid grid-cols-1 justify-center "
-            style={{ height: '40vh' }}
+            style={{ height: "40vh" }}
           >
             {data?.data?.rows.map((row: any) => {
               return <Profit row={row} key={uniqueId()} />;

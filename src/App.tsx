@@ -1,22 +1,22 @@
 import {
   QueryClient,
   QueryClientProvider,
-  QueryCache
-} from '@tanstack/react-query';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { routes } from './routing/routes';
-import { Context, useInitialStore } from './context';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ERoute } from './util/enums/routes';
-import { ConfigProvider } from 'antd';
-import { EColors } from './util/enums/colors';
+  QueryCache,
+} from "@tanstack/react-query";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { routes } from "./routing/routes";
+import { Context, useInitialStore } from "./context";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ERoute } from "./util/enums/routes";
+import { ConfigProvider } from "antd";
+import { EColors } from "./util/enums/colors";
 
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: Infinity
-      }
+        staleTime: Infinity,
+      },
     },
     queryCache: new QueryCache({
       onError: (error) => {
@@ -24,8 +24,8 @@ function App() {
         if (axiosError.response.status === 401) {
           return (window.location.href = ERoute.LOGIN);
         }
-      }
-    })
+      },
+    }),
   });
   return (
     <Context.Provider value={useInitialStore()}>
@@ -43,6 +43,6 @@ export default App;
 
 const theme = {
   token: {
-    colorPrimary: EColors.primary
-  }
+    colorPrimary: EColors.primary,
+  },
 };

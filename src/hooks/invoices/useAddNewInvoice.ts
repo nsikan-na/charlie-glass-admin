@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
-import { EQueryKey } from '../queryKey';
-import { EBaseUrl } from '../baseUrl';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { EQueryKey } from "../queryKey";
+import { EBaseUrl } from "../baseUrl";
 
 const useAddNewInvoice = () => {
   const queryClient = useQueryClient();
@@ -11,7 +11,7 @@ const useAddNewInvoice = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
-    }
+    },
   });
 };
 

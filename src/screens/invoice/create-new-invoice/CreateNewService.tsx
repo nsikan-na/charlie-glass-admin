@@ -1,24 +1,24 @@
-import { Checkbox } from 'antd';
-import { useEffect, useState } from 'react';
-import { uniqueId } from 'lodash';
-import { useNavigate } from 'react-router-dom';
-import AddedToCart from './AddedToCart';
-import PrimaryButton from '../../components/ant-design/buttons/PrimaryButton';
-import SecondaryButton from '../../components/ant-design/buttons/SecondaryButton';
-import CreateNewInvoiceModal from '../../modals/invoice/InvoiceAddToCartModal';
-import useAddNewInvoice from '../../../hooks/invoices/useAddNewInvoice';
-import useGetServices from '../../../hooks/invoices/useGetServices';
+import { Checkbox } from "antd";
+import { useEffect, useState } from "react";
+import { uniqueId } from "lodash";
+import { useNavigate } from "react-router-dom";
+import AddedToCart from "./AddedToCart";
+import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
+import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
+import CreateNewInvoiceModal from "../../modals/invoice/InvoiceAddToCartModal";
+import useAddNewInvoice from "../../../hooks/invoices/useAddNewInvoice";
+import useGetServices from "../../../hooks/invoices/useGetServices";
 
-import Spinner from '../../components/ant-design/loading/spinner';
-import showErrorNotification from '../../components/ant-design/notifications/showErrorNoti';
-import showSuccessNotification from '../../components/ant-design/notifications/showSuccessNoti';
-import { ERoute } from '../../../util/enums/routes';
+import Spinner from "../../components/ant-design/loading/spinner";
+import showErrorNotification from "../../components/ant-design/notifications/showErrorNoti";
+import showSuccessNotification from "../../components/ant-design/notifications/showSuccessNoti";
+import { ERoute } from "../../../util/enums/routes";
 
 export default function InvoiceServicesInput({
   setInvoice,
   invoice,
   setCart,
-  cartItems
+  cartItems,
 }: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -55,13 +55,13 @@ export default function InvoiceServicesInput({
       !invoice?.zip
     )
       return showErrorNotification({
-        description: 'Please complete all fields'
+        description: "Please complete all fields",
       });
 
     add.mutate(invoice);
     navigate(ERoute.INVOICE);
     showSuccessNotification({
-      description: 'Invoice submitted successfully'
+      description: "Invoice submitted successfully",
     });
   }
 
@@ -75,7 +75,7 @@ export default function InvoiceServicesInput({
         setInvoice={setInvoice}
       />
       <div className="my-10 text-center">
-        <div style={{ justifySelf: 'center' }} className="text-lg">
+        <div style={{ justifySelf: "center" }} className="text-lg">
           Services
         </div>
         <div className="flex justify-center mt-4">
@@ -85,8 +85,8 @@ export default function InvoiceServicesInput({
               onChange={onChange}
               value={checkedServices}
               style={{
-                display: 'grid',
-                gridTemplateColumns: '12rem 12rem 12rem'
+                display: "grid",
+                gridTemplateColumns: "12rem 12rem 12rem",
               }}
             >
               {data?.data?.map((service: any) => (
@@ -101,7 +101,7 @@ export default function InvoiceServicesInput({
       <div className="my-10">
         {cartItems.length > 0 ? (
           <div
-            style={{ justifySelf: 'center' }}
+            style={{ justifySelf: "center" }}
             className=" text-center text-lg"
           >
             Current Items
@@ -135,8 +135,8 @@ export default function InvoiceServicesInput({
       <div className="flex justify-center">
         <SecondaryButton onClick={showModal}>Add Item</SecondaryButton>
       </div>
-      <div style={{ justifySelf: 'end' }}>
-        <PrimaryButton style={{ marginRight: '10rem' }} onClick={handleSubmit}>
+      <div style={{ justifySelf: "end" }}>
+        <PrimaryButton style={{ marginRight: "10rem" }} onClick={handleSubmit}>
           Submit
         </PrimaryButton>
       </div>

@@ -1,5 +1,5 @@
-import { Button as AntButton, ButtonProps } from 'antd';
-import { EColors } from '../../../../util/enums/colors';
+import { Button as AntButton, ButtonProps } from "antd";
+import { EColors } from "../../../../util/enums/colors";
 
 interface AntButtonProps extends ButtonProps {}
 
@@ -9,9 +9,9 @@ const SecondaryButton = ({ ...props }: AntButtonProps) => {
       {...props}
       className=""
       style={{
-        backgroundColor: 'white',
+        backgroundColor: "white",
         color: EColors.primary,
-        borderColor: EColors.primary
+        borderColor: EColors.primary,
       }}
     />
   );

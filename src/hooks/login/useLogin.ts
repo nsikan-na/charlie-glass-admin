@@ -1,13 +1,13 @@
-import axios from 'axios';
-import { EBaseUrl } from '../baseUrl';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { EQueryKey } from '../queryKey';
-import { useContext } from 'react';
-import { Context } from '../../context';
-import { useNavigate } from 'react-router-dom';
-import setLocalStorage from '../localstorage/setLocalStorage';
-import ELocalStorage from '../../util/enums/localStorage';
-import { ERoute } from '../../util/enums/routes';
+import axios from "axios";
+import { EBaseUrl } from "../baseUrl";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { EQueryKey } from "../queryKey";
+import { useContext } from "react";
+import { Context } from "../../context";
+import { useNavigate } from "react-router-dom";
+import setLocalStorage from "../localstorage/setLocalStorage";
+import ELocalStorage from "../../util/enums/localStorage";
+import { ERoute } from "../../util/enums/routes";
 
 type TLoginInput = {
   username: string;
@@ -22,7 +22,7 @@ const useLogin = () => {
   return useMutation({
     mutationFn: async (obj: TLoginInput) =>
       await axios.post(`${EBaseUrl.CGI_API}/api/v1/login`, obj, {
-        headers: { Authorization: undefined }
+        headers: { Authorization: undefined },
       }),
     onSuccess: (data: any) => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
@@ -30,7 +30,7 @@ const useLogin = () => {
       setUser(data?.data);
       setLocalStorage(ELocalStorage.USER, data?.data);
       navigate(ERoute.ROOT);
-    }
+    },
   });
 };
 
