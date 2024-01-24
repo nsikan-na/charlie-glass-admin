@@ -22,7 +22,6 @@ export default function SignModal({
   };
   const onChange: DatePickerProps["onChange"] = (key: any, dateString) => {
     setInput((i) => ({ ...i, signature_date: dateString }));
-    console.log(dateString);
   };
 
   const add = useSignQuote(currentInvoice, closeSignModal);
