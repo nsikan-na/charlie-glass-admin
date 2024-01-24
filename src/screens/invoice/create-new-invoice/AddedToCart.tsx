@@ -1,11 +1,6 @@
 import { decimalThousandsCommaSeparated } from '../../../util/helpers';
 
-export default function AddedToCart({
-  addedToCart,
-  description,
-  quantity,
-  price
-}: any) {
+export default function AddedToCart({ description, quantity, price }: any) {
   return (
     <div className="my-4 text-base grid grid-cols-7  ">
       <div className="text-xl col-span-5">{description}</div>

@@ -6,9 +6,7 @@ import showErrorNotification from '../../components/ant-design/notifications/sho
 export default function CreateNewInvoiceModal({
   closeModal,
   isModalOpen,
-  setCart,
-  cartItems,
-  setInvoice
+  setCart
 }: any) {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState<number>(0);

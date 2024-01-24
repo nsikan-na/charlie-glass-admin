@@ -1,11 +1,7 @@
-// import { Input } from "antd";
-import { Button } from 'antd';
 import InvoiceDetailsInput from './NewInvoiceDetails';
 import InvoiceServicesInput from './CreateNewService';
 import { useEffect, useState } from 'react';
 import PrimaryButton from '../../components/ant-design/buttons/PrimaryButton';
-import { useNavigate } from 'react-router-dom';
-import { ERoute } from '../../../routing/helpers';
 
 export default function CreateNewInvoice({ handleIsCreateScreenOpen }: any) {
   const [cartItems, setCart]: any = useState([]);
@@ -19,8 +15,6 @@ export default function CreateNewInvoice({ handleIsCreateScreenOpen }: any) {
     items: [],
     services: []
   });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     setInvoice((invoice: any) => ({ ...invoice, items: cartItems }));

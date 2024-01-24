@@ -1,5 +1,4 @@
 import { DatePicker } from 'antd';
-import { RangePickerProps } from 'antd/lib/date-picker';
 import { DATE_FORMAT } from '../../../../util/helpers';
 
 // interface AntRangePickerProps extends RangePickerProps {}
