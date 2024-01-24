@@ -25,7 +25,7 @@ const TopNavBar = () => {
       <div className="flex justify-between">
         <div
           onClick={() => navigate(ERoute.ROOT)}
-          className="mr-4 mt-3 text-2xl font-bold cursor-pointer"
+          className="mr-4 mt-3 text-2xl  cursor-pointer"
         >
           Charlie Glass Admin
         </div>

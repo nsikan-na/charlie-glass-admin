@@ -24,7 +24,7 @@ const Login: React.FC = () => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      <div className="flex justify-center items-center p-20 rounded-lg bg-white bg-opacity-100">
+      <div className="flex justify-center items-center p-20 rounded-lg bg-white ">
         <div style={{ margin: 'auto' }}>
           <Form>
             <div className="text-center text-2xl my-3">Log In</div>
