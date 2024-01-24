@@ -162,7 +162,7 @@ const Invoice = (): JSX.Element => {
     {
       title: "Actions",
       key: "actions",
-      render: (text: any, record: any, isSigned: any) => (
+      render: (record: any) => (
         <div className="flex gap-5" onClick={() => handleClick(record)}>
           <EyeOutlined
             style={{ fontSize: "1.2rem", cursor: "pointer" }}
