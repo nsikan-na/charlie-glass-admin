@@ -41,8 +41,6 @@ const Invoice = (): JSX.Element => {
     setSignModalOpen(false);
   };
 
-  const navigate = useNavigate();
-
   const { data, isLoading }: any = useGetAllInvoices(input);
 
   const showModal = (invoice: any) => {
@@ -165,13 +163,21 @@ const Invoice = (): JSX.Element => {
       render: (record: any) => (
         <div className="flex gap-5" onClick={() => handleClick(record)}>
           <EyeOutlined
-            style={{ fontSize: "1.2rem", cursor: "pointer" }}
+            style={{
+              fontSize: "1.2rem",
+              cursor: "pointer",
+              color: EColors.primary,
+            }}
             onClick={showModal}
           />
           {record.isSigned === 0 ? (
             <EditOutlined
               onClick={showSignModal}
-              style={{ fontSize: "1.2rem", cursor: "pointer" }}
+              style={{
+                fontSize: "1.2rem",
+                cursor: "pointer",
+                color: EColors.primary,
+              }}
             />
           ) : null}
         </div>
