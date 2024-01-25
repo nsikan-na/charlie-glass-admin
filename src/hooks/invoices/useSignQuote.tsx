@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { EQueryKey } from "../queryKey";
 import { EBaseUrl } from "../baseUrl";
-import showSuccessNotification from "../../screens/components/ant-design/notifications/showSuccessNoti";
-import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNoti";
+import showSuccessNotification from "../../screens/components/ant-design/notifications/showSuccessNotification";
+import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNotification";
 
 const useSignQuote = (id: any, onSuccess?: () => void) => {
   const queryClient = useQueryClient();
@@ -11,17 +11,16 @@ const useSignQuote = (id: any, onSuccess?: () => void) => {
     mutationFn: async (obj: any) =>
       await axios.post(`${EBaseUrl.CGI_API}/api/v1/quotes/${id}/sign`, obj),
 
-    onSuccess: () => {
+    onSuccess: (data: any) => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
-
       onSuccess && onSuccess();
       showSuccessNotification({
-        description: "Quote signed successfully",
+        description: data.data,
       });
     },
-    onError: () => {
+    onError: (error: any) => {
       showErrorNotification({
-        description: "Please complete all fields",
+        description: error?.response?.data?.message,
       });
     },
   });

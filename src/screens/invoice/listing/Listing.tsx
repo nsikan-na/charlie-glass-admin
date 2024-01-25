@@ -9,7 +9,7 @@ import RangePicker from "../../components/ant-design/form/RangePicker";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../../components/ant-design/buttons/SearchButton";
 import { Selector } from "../../components/ant-design/form/Select";
-import SignModal from "../../modals/SignModal";
+import SignModal from "../../modals/invoice/SignModal";
 
 import Table from "../../components/ant-design/Table";
 import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
@@ -25,10 +25,7 @@ const Invoice = (): JSX.Element => {
   const [input, setInput] = useState(null);
   const [filters, setFilters] = useState(null);
 
-  const [isCreateScreenOpen, setIsCreateScreenOpen] = useState(true);
-  function handleIsCreateScreenOpen(): void {
-    setIsCreateScreenOpen((isOpen) => !isOpen);
-  }
+  const [isCreateScreenOpen, setIsCreateScreenOpen] = useState(false);
 
   const [isSignModalOpen, setSignModalOpen] = useState(false);
   const showSignModal = () => {
@@ -47,6 +44,7 @@ const Invoice = (): JSX.Element => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setSignModalOpen(false);
   };
   const { data: pdfData, isLoading: pdfLoading }: any = useGetInvoiceById(
     currentInvoice as any,
@@ -184,7 +182,7 @@ const Invoice = (): JSX.Element => {
 
   return (
     <>
-      {isCreateScreenOpen ? (
+      {!isCreateScreenOpen ? (
         <div>
           <div className="flex justify-between m-4">
             <div>
@@ -218,7 +216,11 @@ const Invoice = (): JSX.Element => {
                 <SearchButton className="" onClick={() => setInput(filters)} />
               </span>
             </div>
-            <PrimaryButton onClick={handleIsCreateScreenOpen}>
+            <PrimaryButton
+              onClick={() => {
+                setIsCreateScreenOpen(true);
+              }}
+            >
               Create New Invoice
             </PrimaryButton>
           </div>
@@ -243,7 +245,10 @@ const Invoice = (): JSX.Element => {
           />
         </div>
       ) : (
-        <CreateNewInvoice handleIsCreateScreenOpen={handleIsCreateScreenOpen} />
+        <CreateNewInvoice
+          isCreateScreenOpen={isCreateScreenOpen}
+          setIsCreateScreenOpen={setIsCreateScreenOpen}
+        />
       )}
     </>
   );

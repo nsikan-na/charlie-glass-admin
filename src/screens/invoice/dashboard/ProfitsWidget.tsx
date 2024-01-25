@@ -17,11 +17,13 @@ export default function ProfitsWidget({ input }: any) {
         <div className=" flex justify-center mt-14">
           <div
             className=" w-10/12 grid grid-cols-1 justify-center "
-            style={{ height: "40vh" }}
+            style={{ height: "45vh" }}
           >
-            {data?.data?.rows.map((row: any) => {
-              return <Profit row={row} key={uniqueId()} />;
-            })}
+            <div style={{ overflowY: "scroll" }}>
+              {data?.data?.rows.map((row: any) => {
+                return <Profit row={row} key={uniqueId()} />;
+              })}
+            </div>
             <div className="mt-5">
               {data?.data?.rows && <Totals data={data} />}
             </div>

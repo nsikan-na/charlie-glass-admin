@@ -1,7 +1,6 @@
 import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
 import { uniqueId } from "lodash";
-import { useNavigate } from "react-router-dom";
 import AddedToCart from "./AddedToCart";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
@@ -10,18 +9,15 @@ import useAddNewInvoice from "../../../hooks/invoices/useAddNewInvoice";
 import useGetServices from "../../../hooks/invoices/useGetServices";
 
 import Spinner from "../../components/ant-design/loading/spinner";
-import showErrorNotification from "../../components/ant-design/notifications/showErrorNoti";
-import showSuccessNotification from "../../components/ant-design/notifications/showSuccessNoti";
-import { ERoute } from "../../../util/enums/routes";
 
 export default function InvoiceServicesInput({
   setInvoice,
   invoice,
   setCart,
   cartItems,
+  setIsCreateScreenOpen,
 }: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
   const [checkedServices, setCheckedServices] = useState([]);
 
   const { data, isLoading }: any = useGetServices();
@@ -41,28 +37,12 @@ export default function InvoiceServicesInput({
     setInvoice((invoice: any) => ({ ...invoice, services: checkedServices }));
   }, [checkedServices, setInvoice]);
 
-  const add = useAddNewInvoice();
+  const add = useAddNewInvoice(() => {
+    setIsCreateScreenOpen(false);
+  });
 
   function handleSubmit() {
-    if (
-      !invoice ||
-      !invoice?.receiver ||
-      !invoice?.city ||
-      !invoice?.items ||
-      !invoice?.services ||
-      !invoice?.state ||
-      !invoice?.street ||
-      !invoice?.zip
-    )
-      return showErrorNotification({
-        description: "Please complete all fields",
-      });
-
     add.mutate(invoice);
-    navigate(ERoute.INVOICE);
-    showSuccessNotification({
-      description: "Invoice submitted successfully",
-    });
   }
 
   return (
