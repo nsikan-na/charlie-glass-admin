@@ -6,21 +6,24 @@ import type { DatePickerProps } from "antd";
 import DatePicker from "../../components/ant-design/form/DatePicker";
 import useSignQuote from "../../../hooks/invoices/useSignQuote";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
+import moment from "moment";
+import dayjs from "dayjs";
+import { formatDate } from "../../../util/helpers";
 const initialState = {
   expense: 0,
-  signature_date: "",
+  signature_date: null,
 };
 export default function SignModal({
   isSignModalOpen,
   closeSignModal,
   currentInvoice,
 }: any) {
-  const [input, setInput] = useState(initialState);
+  const [input, setInput] = useState<any>(initialState);
   const handleInputChange = (key: string) => (e: any) => {
-    setInput((i) => ({ ...i, [key]: e.target.value }));
+    setInput((i: any) => ({ ...i, [key]: e.target.value }));
   };
-  const onChange: DatePickerProps["onChange"] = (key: any, dateString) => {
-    setInput((i) => ({ ...i, signature_date: dateString }));
+  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
+    setInput((i: any) => ({ ...i, signature_date: formatDate(dateString) }));
   };
 
   const add = useSignQuote(currentInvoice, () => {
@@ -58,6 +61,9 @@ export default function SignModal({
           onChange={onChange}
           className="w-full"
           style={{ width: "100%" }}
+          value={
+            input?.signature_date ? dayjs(input?.signature_date) : undefined
+          }
         />
       </div>
       <div className="my-4  w-full">
