@@ -17,7 +17,7 @@ export default function ProfitsWidget({ input }: any) {
         <div className=" flex justify-center mt-14">
           <div
             className=" w-10/12 grid grid-cols-1 justify-center "
-            style={{ height: "40vh" }}
+            style={{ height: "45vh" }}
           >
             <div style={{ overflowY: "scroll" }}>
               {data?.data?.rows.map((row: any) => {
