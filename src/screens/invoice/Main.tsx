@@ -3,6 +3,7 @@ import type { TabsProps } from "antd";
 import Dashboard from "./dashboard/Dashboard";
 import Invoice from "./listing/Listing";
 import useQueryParam from "../../hooks/queryParam/useQueryParam";
+import BreadCrumb from "../components/breadcrumb";
 
 export default function Main() {
   const { getQuery, setQuery } = useQueryParam([
@@ -12,12 +13,28 @@ export default function Main() {
   const changeQuery = (value: string) => setQuery(tabKey, value);
 
   return (
-    <AntTabs
-      className="ml-10 bg-white"
-      defaultActiveKey={getQuery(tabKey) || undefined}
-      items={items}
-      onChange={changeQuery}
-    />
+    <>
+      <BreadCrumb
+        className="ml-10"
+        items={[
+          {
+            title: "Invoice",
+          },
+          {
+            title: getQuery(tabKey || undefined)
+              ? (getQuery(tabKey || undefined) || "").charAt(0).toUpperCase() +
+                (getQuery(tabKey || undefined) || "").slice(1).toLowerCase()
+              : "Default",
+          },
+        ]}
+      />
+      <AntTabs
+        className="ml-10 bg-white"
+        defaultActiveKey={getQuery(tabKey) || undefined}
+        items={items}
+        onChange={changeQuery}
+      />
+    </>
   );
 }
 const tabKey = "tab";
