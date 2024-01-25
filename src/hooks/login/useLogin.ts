@@ -8,8 +8,7 @@ import { useNavigate } from "react-router-dom";
 import setLocalStorage from "../localstorage/setLocalStorage";
 import ELocalStorage from "../../util/enums/localStorage";
 import { ERoute } from "../../util/enums/routes";
-import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNoti";
-import showSuccessNotification from "../../screens/components/ant-design/notifications/showSuccessNoti";
+import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNotification";
 
 type TLoginInput = {
   username: string;

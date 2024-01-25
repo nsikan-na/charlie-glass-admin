@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { EQueryKey } from "../queryKey";
 import { EBaseUrl } from "../baseUrl";
-import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNoti";
-import showSuccessNotification from "../../screens/components/ant-design/notifications/showSuccessNoti";
+import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNotification";
+import showSuccessNotification from "../../screens/components/ant-design/notifications/showSuccessNotification";
 
 const useAddNewInvoice = (onSuccess?: any) => {
   const queryClient = useQueryClient();

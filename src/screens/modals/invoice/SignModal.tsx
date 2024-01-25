@@ -6,7 +6,6 @@ import type { DatePickerProps } from "antd";
 import DatePicker from "../../components/ant-design/form/DatePicker";
 import useSignQuote from "../../../hooks/invoices/useSignQuote";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
-import moment from "moment";
 import dayjs from "dayjs";
 import { formatDate } from "../../../util/helpers";
 const initialState = {

@@ -1,7 +1,6 @@
 import { Checkbox } from "antd";
 import { useEffect, useState } from "react";
 import { uniqueId } from "lodash";
-import { useNavigate } from "react-router-dom";
 import AddedToCart from "./AddedToCart";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
@@ -10,8 +9,6 @@ import useAddNewInvoice from "../../../hooks/invoices/useAddNewInvoice";
 import useGetServices from "../../../hooks/invoices/useGetServices";
 
 import Spinner from "../../components/ant-design/loading/spinner";
-import showErrorNotification from "../../components/ant-design/notifications/showErrorNoti";
-import showSuccessNotification from "../../components/ant-design/notifications/showSuccessNoti";
 
 export default function InvoiceServicesInput({
   setInvoice,
