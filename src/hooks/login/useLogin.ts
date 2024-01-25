@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import setLocalStorage from "../localstorage/setLocalStorage";
 import ELocalStorage from "../../util/enums/localStorage";
 import { ERoute } from "../../util/enums/routes";
+import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNoti";
+import showSuccessNotification from "../../screens/components/ant-design/notifications/showSuccessNoti";
 
 type TLoginInput = {
   username: string;
@@ -30,6 +32,10 @@ const useLogin = () => {
       setUser(data?.data);
       setLocalStorage(ELocalStorage.USER, data?.data);
       navigate(ERoute.ROOT);
+    },
+
+    onError: (error: any) => {
+      showErrorNotification({ description: error?.response?.data?.message });
     },
   });
 };

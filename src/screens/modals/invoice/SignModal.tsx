@@ -1,21 +1,21 @@
 import { Modal } from "antd";
-import SecondaryButton from "../components/ant-design/buttons/SecondaryButton";
-import Input from "../components/ant-design/form/Input";
-import { useState } from "react";
+import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
+import Input from "../../components/ant-design/form/Input";
+import { useEffect, useState } from "react";
 import type { DatePickerProps } from "antd";
-import DatePicker from "../components/ant-design/form/DatePicker";
-import useSignQuote from "../../hooks/invoices/useSignQuote";
-import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
-
+import DatePicker from "../../components/ant-design/form/DatePicker";
+import useSignQuote from "../../../hooks/invoices/useSignQuote";
+import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
+const initialState = {
+  expense: 0,
+  signature_date: "",
+};
 export default function SignModal({
   isSignModalOpen,
   closeSignModal,
   currentInvoice,
 }: any) {
-  const [input, setInput] = useState({
-    expense: 0,
-    signature_date: "",
-  });
+  const [input, setInput] = useState(initialState);
   const handleInputChange = (key: string) => (e: any) => {
     setInput((i) => ({ ...i, [key]: e.target.value }));
   };
@@ -23,7 +23,14 @@ export default function SignModal({
     setInput((i) => ({ ...i, signature_date: dateString }));
   };
 
-  const add = useSignQuote(currentInvoice, closeSignModal);
+  const add = useSignQuote(currentInvoice, () => {
+    setInput(initialState);
+    closeSignModal();
+  });
+
+  useEffect(() => {
+    setInput(initialState);
+  }, [isSignModalOpen]);
 
   return (
     <Modal
@@ -60,6 +67,7 @@ export default function SignModal({
           min={0}
           onChange={handleInputChange("expense")}
           allowClear
+          value={input?.expense}
         />
       </div>
     </Modal>
