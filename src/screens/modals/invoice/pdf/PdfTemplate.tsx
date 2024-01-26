@@ -132,7 +132,9 @@ const PdfTemplate = ({ invoiceData }: any) => {
 
               <View style={{ flex: 1, fontSize: 12 }}>
                 <Text style={{ margin: "5 0" }}>Quote #</Text>
-                <Text style={{ margin: "5 0" }}>Date</Text>
+                <Text style={{ margin: "5 0" }}>
+                  {invoiceData.isSigned === 0 ? "Quotation" : "Invoice"} Date
+                </Text>
               </View>
               <View style={{ flex: 1, fontSize: 12 }}>
                 <Text style={{ margin: "5 0" }}>{invoice_id}</Text>
