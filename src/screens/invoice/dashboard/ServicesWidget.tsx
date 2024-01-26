@@ -9,21 +9,13 @@ export default function ServicesWidget({ input }: any) {
   const { data, isLoading } = useGetReportServices(input);
 
   const config = {
-    data: data?.data?.content || [],
+    data:
+      data?.data?.content?.map((x: any) => ({
+        ...x,
+        Count: x.service_count,
+      })) || [],
     xField: "service_label",
-    yField: "service_count",
-    label: {
-      style: {
-        fill: "#FFFFFF",
-        opacity: 0.6,
-      },
-    },
-    xAxis: {
-      label: {
-        autoHide: true,
-        autoRotate: false,
-      },
-    },
+    yField: "Count",
   };
 
   return (
