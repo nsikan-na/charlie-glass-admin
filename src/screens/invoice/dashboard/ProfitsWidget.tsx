@@ -38,7 +38,7 @@ function Profit({ row }: any) {
   return (
     <div className=" w-10/12 grid grid-cols-4 m-auto .auto-cols-min mt-4">
       <div>
-        <div className="text-lg text-center items-center mx-2 mt-4">
+        <div className="text-lg text-center items-center mx-6 mt-4">
           {formatTimestampDate(row.signature_date)}
         </div>
       </div>
