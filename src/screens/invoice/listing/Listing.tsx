@@ -93,7 +93,7 @@ const Invoice = (): JSX.Element => {
             <FileOutlined style={{ color: EColors.blue }} />
           </Tooltip>
         ) : (
-          <Tooltip title={"Invoice"}>
+          <Tooltip title={"Quote"}>
             <FileOutlined style={{ color: EColors.green_6 }} />
           </Tooltip>
         );
@@ -239,7 +239,7 @@ const Invoice = (): JSX.Element => {
                 style={{ width: 120 }}
                 options={[
                   { label: "All", value: "undefined" },
-                  { label: "Invoice", value: false },
+                  { label: "Quote", value: false },
                   { label: "Invoice", value: true },
                 ]}
               />
