@@ -13,7 +13,7 @@ export default function Main() {
 
   return (
     <AntTabs
-      className="ml-10 bg-white"
+      className=" bg-white"
       defaultActiveKey={getQuery(invoiceTabKey) || undefined}
       items={items}
       onChange={changeQuery}

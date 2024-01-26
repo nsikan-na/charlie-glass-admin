@@ -5,7 +5,7 @@ import {
 } from "../../../util/helpers";
 import useGetProfits from "../../../hooks/reports/useGetReportProfits";
 
-import Spinner from "../../components/ant-design/loading/spinner";
+import Spinner from "../../components/ant-design/Spinner";
 import { uniqueId } from "lodash";
 
 export default function ProfitsWidget({ input }: any) {

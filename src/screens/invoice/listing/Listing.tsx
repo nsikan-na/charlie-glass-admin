@@ -14,13 +14,14 @@ import SignModal from "../../modals/invoice/SignModal";
 import Table from "../../components/ant-design/Table";
 import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
 import { formatDayjsDate, formatTimestampDate } from "../../../util/helpers";
-import { Tag, Tooltip } from "antd";
+import { Tag } from "antd";
 import { EColors } from "../../../util/enums/colors";
 
 import CreateNewInvoice from "../create-new-invoice/CreateNewInvoice";
 import dayjs from "dayjs";
 import useQueryParam from "../../../hooks/queryParam/useQueryParam";
 import { invoiceTabKey } from "../Main";
+import Tooltip from "../../components/ant-design/Tooltip";
 const initialState = {
   fromDate: formatDayjsDate(dayjs().subtract(3, "month")),
   toDate: formatDayjsDate(dayjs().subtract(1, "day")),
@@ -169,23 +170,27 @@ const Invoice = (): JSX.Element => {
       key: "actions",
       render: (record: any) => (
         <div className="flex gap-5" onClick={() => handleClick(record)}>
-          <EyeOutlined
-            style={{
-              fontSize: "1.2rem",
-              cursor: "pointer",
-              color: EColors.primary,
-            }}
-            onClick={showModal}
-          />
-          {record.isSigned === 0 ? (
-            <EditOutlined
-              onClick={showSignModal}
+          <Tooltip title="View">
+            <EyeOutlined
               style={{
                 fontSize: "1.2rem",
                 cursor: "pointer",
                 color: EColors.primary,
               }}
+              onClick={showModal}
             />
+          </Tooltip>
+          {record.isSigned === 0 ? (
+            <Tooltip title="Sign">
+              <EditOutlined
+                onClick={showSignModal}
+                style={{
+                  fontSize: "1.2rem",
+                  cursor: "pointer",
+                  color: EColors.primary,
+                }}
+              />
+            </Tooltip>
           ) : null}
         </div>
       ),

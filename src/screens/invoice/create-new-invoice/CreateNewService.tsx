@@ -8,7 +8,8 @@ import CreateNewInvoiceModal from "../../modals/invoice/InvoiceAddToCartModal";
 import useAddNewInvoice from "../../../hooks/invoices/useAddNewInvoice";
 import useGetServices from "../../../hooks/invoices/useGetServices";
 
-import Spinner from "../../components/ant-design/loading/spinner";
+import Spinner from "../../components/ant-design/Spinner";
+import { decimalThousandsCommaSeparated } from "../../../util/helpers";
 
 export default function InvoiceServicesInput({
   setInvoice,
@@ -54,7 +55,7 @@ export default function InvoiceServicesInput({
         cartItems={cartItems}
         setInvoice={setInvoice}
       />
-      <div className="my-10 text-center">
+      <div className="my-8 text-center">
         <div style={{ justifySelf: "center" }} className="text-lg">
           Services
         </div>
@@ -78,39 +79,39 @@ export default function InvoiceServicesInput({
           </Spinner>
         </div>
       </div>
-      <div className="my-10">
+      <div className="my-8">
         {cartItems.length > 0 ? (
-          <div
-            style={{ justifySelf: "center" }}
-            className=" text-center text-lg"
-          >
-            Current Items
-          </div>
+          <>
+            <div
+              style={{ justifySelf: "center" }}
+              className=" text-center text-lg"
+            >
+              Current Items
+            </div>
+            {cartItems?.map((item: any) => (
+              <AddedToCart
+                key={uniqueId()}
+                description={item.description}
+                quantity={item.quantity}
+                price={item.price}
+              />
+            ))}
+            <div className="text-base grid grid-cols-7  ">
+              <div className="text-xl col-span-5"></div>
+              <div className="col-span-1 text-center">Total</div>
+              <div className="col-span-1 text-center">
+                $
+                {decimalThousandsCommaSeparated(
+                  cartItems
+                    ?.map((item: any) => item.price)
+                    ?.reduce((acc: number, cur: number) => {
+                      return acc + cur;
+                    }, 0),
+                )}
+              </div>
+            </div>
+          </>
         ) : null}
-        <div className="">
-          {cartItems?.map((item: any) => (
-            <AddedToCart
-              key={uniqueId()}
-              description={item.description}
-              quantity={item.quantity}
-              price={item.price}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="flex justify-end ">
-        <div className=" flex justify-between gap-5">
-          <div>Total</div>
-
-          <div>
-            $
-            {cartItems
-              .map((item: any) => item.price)
-              .reduce((acc: number, cur: number) => {
-                return acc + cur;
-              }, 0)}
-          </div>
-        </div>
       </div>
       <div className="flex justify-center">
         <SecondaryButton onClick={showModal}>Add Item</SecondaryButton>

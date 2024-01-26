@@ -2,7 +2,7 @@ import { Modal } from "antd";
 
 import PdfTemplate from "./pdf/PdfTemplate";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
-import Spinner from "../../components/ant-design/loading/spinner";
+import Spinner from "../../components/ant-design/Spinner";
 
 export default function InvoiceModal({
   isModalOpen,

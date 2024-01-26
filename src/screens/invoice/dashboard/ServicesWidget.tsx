@@ -2,8 +2,8 @@ import { Column } from "@ant-design/plots";
 
 import useGetReportServices from "../../../hooks/reports/useGetReportServices";
 
-import Spinner from "../../components/ant-design/loading/spinner";
-import Empty from "../../components/ant-design/loading/empty";
+import Spinner from "../../components/ant-design/Spinner";
+import Empty from "../../components/ant-design/Empty";
 
 export default function ServicesWidget({ input }: any) {
   const { data, isLoading } = useGetReportServices(input);

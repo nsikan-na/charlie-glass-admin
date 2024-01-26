@@ -16,7 +16,7 @@ const Layout = () => {
           <TopNavBar />
           <main className="flex">
             {/* <Sidebar /> */}
-            <Content className="w-full m-0 p-0">
+            <Content className="w-full my-2 mx-10 p-0">
               <Outlet />
             </Content>
           </main>
