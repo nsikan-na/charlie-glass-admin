@@ -39,7 +39,7 @@ export default function SignModal({
 
   return (
     <Modal
-      title={"Signed"}
+      title={"Sign Quote"}
       open={isSignModalOpen}
       onCancel={closeSignModal}
       footer={() => (
