@@ -3,6 +3,7 @@ import InvoiceServicesInput from "./CreateNewService";
 import { useEffect, useState } from "react";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
 import useQueryParam from "../../../hooks/queryParam/useQueryParam";
+import { EInvoiceTabs, invoiceTabKey } from "../Main";
 
 const initialInvoiceState = {
   receiver_name: null,
@@ -30,8 +31,8 @@ export default function CreateNewInvoice({
   }, [isCreateScreenOpen]);
 
   useEffect(() => {
-    getQuery("tab") !== "listing" && setIsCreateScreenOpen(false);
-  }, [getQuery("tab")]);
+    getQuery(invoiceTabKey) !== EInvoiceTabs.LISTING && setIsCreateScreenOpen(false);
+  }, [getQuery(invoiceTabKey)]);
 
   useEffect(() => {
     setInvoice((invoice: any) => ({ ...invoice, items: cartItems }));

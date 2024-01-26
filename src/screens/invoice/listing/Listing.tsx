@@ -1,5 +1,5 @@
 import InvoiceModal from "../../modals/invoice/InvoiceModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import useGetAllInvoices from "../../../hooks/invoices/useGetAllInvoices";
 import useGetInvoiceById from "../../../hooks/invoices/useGetInvoiceById";
@@ -13,18 +13,25 @@ import SignModal from "../../modals/invoice/SignModal";
 
 import Table from "../../components/ant-design/Table";
 import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
-import { formatDate } from "../../../util/helpers";
+import { formatDayjsDate, formatTimestampDate } from "../../../util/helpers";
 import { Tag, Tooltip } from "antd";
 import { EColors } from "../../../util/enums/colors";
 
 import CreateNewInvoice from "../create-new-invoice/CreateNewInvoice";
+import dayjs from "dayjs";
+import useQueryParam from "../../../hooks/queryParam/useQueryParam";
+import { invoiceTabKey } from "../Main";
+const initialState = {
+  fromDate: formatDayjsDate(dayjs().subtract(3, "month")),
+  toDate: formatDayjsDate(dayjs().subtract(1, "day")),
+};
 
 const Invoice = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
-  const [input, setInput] = useState(null);
-  const [filters, setFilters] = useState(null);
-
+  const [input, setInput] = useState<any>(initialState);
+  const [filters, setFilters] = useState<any>(initialState);
+  const { getQuery } = useQueryParam();
   const [isCreateScreenOpen, setIsCreateScreenOpen] = useState(false);
 
   const [isSignModalOpen, setSignModalOpen] = useState(false);
@@ -67,6 +74,11 @@ const Invoice = (): JSX.Element => {
   function handleClick(invoice: any) {
     setCurrentInvoice(invoice.quote_id);
   }
+
+  useEffect(() => {
+    setFilters(initialState);
+    setInput(initialState);
+  }, [getQuery(invoiceTabKey)]);
 
   const columns: any["columns"] = [
     {
@@ -138,7 +150,7 @@ const Invoice = (): JSX.Element => {
         return sigDate === null ? (
           <div>{"-"}</div>
         ) : (
-          <div>{formatDate(sigDate)}</div>
+          <div>{formatTimestampDate(sigDate)}</div>
         );
       },
     },
@@ -149,7 +161,7 @@ const Invoice = (): JSX.Element => {
       key: "creation_date",
 
       render: (creationDate: "string") => {
-        return <div>{formatDate(creationDate)}</div>;
+        return <div>{formatTimestampDate(creationDate)}</div>;
       },
     },
     {
@@ -198,7 +210,15 @@ const Invoice = (): JSX.Element => {
                   onChange={onFilterChange("name")}
                 />
               </span>
-              <RangePicker onChange={onRangeFilterChange} className="" />
+              <RangePicker
+                onChange={onRangeFilterChange}
+                className=""
+                value={
+                  filters?.fromDate && filters?.toDate
+                    ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
+                    : undefined
+                }
+              />
               <span className="mx-2">
                 <Selector
                   onChange={handleSelectFilter("isSigned")}

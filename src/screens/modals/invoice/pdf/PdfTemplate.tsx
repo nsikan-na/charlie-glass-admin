@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { Context } from "../../../../context";
 import {
   decimalThousandsCommaSeparated,
-  formatDate,
+  formatTimestampDate,
 } from "../../../../util/helpers";
 import { uniqueId } from "lodash";
 
@@ -137,7 +137,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
               <View style={{ flex: 1, fontSize: 12 }}>
                 <Text style={{ margin: "5 0" }}>{invoice_id}</Text>
                 <Text style={{ margin: "5 0" }}>
-                  {formatDate(creation_date)}
+                  {formatTimestampDate(creation_date)}
                 </Text>
               </View>
             </View>

@@ -7,7 +7,7 @@ import DatePicker from "../../components/ant-design/form/DatePicker";
 import useSignQuote from "../../../hooks/invoices/useSignQuote";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
 import dayjs from "dayjs";
-import { formatDate } from "../../../util/helpers";
+import { formatTimestampDate } from "../../../util/helpers";
 const initialState = {
   expense: 0,
   signature_date: null,
@@ -22,7 +22,10 @@ export default function SignModal({
     setInput((i: any) => ({ ...i, [key]: e.target.value }));
   };
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-    setInput((i: any) => ({ ...i, signature_date: formatDate(dateString) }));
+    setInput((i: any) => ({
+      ...i,
+      signature_date: formatTimestampDate(dateString),
+    }));
   };
 
   const add = useSignQuote(currentInvoice, () => {

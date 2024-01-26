@@ -1,7 +1,7 @@
 import { Tag } from "antd";
 import {
   decimalThousandsCommaSeparated,
-  formatDate,
+  formatTimestampDate,
 } from "../../../util/helpers";
 import useGetProfits from "../../../hooks/reports/useGetReportProfits";
 
@@ -38,9 +38,8 @@ function Profit({ row }: any) {
   return (
     <div className=" w-10/12 grid grid-cols-4 m-auto .auto-cols-min mt-4">
       <div>
-        <div>
-          Signature Date
-          <div>{formatDate(row.signature_date)}</div>
+        <div className="text-lg text-center items-center mx-2 mt-4">
+          {formatTimestampDate(row.signature_date)}
         </div>
       </div>
       <div>
@@ -79,7 +78,7 @@ function Profit({ row }: any) {
 
 function Totals({ data }: any) {
   return (
-    <div className=" w-10/12 grid grid-cols-4 m-auto .auto-cols-min mt-4">
+    <div className=" w-10/12 grid grid-cols-4 m-auto .auto-cols-min">
       <div></div>
       <div>
         <div>

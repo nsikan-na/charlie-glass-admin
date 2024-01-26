@@ -6,34 +6,34 @@ import useQueryParam from "../../hooks/queryParam/useQueryParam";
 
 export default function Main() {
   const { getQuery, setQuery } = useQueryParam([
-    { key: tabKey, value: ETabs.DASHBOARD },
+    { key: invoiceTabKey, value: EInvoiceTabs.DASHBOARD },
   ]);
 
-  const changeQuery = (value: string) => setQuery(tabKey, value);
+  const changeQuery = (value: string) => setQuery(invoiceTabKey, value);
 
   return (
     <AntTabs
       className="ml-10 bg-white"
-      defaultActiveKey={getQuery(tabKey) || undefined}
+      defaultActiveKey={getQuery(invoiceTabKey) || undefined}
       items={items}
       onChange={changeQuery}
     />
   );
 }
-const tabKey = "tab";
+export const invoiceTabKey = "tab";
 
-enum ETabs {
+export enum EInvoiceTabs {
   DASHBOARD = "dashboard",
   LISTING = "listing",
 }
 const items: TabsProps["items"] = [
   {
-    key: ETabs.DASHBOARD,
+    key: EInvoiceTabs.DASHBOARD,
     label: "Dashboard",
     children: <Dashboard />,
   },
   {
-    key: ETabs.LISTING,
+    key: EInvoiceTabs.LISTING,
     label: "Listing",
     children: <Invoice />,
   },
