@@ -195,47 +195,8 @@ const Invoice = (): JSX.Element => {
   return (
     <>
       {!isCreateScreenOpen ? (
-        <div>
-          <div className="flex justify-between m-4">
-            <div>
-              <Input
-                addonBefore="Id"
-                className="w-72"
-                onChange={onFilterChange("quote_id")}
-              />
-              <span className="mx-2">
-                <Input
-                  addonBefore="Name"
-                  className="w-72"
-                  onChange={onFilterChange("name")}
-                />
-              </span>
-              <RangePicker
-                onChange={onRangeFilterChange}
-                className=""
-                value={
-                  filters?.fromDate && filters?.toDate
-                    ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
-                    : undefined
-                }
-              />
-              <span className="mx-2">
-                <Selector
-                  onChange={handleSelectFilter("isSigned")}
-                  className="w-40"
-                  defaultValue="All"
-                  style={{ width: 120 }}
-                  options={[
-                    { label: "All", value: "undefined" },
-                    { label: "Quote", value: false },
-                    { label: "Invoice", value: true },
-                  ]}
-                />
-              </span>
-              <span>
-                <SearchButton className="" onClick={() => setInput(filters)} />
-              </span>
-            </div>
+        <div className="w-6/8 mx-4">
+          <div className="flex justify-end ">
             <PrimaryButton
               onClick={() => {
                 setIsCreateScreenOpen(true);
@@ -244,7 +205,44 @@ const Invoice = (): JSX.Element => {
               Create New Invoice
             </PrimaryButton>
           </div>
-
+          <div className="mb-4">
+            <RangePicker
+              onChange={onRangeFilterChange}
+              value={
+                filters?.fromDate && filters?.toDate
+                  ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
+                  : undefined
+              }
+            />
+            <Input
+              addonBefore="Id"
+              className="w-72 mx-2"
+              onChange={onFilterChange("quote_id")}
+            />
+            <span className="mx-2">
+              <Input
+                addonBefore="Name"
+                className="w-72"
+                onChange={onFilterChange("name")}
+              />
+            </span>
+            <span className="mx-2">
+              <Selector
+                onChange={handleSelectFilter("isSigned")}
+                className="w-40"
+                defaultValue="All"
+                style={{ width: 120 }}
+                options={[
+                  { label: "All", value: "undefined" },
+                  { label: "Quote", value: false },
+                  { label: "Invoice", value: true },
+                ]}
+              />
+            </span>
+            <span>
+              <SearchButton className="" onClick={() => setInput(filters)} />
+            </span>
+          </div>
           <Table
             dataSource={data?.data}
             columns={columns}
