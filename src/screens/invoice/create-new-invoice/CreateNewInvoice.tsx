@@ -31,7 +31,8 @@ export default function CreateNewInvoice({
   }, [isCreateScreenOpen]);
 
   useEffect(() => {
-    getQuery(invoiceTabKey) !== EInvoiceTabs.LISTING && setIsCreateScreenOpen(false);
+    getQuery(invoiceTabKey) !== EInvoiceTabs.LISTING &&
+      setIsCreateScreenOpen(false);
   }, [getQuery(invoiceTabKey)]);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function CreateNewInvoice({
         style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}
       >
         <div style={{ textAlign: "justify" }} className="text-2xl">
-          Create New Invoice
+          Create New Quote
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>

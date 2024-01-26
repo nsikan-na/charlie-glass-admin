@@ -53,7 +53,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
       <Document
         title={
           invoiceData.isSigned === 0
-            ? `Quote #${invoice_id}`
+            ? `Invoice #${invoice_id}`
             : `Invoice #${invoice_id}`
         }
       >
@@ -83,7 +83,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
             >
               <View style={{ flex: 3, fontSize: 10 }}>
                 <Text style={{ fontSize: 35 }}>
-                  {invoiceData.isSigned === 0 ? "QUOTE" : "INVOICE"}
+                  {invoiceData.isSigned === 0 ? "Invoice" : "INVOICE"}
                 </Text>
                 <View
                   style={{

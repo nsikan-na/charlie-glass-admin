@@ -24,7 +24,7 @@ import { invoiceTabKey } from "../Main";
 import Tooltip from "../../components/ant-design/Tooltip";
 const initialState = {
   fromDate: formatDayjsDate(dayjs().subtract(3, "month")),
-  toDate: formatDayjsDate(dayjs().subtract(1, "day")),
+  toDate: formatDayjsDate(dayjs()),
 };
 
 const Invoice = (): JSX.Element => {
@@ -73,7 +73,7 @@ const Invoice = (): JSX.Element => {
     }));
   };
   function handleClick(invoice: any) {
-    setCurrentInvoice(invoice.quote_id);
+    setCurrentInvoice(invoice.invoice_id);
   }
 
   useEffect(() => {
@@ -93,7 +93,7 @@ const Invoice = (): JSX.Element => {
             <FileOutlined style={{ color: EColors.blue }} />
           </Tooltip>
         ) : (
-          <Tooltip title={"Quote"}>
+          <Tooltip title={"Invoice"}>
             <FileOutlined style={{ color: EColors.green_6 }} />
           </Tooltip>
         );
@@ -101,8 +101,8 @@ const Invoice = (): JSX.Element => {
     },
     {
       title: "Id",
-      dataIndex: "quote_id",
-      key: "quote_id",
+      dataIndex: "invoice_id",
+      key: "invoice_id",
       width: 50,
     },
     {
@@ -207,7 +207,7 @@ const Invoice = (): JSX.Element => {
                 setIsCreateScreenOpen(true);
               }}
             >
-              Create New Invoice
+              Create New Quote
             </PrimaryButton>
           </div>
           <div className="mb-4">
@@ -222,7 +222,7 @@ const Invoice = (): JSX.Element => {
             <Input
               addonBefore="Id"
               className="w-72 mx-2"
-              onChange={onFilterChange("quote_id")}
+              onChange={onFilterChange("invoice_id")}
             />
             <span className="mx-2">
               <Input
@@ -239,7 +239,7 @@ const Invoice = (): JSX.Element => {
                 style={{ width: 120 }}
                 options={[
                   { label: "All", value: "undefined" },
-                  { label: "Quote", value: false },
+                  { label: "Invoice", value: false },
                   { label: "Invoice", value: true },
                 ]}
               />

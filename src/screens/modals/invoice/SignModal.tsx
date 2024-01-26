@@ -4,12 +4,12 @@ import Input from "../../components/ant-design/form/Input";
 import { useEffect, useState } from "react";
 import type { DatePickerProps } from "antd";
 import DatePicker from "../../components/ant-design/form/DatePicker";
-import useSignQuote from "../../../hooks/invoices/useSignQuote";
+import useSignInvoice from "../../../hooks/invoices/useSignQuote";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
 import dayjs from "dayjs";
 import { formatTimestampDate } from "../../../util/helpers";
 const initialState = {
-  expense: 0,
+  expense: null,
   signature_date: null,
 };
 export default function SignModal({
@@ -28,7 +28,7 @@ export default function SignModal({
     }));
   };
 
-  const add = useSignQuote(currentInvoice, () => {
+  const add = useSignInvoice(currentInvoice, () => {
     setInput(initialState);
     closeSignModal();
   });

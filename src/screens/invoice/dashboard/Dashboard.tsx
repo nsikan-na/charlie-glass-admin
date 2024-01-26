@@ -10,7 +10,7 @@ import { formatDayjsDate } from "../../../util/helpers";
 
 const initialState = {
   fromDate: formatDayjsDate(dayjs().subtract(1, "month")),
-  toDate: formatDayjsDate(dayjs().subtract(1, "day")),
+  toDate: formatDayjsDate(dayjs()),
 };
 
 export default function Dashboard() {

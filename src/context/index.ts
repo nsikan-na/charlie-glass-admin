@@ -7,8 +7,8 @@ export const useInitialStore = () => {
   const [user, setUser] = useState<any>(
     getLocalStorage(ELocalStorage.USER) || userInitialState,
   );
-
   useEffect(() => {
+    if (!user) return;
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + user?.accessToken;
   }, [user]);
