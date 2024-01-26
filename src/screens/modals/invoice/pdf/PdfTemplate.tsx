@@ -37,6 +37,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
     receiver_city,
     receiver_state,
     receiver_zip,
+    signature_date,
   } = invoiceData;
 
   const total = decimalThousandsCommaSeparated(
@@ -139,7 +140,9 @@ const PdfTemplate = ({ invoiceData }: any) => {
               <View style={{ flex: 1, fontSize: 12 }}>
                 <Text style={{ margin: "5 0" }}>{invoice_id}</Text>
                 <Text style={{ margin: "5 0" }}>
-                  {formatTimestampDate(creation_date)}
+                  {formatTimestampDate(
+                    invoiceData.isSigned === 0 ? creation_date : signature_date,
+                  )}
                 </Text>
               </View>
             </View>
