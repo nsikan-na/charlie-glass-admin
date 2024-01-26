@@ -12,7 +12,7 @@ export default function ServicesWidget({ input }: any) {
     data:
       data?.data?.content?.map((x: any) => ({
         ...x,
-        Count: x.service_count,
+        Count: Number(x.service_count),
       })) || [],
     xField: "service_label",
     yField: "Count",
