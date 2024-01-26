@@ -9,7 +9,7 @@ export default function ServicesWidget({ input }: any) {
   const { data, isLoading } = useGetReportServices(input);
 
   const config = {
-    data: data?.data || [],
+    data: data?.data?.content || [],
     xField: "service_label",
     yField: "service_count",
     label: {
@@ -28,7 +28,7 @@ export default function ServicesWidget({ input }: any) {
 
   return (
     <div className="w-full">
-      {(!data || data?.data?.length === 0) && !isLoading ? (
+      {(!data || data?.data?.content?.length === 0) && !isLoading ? (
         <div className="flex justify-center items-center mt-12">
           <Empty />
         </div>

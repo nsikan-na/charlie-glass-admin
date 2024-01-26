@@ -15,7 +15,7 @@ const useAddNewInvoice = (onSuccess?: any) => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
       onSuccess && onSuccess();
       showSuccessNotification({
-        description: data.data,
+        description: data?.data?.message,
       });
     },
 

@@ -15,7 +15,7 @@ const useSignInvoice = (id: any, onSuccess?: () => void) => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
       onSuccess && onSuccess();
       showSuccessNotification({
-        description: data.data,
+        description: data?.data?.message,
       });
     },
     onError: (error: any) => {

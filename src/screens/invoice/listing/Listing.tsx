@@ -249,7 +249,7 @@ const Invoice = (): JSX.Element => {
             </span>
           </div>
           <Table
-            dataSource={data?.data}
+            dataSource={data?.data?.content}
             columns={columns}
             pagination={false}
             loading={isLoading}
@@ -263,7 +263,7 @@ const Invoice = (): JSX.Element => {
           <InvoiceModal
             closeModal={closeModal}
             isModalOpen={isModalOpen}
-            pdf={pdfData?.data}
+            pdf={pdfData?.data?.content}
             isLoading={pdfLoading}
           />
         </div>

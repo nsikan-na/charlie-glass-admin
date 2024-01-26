@@ -70,7 +70,7 @@ export default function InvoiceServicesInput({
                 gridTemplateColumns: "12rem 12rem 12rem",
               }}
             >
-              {data?.data?.map((service: any) => (
+              {data?.data?.content?.map((service: any) => (
                 <Checkbox key={uniqueId()} value={service.id}>
                   {service.label}
                 </Checkbox>
