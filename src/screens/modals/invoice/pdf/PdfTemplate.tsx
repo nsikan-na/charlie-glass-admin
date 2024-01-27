@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { Context } from "../../../../context";
 import {
   decimalThousandsCommaSeparated,
-  formatDate,
+  formatTimestampDate,
 } from "../../../../util/helpers";
 import { uniqueId } from "lodash";
 
@@ -37,6 +37,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
     receiver_city,
     receiver_state,
     receiver_zip,
+    signature_date,
   } = invoiceData;
 
   const total = decimalThousandsCommaSeparated(
@@ -131,13 +132,17 @@ const PdfTemplate = ({ invoiceData }: any) => {
               </View>
 
               <View style={{ flex: 1, fontSize: 12 }}>
-                <Text style={{ margin: "5 0" }}>Invoice #</Text>
-                <Text style={{ margin: "5 0" }}>Invoice Date</Text>
+                <Text style={{ margin: "5 0" }}>Quote #</Text>
+                <Text style={{ margin: "5 0" }}>
+                  {invoiceData.isSigned === 0 ? "Quotation" : "Invoice"} Date
+                </Text>
               </View>
               <View style={{ flex: 1, fontSize: 12 }}>
                 <Text style={{ margin: "5 0" }}>{invoice_id}</Text>
                 <Text style={{ margin: "5 0" }}>
-                  {formatDate(creation_date)}
+                  {formatTimestampDate(
+                    invoiceData.isSigned === 0 ? creation_date : signature_date,
+                  )}
                 </Text>
               </View>
             </View>

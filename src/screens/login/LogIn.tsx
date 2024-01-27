@@ -1,7 +1,9 @@
-import { Button, Form } from "antd";
+import { Form } from "antd";
 import Input from "../components/ant-design/form/Input";
 import { useState } from "react";
 import useLogin from "../../hooks/login/useLogin";
+import { EColors } from "../../util/enums/colors";
+import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 
 const Login: React.FC = () => {
   const [input, setInput] = useState({
@@ -16,7 +18,7 @@ const Login: React.FC = () => {
   const checkLogin = useLogin();
   return (
     <div
-      className="bg-gray-300 h-screen flex justify-center items-center"
+      className="h-screen flex justify-center items-center"
       style={{
         backgroundImage: `url(/iStock-502706671.jpg)`,
         backgroundPosition: "center",
@@ -24,10 +26,15 @@ const Login: React.FC = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="flex justify-center items-center p-20 rounded-lg bg-white ">
+      <div
+        className="flex justify-center items-center p-20 bg-white shadow-sm drop-shadow-sm"
+        style={{ borderTop: `.5rem solid ${EColors.primary}` }}
+      >
         <div style={{ margin: "auto" }}>
           <Form>
-            <div className="text-center text-2xl my-3">Log In</div>
+            <div className="text-center text-2xl my-3">
+              LOG IN TO YOUR ACCOUNT
+            </div>
             <div>Username</div>
             <Input
               autoComplete="username"
@@ -42,14 +49,14 @@ const Login: React.FC = () => {
               />
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <Button
+              <PrimaryButton
                 htmlType="submit"
                 onClick={() => {
                   checkLogin.mutate(input);
                 }}
               >
                 Log In
-              </Button>
+              </PrimaryButton>
             </div>
           </Form>
         </div>

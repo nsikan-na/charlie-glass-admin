@@ -7,12 +7,13 @@ import BreadCrumb from "../components/breadcrumb";
 
 export default function Main() {
   const { getQuery, setQuery } = useQueryParam([
-    { key: tabKey, value: ETabs.DASHBOARD },
+    { key: invoiceTabKey, value: EInvoiceTabs.DASHBOARD },
   ]);
 
-  const changeQuery = (value: string) => setQuery(tabKey, value);
+  const changeQuery = (value: string) => setQuery(invoiceTabKey, value);
 
   return (
+<<<<<<< HEAD
     <>
       <BreadCrumb
         className="ml-10"
@@ -35,22 +36,30 @@ export default function Main() {
         onChange={changeQuery}
       />
     </>
+=======
+    <AntTabs
+      className=" bg-white"
+      defaultActiveKey={getQuery(invoiceTabKey) || undefined}
+      items={items}
+      onChange={changeQuery}
+    />
+>>>>>>> 74abc7618ffcfa29d7e180132ec5f502b0d8efe9
   );
 }
-const tabKey = "tab";
+export const invoiceTabKey = "tab";
 
-enum ETabs {
+export enum EInvoiceTabs {
   DASHBOARD = "dashboard",
   LISTING = "listing",
 }
 const items: TabsProps["items"] = [
   {
-    key: ETabs.DASHBOARD,
+    key: EInvoiceTabs.DASHBOARD,
     label: "Dashboard",
     children: <Dashboard />,
   },
   {
-    key: ETabs.LISTING,
+    key: EInvoiceTabs.LISTING,
     label: "Listing",
     children: <Invoice />,
   },

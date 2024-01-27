@@ -1,11 +1,11 @@
 import { Tag } from "antd";
 import {
   decimalThousandsCommaSeparated,
-  formatDate,
+  formatTimestampDate,
 } from "../../../util/helpers";
 import useGetProfits from "../../../hooks/reports/useGetReportProfits";
 
-import Spinner from "../../components/ant-design/loading/spinner";
+import Spinner from "../../components/ant-design/Spinner";
 import { uniqueId } from "lodash";
 
 export default function ProfitsWidget({ input }: any) {
@@ -20,12 +20,12 @@ export default function ProfitsWidget({ input }: any) {
             style={{ height: "45vh" }}
           >
             <div style={{ overflowY: "scroll" }}>
-              {data?.data?.rows.map((row: any) => {
+              {data?.data?.content?.rows.map((row: any) => {
                 return <Profit row={row} key={uniqueId()} />;
               })}
             </div>
             <div className="mt-5">
-              {data?.data?.rows && <Totals data={data} />}
+              {data?.data?.content?.rows && <Totals data={data} />}
             </div>
           </div>
         </div>
@@ -38,9 +38,8 @@ function Profit({ row }: any) {
   return (
     <div className=" w-10/12 grid grid-cols-4 m-auto .auto-cols-min mt-4">
       <div>
-        <div>
-          Signature Date
-          <div>{formatDate(row.signature_date)}</div>
+        <div className="text-lg text-center items-center mx-6 mt-4">
+          {formatTimestampDate(row.signature_date)}
         </div>
       </div>
       <div>
@@ -79,14 +78,16 @@ function Profit({ row }: any) {
 
 function Totals({ data }: any) {
   return (
-    <div className=" w-10/12 grid grid-cols-4 m-auto .auto-cols-min mt-4">
+    <div className=" w-10/12 grid grid-cols-4 m-auto .auto-cols-min">
       <div></div>
       <div>
         <div>
           Total Revenue
           <div>
             <Tag className=" text-lg w-8/12 h-7" color="blue">
-              {decimalThousandsCommaSeparated(data?.data?.totalRevenue)}
+              {decimalThousandsCommaSeparated(
+                data?.data?.content?.totalRevenue,
+              )}
             </Tag>
           </div>
         </div>
@@ -96,7 +97,9 @@ function Totals({ data }: any) {
           Total Expense
           <div>
             <Tag className=" text-lg w-8/12 h-7" color="red">
-              {decimalThousandsCommaSeparated(data?.data?.totalExpense)}
+              {decimalThousandsCommaSeparated(
+                data?.data?.content?.totalExpense,
+              )}
             </Tag>
           </div>
         </div>
@@ -106,7 +109,7 @@ function Totals({ data }: any) {
           Total Profit
           <div>
             <Tag className=" text-lg w-8/12 h-7" color="green">
-              {decimalThousandsCommaSeparated(data?.data?.totalProfit)}
+              {decimalThousandsCommaSeparated(data?.data?.content?.totalProfit)}
             </Tag>
           </div>
         </div>

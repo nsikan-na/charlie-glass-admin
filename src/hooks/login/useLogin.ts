@@ -28,8 +28,8 @@ const useLogin = () => {
     onSuccess: (data: any) => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
 
-      setUser(data?.data);
-      setLocalStorage(ELocalStorage.USER, data?.data);
+      setUser(data?.data?.content);
+      setLocalStorage(ELocalStorage.USER, data?.data?.content);
       navigate(ERoute.ROOT);
     },
 

@@ -1,5 +1,5 @@
 import InvoiceModal from "../../modals/invoice/InvoiceModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import useGetAllInvoices from "../../../hooks/invoices/useGetAllInvoices";
 import useGetInvoiceById from "../../../hooks/invoices/useGetInvoiceById";
@@ -13,18 +13,26 @@ import SignModal from "../../modals/invoice/SignModal";
 
 import Table from "../../components/ant-design/Table";
 import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
-import { formatDate } from "../../../util/helpers";
-import { Tag, Tooltip } from "antd";
+import { formatDayjsDate, formatTimestampDate } from "../../../util/helpers";
+import { Tag } from "antd";
 import { EColors } from "../../../util/enums/colors";
 
 import CreateNewInvoice from "../create-new-invoice/CreateNewInvoice";
+import dayjs from "dayjs";
+import useQueryParam from "../../../hooks/queryParam/useQueryParam";
+import { invoiceTabKey } from "../Main";
+import Tooltip from "../../components/ant-design/Tooltip";
+const initialState = {
+  fromDate: formatDayjsDate(dayjs().subtract(3, "month")),
+  toDate: formatDayjsDate(dayjs()),
+};
 
 const Invoice = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
-  const [input, setInput] = useState(null);
-  const [filters, setFilters] = useState(null);
-
+  const [input, setInput] = useState<any>(initialState);
+  const [filters, setFilters] = useState<any>(initialState);
+  const { getQuery } = useQueryParam();
   const [isCreateScreenOpen, setIsCreateScreenOpen] = useState(false);
 
   const [isSignModalOpen, setSignModalOpen] = useState(false);
@@ -65,8 +73,13 @@ const Invoice = (): JSX.Element => {
     }));
   };
   function handleClick(invoice: any) {
-    setCurrentInvoice(invoice.quote_id);
+    setCurrentInvoice(invoice.invoice_id);
   }
+
+  useEffect(() => {
+    setFilters(initialState);
+    setInput(initialState);
+  }, [getQuery(invoiceTabKey)]);
 
   const columns: any["columns"] = [
     {
@@ -88,8 +101,8 @@ const Invoice = (): JSX.Element => {
     },
     {
       title: "Id",
-      dataIndex: "quote_id",
-      key: "quote_id",
+      dataIndex: "invoice_id",
+      key: "invoice_id",
       width: 50,
     },
     {
@@ -138,7 +151,7 @@ const Invoice = (): JSX.Element => {
         return sigDate === null ? (
           <div>{"-"}</div>
         ) : (
-          <div>{formatDate(sigDate)}</div>
+          <div>{formatTimestampDate(sigDate)}</div>
         );
       },
     },
@@ -149,7 +162,7 @@ const Invoice = (): JSX.Element => {
       key: "creation_date",
 
       render: (creationDate: "string") => {
-        return <div>{formatDate(creationDate)}</div>;
+        return <div>{formatTimestampDate(creationDate)}</div>;
       },
     },
     {
@@ -157,23 +170,27 @@ const Invoice = (): JSX.Element => {
       key: "actions",
       render: (record: any) => (
         <div className="flex gap-5" onClick={() => handleClick(record)}>
-          <EyeOutlined
-            style={{
-              fontSize: "1.2rem",
-              cursor: "pointer",
-              color: EColors.primary,
-            }}
-            onClick={showModal}
-          />
-          {record.isSigned === 0 ? (
-            <EditOutlined
-              onClick={showSignModal}
+          <Tooltip title="View">
+            <EyeOutlined
               style={{
                 fontSize: "1.2rem",
                 cursor: "pointer",
                 color: EColors.primary,
               }}
+              onClick={showModal}
             />
+          </Tooltip>
+          {record.isSigned === 0 ? (
+            <Tooltip title="Sign">
+              <EditOutlined
+                onClick={showSignModal}
+                style={{
+                  fontSize: "1.2rem",
+                  cursor: "pointer",
+                  color: EColors.primary,
+                }}
+              />
+            </Tooltip>
           ) : null}
         </div>
       ),
@@ -183,50 +200,56 @@ const Invoice = (): JSX.Element => {
   return (
     <>
       {!isCreateScreenOpen ? (
-        <div>
-          <div className="flex justify-between m-4">
-            <div>
-              <Input
-                addonBefore="Id"
-                className="w-72"
-                onChange={onFilterChange("quote_id")}
-              />
-              <span className="mx-2">
-                <Input
-                  addonBefore="Name"
-                  className="w-72"
-                  onChange={onFilterChange("name")}
-                />
-              </span>
-              <RangePicker onChange={onRangeFilterChange} className="" />
-              <span className="mx-2">
-                <Selector
-                  onChange={handleSelectFilter("isSigned")}
-                  className="w-40"
-                  defaultValue="All"
-                  style={{ width: 120 }}
-                  options={[
-                    { label: "All", value: "undefined" },
-                    { label: "Quote", value: false },
-                    { label: "Invoice", value: true },
-                  ]}
-                />
-              </span>
-              <span>
-                <SearchButton className="" onClick={() => setInput(filters)} />
-              </span>
-            </div>
+        <div className="w-6/8 mx-4">
+          <div className="flex justify-end ">
             <PrimaryButton
               onClick={() => {
                 setIsCreateScreenOpen(true);
               }}
             >
-              Create New Invoice
+              Create New Quote
             </PrimaryButton>
           </div>
-
+          <div className="mb-4">
+            <RangePicker
+              onChange={onRangeFilterChange}
+              value={
+                filters?.fromDate && filters?.toDate
+                  ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
+                  : undefined
+              }
+            />
+            <Input
+              addonBefore="Id"
+              className="w-72 mx-2"
+              onChange={onFilterChange("invoice_id")}
+            />
+            <span className="mx-2">
+              <Input
+                addonBefore="Name"
+                className="w-72"
+                onChange={onFilterChange("name")}
+              />
+            </span>
+            <span className="mx-2">
+              <Selector
+                onChange={handleSelectFilter("isSigned")}
+                className="w-40"
+                defaultValue="All"
+                style={{ width: 120 }}
+                options={[
+                  { label: "All", value: "undefined" },
+                  { label: "Quote", value: false },
+                  { label: "Invoice", value: true },
+                ]}
+              />
+            </span>
+            <span>
+              <SearchButton className="" onClick={() => setInput(filters)} />
+            </span>
+          </div>
           <Table
-            dataSource={data?.data}
+            dataSource={data?.data?.content}
             columns={columns}
             pagination={false}
             loading={isLoading}
@@ -240,7 +263,7 @@ const Invoice = (): JSX.Element => {
           <InvoiceModal
             closeModal={closeModal}
             isModalOpen={isModalOpen}
-            pdf={pdfData?.data}
+            pdf={pdfData?.data?.content}
             isLoading={pdfLoading}
           />
         </div>

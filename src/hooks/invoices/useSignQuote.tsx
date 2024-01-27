@@ -5,17 +5,17 @@ import { EBaseUrl } from "../baseUrl";
 import showSuccessNotification from "../../screens/components/ant-design/notifications/showSuccessNotification";
 import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNotification";
 
-const useSignQuote = (id: any, onSuccess?: () => void) => {
+const useSignInvoice = (id: any, onSuccess?: () => void) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (obj: any) =>
-      await axios.post(`${EBaseUrl.CGI_API}/api/v1/quotes/${id}/sign`, obj),
+      await axios.post(`${EBaseUrl.CGI_API}/api/v1/invoices/${id}/sign`, obj),
 
     onSuccess: (data: any) => {
       queryClient.invalidateQueries({ queryKey: [EQueryKey.GET] });
       onSuccess && onSuccess();
       showSuccessNotification({
-        description: data.data,
+        description: data?.data?.message,
       });
     },
     onError: (error: any) => {
@@ -26,4 +26,4 @@ const useSignQuote = (id: any, onSuccess?: () => void) => {
   });
 };
 
-export default useSignQuote;
+export default useSignInvoice;

@@ -9,8 +9,8 @@ export default function CreateNewInvoiceModal({
   setCart,
 }: any) {
   const [description, setDescription] = useState("");
-  const [quantity, setQuantity] = useState<number>(0);
-  const [price, setPrice] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number | null>(null);
+  const [price, setPrice] = useState<number | null>(null);
 
   function handleSave() {
     if (!description || !quantity || !price)
@@ -63,7 +63,7 @@ export default function CreateNewInvoiceModal({
         <div className="my-4">
           <div>Quantity</div>
           <Input
-            value={quantity}
+            value={quantity || undefined}
             type="number"
             min={0}
             onChange={(e: any) => setQuantity(+e.target.value)}
@@ -74,7 +74,7 @@ export default function CreateNewInvoiceModal({
         <div className="my-4">
           <div>Price</div>
           <Input
-            value={price}
+            value={price || undefined}
             type="number"
             onChange={(e: any) => setPrice(+e.target.value)}
             className="w-full"
