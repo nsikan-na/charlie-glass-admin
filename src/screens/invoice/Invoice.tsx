@@ -1,6 +1,5 @@
 import InvoiceModal from "../modals/invoice/InvoiceModal";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
 import useGetInvoiceById from "../../hooks/invoices/useGetInvoiceById";
@@ -39,8 +38,6 @@ const Invoice = (): JSX.Element => {
   const closeSignModal = () => {
     setSignModalOpen(false);
   };
-
-  const navigate = useNavigate();
 
   const { data, isLoading }: any = useGetAllInvoices(input);
 
