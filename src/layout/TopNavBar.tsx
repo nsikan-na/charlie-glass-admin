@@ -6,10 +6,8 @@ import setLocalStorage from "../hooks/localstorage/setLocalStorage";
 import ELocalStorage from "../util/enums/localStorage";
 import { ERoute } from "../util/enums/routes";
 import { EColors } from "../util/enums/colors";
-import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
-import { DownOutlined, SmileOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Dropdown, Space } from "antd";
+import { LogoutOutlined, UserOutlined, DownOutlined } from "@ant-design/icons";
+import { MenuProps, Dropdown, Space } from "antd";
 
 const { Header } = Layout;
 

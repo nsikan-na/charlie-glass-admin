@@ -10,18 +10,16 @@ import RangePicker from "../components/ant-design/form/RangePicker";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import { Selector } from "../components/ant-design/form/Select";
-// import SignModal from "../modals/SignModal";
 
 import Table from "../components/ant-design/Table";
 
 import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
-import { formatDate } from "../../util/helpers";
+
 import { Tag, Tooltip } from "antd";
 import { EColors } from "../../util/enums/colors";
 import CreateNewInvoice from "./create-new-invoice/CreateNewInvoice";
 import SignModal from "../modals/invoice/SignModal";
-
-// import CreateNewInvoice from "../create-new-invoice/CreateNewInvoice";
+import { formatDayjsDate } from "../../util/helpers";
 
 const Invoice = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -146,7 +144,7 @@ const Invoice = (): JSX.Element => {
         return sigDate === null ? (
           <div>{"-"}</div>
         ) : (
-          <div>{formatDate(sigDate)}</div>
+          <div>{formatDayjsDate(sigDate)}</div>
         );
       },
     },
@@ -157,7 +155,7 @@ const Invoice = (): JSX.Element => {
       key: "creation_date",
 
       render: (creationDate: "string") => {
-        return <div>{formatDate(creationDate)}</div>;
+        return <div>{formatDayjsDate(creationDate)}</div>;
       },
     },
     {
