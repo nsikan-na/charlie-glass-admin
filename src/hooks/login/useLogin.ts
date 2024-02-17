@@ -1,5 +1,4 @@
 import axios from "axios";
-import { EBaseUrl } from "../baseUrl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { EQueryKey } from "../queryKey";
 import { useContext } from "react";
@@ -9,6 +8,7 @@ import setLocalStorage from "../localstorage/setLocalStorage";
 import ELocalStorage from "../../util/enums/localStorage";
 import { ERoute } from "../../util/enums/routes";
 import showErrorNotification from "../../screens/components/ant-design/notifications/showErrorNotification";
+import { API_BASE_URL } from "../baseApiUrl";
 
 type TLoginInput = {
   username: string;
@@ -22,7 +22,7 @@ const useLogin = () => {
 
   return useMutation({
     mutationFn: async (obj: TLoginInput) =>
-      await axios.post(`${EBaseUrl.CGI_API}/api/v1/login`, obj, {
+      await axios.post(`${API_BASE_URL}/api/v1/login`, obj, {
         headers: { Authorization: undefined },
       }),
     onSuccess: (data: any) => {
