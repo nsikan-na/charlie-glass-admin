@@ -64,7 +64,8 @@ const Login: React.FC = () => {
               </PrimaryButton>
             </div>
             <div
-              className="flex justify-center mt-4 text-blue-500 cursor-pointer"
+              className="flex justify-center mt-6 -mb-8 cursor-pointer "
+              style={{ color: EColors.primary }}
               onClick={() => {
                 checkLogin.mutate(demoLogin);
               }}
