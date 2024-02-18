@@ -5,6 +5,11 @@ import useLogin from "../../hooks/login/useLogin";
 import { EColors } from "../../util/enums/colors";
 import PrimaryButton from "../components/ant-design/buttons/PrimaryButton";
 
+const demoLogin = {
+  username: "cgiadmin",
+  password: "cgiadminpass",
+};
+
 const Login: React.FC = () => {
   const [input, setInput] = useState({
     username: "",
@@ -27,7 +32,7 @@ const Login: React.FC = () => {
       }}
     >
       <div
-        className="flex justify-center items-center p-20 bg-white shadow-sm drop-shadow-sm"
+        className="flex justify-center items-center p-20 bg-white shadow-sm drop-shadow-sm "
         style={{ borderTop: `.5rem solid ${EColors.primary}` }}
       >
         <div style={{ margin: "auto" }}>
@@ -57,6 +62,14 @@ const Login: React.FC = () => {
               >
                 Log In
               </PrimaryButton>
+            </div>
+            <div
+              className="flex justify-center mt-4 text-blue-500 cursor-pointer"
+              onClick={() => {
+                checkLogin.mutate(demoLogin);
+              }}
+            >
+              <a>Log In As Demo User</a>
             </div>
           </Form>
         </div>

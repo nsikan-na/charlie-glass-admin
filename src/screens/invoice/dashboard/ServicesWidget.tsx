@@ -16,6 +16,9 @@ export default function ServicesWidget({ input }: any) {
       })) || [],
     xField: "service_label",
     yField: "Count",
+    style: {
+      fill: "#fab005",
+    },
   };
 
   return (
