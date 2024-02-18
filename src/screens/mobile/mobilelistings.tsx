@@ -7,7 +7,7 @@ import SignModal from "../modals/invoice/SignModal";
 import useGetInvoiceById from "../../hooks/invoices/useGetInvoiceById";
 import InvoiceModal from "../modals/invoice/InvoiceModal";
 import Drawer from "antd/es/drawer";
-import { UserOutlined, DownOutlined, LogoutOutlined } from "@ant-design/icons";
+import { LogoutOutlined, FilterOutlined } from "@ant-design/icons";
 import { Dropdown, Space, Avatar, MenuProps, Divider } from "antd";
 import { EColors } from "../../util/enums/colors";
 import { Context, userInitialState } from "../../context";
@@ -21,8 +21,14 @@ import { Selector } from "../components/ant-design/form/Select";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import Spinner from "../components/ant-design/Spinner";
 import Button from "../components/ant-design/buttons/PrimaryButton";
+import MobileFiltersModal from "./ModalsMobile/filtersmodal";
 
-export default function MobileListings({ open, onClose, setScreen }: any) {
+export default function MobileListings({
+  open,
+  onClose,
+  setScreen,
+  showDrawer,
+}: any) {
   const [isSignModalOpen, setSignModalOpen] = useState(false);
   const showSignModal = () => {
     setSignModalOpen(true);
@@ -37,6 +43,15 @@ export default function MobileListings({ open, onClose, setScreen }: any) {
   const navigate = useNavigate();
   const [input, setInput] = useState<any>(initialState);
   const [filters, setFilters] = useState<any>(initialState);
+
+  //FiltersModal
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(true);
+  function showFiltersModal() {
+    setIsFiltersModalOpen(true);
+  }
+  function closeFiltersModal() {
+    setIsFiltersModalOpen(false);
+  }
 
   const { data, isLoading }: any = useGetAllInvoices(input);
 
@@ -97,36 +112,10 @@ export default function MobileListings({ open, onClose, setScreen }: any) {
     setInput(filters);
     onClose();
   }
+
   return (
     <div>
-      <Drawer
-        title={
-          <Dropdown menu={{ items }} className="mb-2 mt-4">
-            <a onClick={(e) => e.preventDefault()}>
-              <Space>
-                <span className="">
-                  <Avatar
-                    size="small"
-                    className="mr-1 self-center"
-                    style={{ backgroundColor: EColors.primary }}
-                    icon={<UserOutlined style={{ color: EColors.white }} />}
-                  />
-                  {`${user.userName}`}
-                </span>
-                <DownOutlined />
-              </Space>
-            </a>
-          </Dropdown>
-        }
-        onClose={onClose}
-        open={open}
-      >
-        <div className="flex  text-lg gap-1">
-          <div>
-            <Button onClick={setScreen}>View Dashboard</Button>
-          </div>
-        </div>
-
+      <Drawer title={"Create New Quote"} onClose={onClose} open={open}>
         <Divider>Filters</Divider>
         <div className="grid grid-cols-1 gap-y-4">
           <div className="flex justify-between">
@@ -172,6 +161,22 @@ export default function MobileListings({ open, onClose, setScreen }: any) {
           </div>
         </div>
       </Drawer>
+      <div className="flex  text-lg justify-between">
+        <div className="mt-4  ml-4">
+          <Button onClick={setScreen}>View Dashboard</Button>
+        </div>
+        <div className="mt-4  mr-4">
+          <Button onClick={showDrawer}>Create New Quote</Button>
+        </div>
+      </div>
+      <div className="flex mt-4  ml-4 text-lg gap-1">
+        <div>
+          <Button onClick={showFiltersModal}>
+            <FilterOutlined />
+            Apply Filters
+          </Button>
+        </div>
+      </div>
       <div className="flex justify-center mt-8 ">
         <Spinner spinning={isLoading}>
           <div className="grid grid-cols-1 gap-y-8 ">
@@ -197,6 +202,10 @@ export default function MobileListings({ open, onClose, setScreen }: any) {
           isModalOpen={isModalOpen}
           pdf={pdfData?.data?.content}
           isLoading={pdfLoading}
+        />
+        <MobileFiltersModal
+          isOpen={isFiltersModalOpen}
+          closeModal={closeFiltersModal}
         />
       </div>
     </div>

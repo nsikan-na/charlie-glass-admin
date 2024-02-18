@@ -2,11 +2,11 @@ import { Divider, Tag } from "antd";
 import {
   decimalThousandsCommaSeparated,
   formatTimestampDate,
-} from "../../util/helpers";
+} from "../../../util/helpers";
 
 import { uniqueId } from "lodash";
-import Spinner from "../components/ant-design/Spinner";
-import useGetReportProfits from "../../hooks/reports/useGetReportProfits";
+import Spinner from "../../components/ant-design/Spinner";
+import useGetReportProfits from "../../../hooks/reports/useGetReportProfits";
 
 export default function MobileProfitsWidget({ input }: any) {
   const { data, isLoading } = useGetReportProfits(input);

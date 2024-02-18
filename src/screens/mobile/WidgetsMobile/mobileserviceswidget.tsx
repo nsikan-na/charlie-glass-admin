@@ -1,7 +1,7 @@
 import { Column } from "@ant-design/charts";
-import Spinner from "../components/ant-design/Spinner";
-import Empty from "../components/ant-design/Empty";
-import useGetReportServices from "../../hooks/reports/useGetReportServices";
+import Spinner from "../../components/ant-design/Spinner";
+import Empty from "../../components/ant-design/Empty";
+import useGetReportServices from "../../../hooks/reports/useGetReportServices";
 
 export default function MobileServicesWidget({ input }: any) {
   const { data, isLoading } = useGetReportServices(input);

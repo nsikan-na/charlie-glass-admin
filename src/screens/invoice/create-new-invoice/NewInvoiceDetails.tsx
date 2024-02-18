@@ -10,7 +10,6 @@ export default function InvoiceDetailsInput({ setInvoice }: any) {
   useEffect(() => {
     setInvoice((invoice: any) => ({ ...invoice, ...input }));
   }, [input, setInvoice]);
-
   return (
     <>
       <div className="grid grid-rows-2 gap-0">

@@ -14,12 +14,14 @@ import ELocalStorage from "../../util/enums/localStorage";
 import { ERoute } from "../../util/enums/routes";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/ant-design/buttons/PrimaryButton";
-import MobileProfitsWidget from "./mobileprofitswidget";
+
 import { formatDayjsDate } from "../../util/helpers";
 import dayjs from "dayjs";
-import MobileServicesWidget from "./mobileserviceswidget";
+
 import RangePicker from "../components/ant-design/form/RangePicker";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
+import MobileProfitsWidget from "./WidgetsMobile/mobileprofitswidget";
+import MobileServicesWidget from "./WidgetsMobile/mobileserviceswidget";
 
 const initialState = {
   fromDate: formatDayjsDate(dayjs().subtract(1, "month")),
