@@ -4,6 +4,7 @@ import useGetReportServices from "../../../hooks/reports/useGetReportServices";
 
 import Spinner from "../../components/ant-design/Spinner";
 import Empty from "../../components/ant-design/Empty";
+import { EColors } from "../../../util/enums/colors";
 
 export default function ServicesWidget({ input }: any) {
   const { data, isLoading } = useGetReportServices(input);
@@ -16,6 +17,9 @@ export default function ServicesWidget({ input }: any) {
       })) || [],
     xField: "service_label",
     yField: "Count",
+    style: {
+      fill: EColors.primary,
+    },
   };
 
   return (
