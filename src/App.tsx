@@ -10,12 +10,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ERoute } from "./util/enums/routes";
 import { ConfigProvider } from "antd";
 import { EColors } from "./util/enums/colors";
-import { useEffect } from "react";
 
 function App() {
-  useEffect(() => {
-    document.title = "Charlie Glass Admin";
-  }, []);
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
