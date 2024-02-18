@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { EQueryKey } from "../queryKey";
-import { EBaseUrl } from "../baseUrl";
+
 import { Context } from "../../context";
 import { useContext } from "react";
+import { API_BASE_URL } from "../baseApiUrl";
 
 const useGetInvoiceById = (invoiceId: any) => {
   const { user } = useContext(Context);
@@ -17,7 +18,7 @@ const useGetInvoiceById = (invoiceId: any) => {
     ],
     enabled: !!invoiceId,
     queryFn: async () =>
-      await axios.get<any>(`${EBaseUrl.CGI_API}/api/v1/invoices/${invoiceId}`),
+      await axios.get<any>(`${API_BASE_URL}/api/v1/invoices/${invoiceId}`),
   });
 };
 
