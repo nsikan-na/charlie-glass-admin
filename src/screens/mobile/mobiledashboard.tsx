@@ -102,6 +102,9 @@ export default function MobileDashboard({ open, onClose, setScreen }: any) {
           </span>
         </div>
       </Drawer>
+      <div className="mt-4  ml-4">
+        <Button onClick={setScreen}>View Listings</Button>
+      </div>
       <Divider>
         <BarChartOutlined /> Profits
       </Divider>

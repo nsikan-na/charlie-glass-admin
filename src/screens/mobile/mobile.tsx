@@ -26,7 +26,7 @@ export default function Mobile() {
 
   return (
     <div className=" w-full h-screen">
-      <NavMobile showDrawer={showDrawer} />
+      <NavMobile />
       {!isScreenOpen ? (
         <MobileListings
           open={open}

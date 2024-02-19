@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import useGetAllInvoices from "../../hooks/invoices/useGetAllInvoices";
 import MobileCards from "./mobilecards";
 import { formatDayjsDate } from "../../util/helpers";
@@ -7,18 +7,10 @@ import SignModal from "../modals/invoice/SignModal";
 import useGetInvoiceById from "../../hooks/invoices/useGetInvoiceById";
 import InvoiceModal from "../modals/invoice/InvoiceModal";
 import Drawer from "antd/es/drawer";
-import { LogoutOutlined, FilterOutlined } from "@ant-design/icons";
-import { Dropdown, Space, Avatar, MenuProps, Divider } from "antd";
-import { EColors } from "../../util/enums/colors";
-import { Context, userInitialState } from "../../context";
-import setLocalStorage from "../../hooks/localstorage/setLocalStorage";
-import ELocalStorage from "../../util/enums/localStorage";
+import { FilterOutlined } from "@ant-design/icons";
+
 import { useNavigate } from "react-router-dom";
-import { ERoute } from "../../util/enums/routes";
-import RangePicker from "../components/ant-design/form/RangePicker";
-import Input from "../components/ant-design/form/Input";
-import { Selector } from "../components/ant-design/form/Select";
-import { SearchButton } from "../components/ant-design/buttons/SearchButton";
+
 import Spinner from "../components/ant-design/Spinner";
 import Button from "../components/ant-design/buttons/PrimaryButton";
 import MobileFiltersModal from "./ModalsMobile/filtersmodal";
@@ -33,7 +25,7 @@ export default function MobileListings({
   const showSignModal = () => {
     setSignModalOpen(true);
   };
-  const { user }: any = useContext(Context);
+
   const initialState = {
     fromDate: formatDayjsDate(dayjs().subtract(3, "month")),
     toDate: formatDayjsDate(dayjs()),
@@ -45,7 +37,7 @@ export default function MobileListings({
   const [filters, setFilters] = useState<any>(initialState);
 
   //FiltersModal
-  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(true);
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
   function showFiltersModal() {
     setIsFiltersModalOpen(true);
   }
@@ -90,77 +82,14 @@ export default function MobileListings({
     setCurrentInvoice(invoice.invoice_id);
   }
 
-  const items: MenuProps["items"] = [
-    {
-      key: "1",
-      label: (
-        <span
-          className="cursor-pointer  "
-          onClick={() => {
-            setLocalStorage(ELocalStorage.USER, userInitialState);
-            navigate(ERoute.LOGIN);
-          }}
-        >
-          <LogoutOutlined className="mr-2" />
-          Log Out
-        </span>
-      ),
-    },
-  ];
-
   function handleOnClose() {
     setInput(filters);
-    onClose();
+    closeFiltersModal();
   }
 
   return (
     <div>
-      <Drawer title={"Create New Quote"} onClose={onClose} open={open}>
-        <Divider>Filters</Divider>
-        <div className="grid grid-cols-1 gap-y-4">
-          <div className="flex justify-between">
-            <RangePicker
-              onChange={onRangeFilterChange}
-              value={
-                filters?.fromDate && filters?.toDate
-                  ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
-                  : undefined
-              }
-            />
-            <SearchButton className="" onClick={handleOnClose} />
-          </div>
-          <div className="flex justify-between">
-            <Input
-              addonBefore="Id"
-              className="w-72 "
-              onChange={onFilterChange("invoice_id")}
-            />
-            <SearchButton className="" onClick={handleOnClose} />
-          </div>
-          <div className="flex justify-between">
-            <Input
-              addonBefore="Name"
-              className="w-72"
-              onChange={onFilterChange("name")}
-            />
-            <SearchButton className="" onClick={handleOnClose} />
-          </div>
-          <div className="flex justify-between">
-            <Selector
-              onChange={handleSelectFilter("isSigned")}
-              className="w-40"
-              defaultValue="All"
-              style={{ width: 120 }}
-              options={[
-                { label: "All", value: "undefined" },
-                { label: "Quote", value: false },
-                { label: "Invoice", value: true },
-              ]}
-            />
-            <SearchButton className="" onClick={handleOnClose} />
-          </div>
-        </div>
-      </Drawer>
+      <Drawer title={"Create New Quote"} onClose={onClose} open={open}></Drawer>
       <div className="flex  text-lg justify-between">
         <div className="mt-4  ml-4">
           <Button onClick={setScreen}>View Dashboard</Button>
@@ -206,6 +135,11 @@ export default function MobileListings({
         <MobileFiltersModal
           isOpen={isFiltersModalOpen}
           closeModal={closeFiltersModal}
+          onRangeFilterChange={onRangeFilterChange}
+          handleOnClose={handleOnClose}
+          filters={filters}
+          onFilterChange={onFilterChange}
+          handleSelectFilter={handleSelectFilter}
         />
       </div>
     </div>

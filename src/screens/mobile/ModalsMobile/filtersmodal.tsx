@@ -1,22 +1,23 @@
 import { Modal } from "antd";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
+import RangePicker from "../../components/ant-design/form/RangePicker";
+
 import Input from "../../components/ant-design/form/Input";
-import { useEffect, useState } from "react";
+import { Selector } from "../../components/ant-design/form/Select";
+import dayjs from "dayjs";
+import { useEffect } from "react";
 
 export default function MobileFiltersModal({
   isOpen,
   closeModal,
-}: {
-  isOpen: boolean;
-  closeModal: () => void;
-}) {
-  const [input, setInput] = useState({});
-
-  const handleInputChange = (key: string) => (e: any) => {
-    setInput((i) => ({ ...i, [key]: e.target.value }));
-  };
-
+  onRangeFilterChange,
+  handleOnClose,
+  filters,
+  onFilterChange,
+  handleSelectFilter,
+}: any) {
+  useEffect(() => {}, [isOpen]);
   return (
     <Modal
       title={"Filters"}
@@ -25,26 +26,51 @@ export default function MobileFiltersModal({
       footer={() => (
         <>
           <div className="flex justify-end">
-            <PrimaryButton onClick={closeModal}>Apply</PrimaryButton>
+            <PrimaryButton onClick={handleOnClose}>Apply</PrimaryButton>
             <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
           </div>
         </>
       )}
     >
-      <div>Name</div>
-      <Input onChange={handleInputChange("receiver_name")} className="w-72" />
-      <div>Street</div>
-      <Input onChange={handleInputChange("street")} className="w-72" />
-      <div>City</div>
-      <Input onChange={handleInputChange("city")} className="w-72" />
-      <div className="flex justify-between">
-        <div>
-          <div>State</div>
-          <Input onChange={handleInputChange("state")} className="w-1/2" />
-        </div>
-        <div>
-          <div>Zip</div>
-          <Input onChange={handleInputChange("zip")} className="w-1/2" />
+      <div className="flex justify-center">
+        <div className="grid grid-cols-1 gap-y-4">
+          <div className="flex justify-between">
+            <RangePicker
+              onChange={onRangeFilterChange}
+              value={
+                filters?.fromDate && filters?.toDate
+                  ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
+                  : undefined
+              }
+            />
+          </div>
+          <div className="flex justify-between">
+            <Input
+              addonBefore="Id"
+              className="w-72 "
+              onChange={onFilterChange("invoice_id")}
+            />
+          </div>
+          <div className="flex justify-between">
+            <Input
+              addonBefore="Name"
+              className="w-72"
+              onChange={onFilterChange("name")}
+            />
+          </div>
+          <div className="flex justify-between">
+            <Selector
+              onChange={handleSelectFilter("isSigned")}
+              className="w-40"
+              defaultValue="All"
+              style={{ width: 120 }}
+              options={[
+                { label: "All", value: "undefined" },
+                { label: "Quote", value: false },
+                { label: "Invoice", value: true },
+              ]}
+            />
+          </div>
         </div>
       </div>
     </Modal>
