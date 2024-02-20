@@ -6,7 +6,6 @@ import { SearchButton } from "../../components/ant-design/buttons/SearchButton";
 import dayjs from "dayjs";
 import useQueryParam from "../../../hooks/queryParam/useQueryParam";
 import { invoiceTabKey } from "../Main";
-import { formatDayjsDate } from "../../../util/helpers";
 
 const initialState = {
   fromDate: null,

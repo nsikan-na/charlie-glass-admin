@@ -13,7 +13,7 @@ import SignModal from "../../modals/invoice/SignModal";
 
 import Table from "../../components/ant-design/Table";
 import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
-import { formatDayjsDate, formatTimestampDate } from "../../../util/helpers";
+import { formatTimestampDate } from "../../../util/helpers";
 import { Tag } from "antd";
 import { EColors } from "../../../util/enums/colors";
 
