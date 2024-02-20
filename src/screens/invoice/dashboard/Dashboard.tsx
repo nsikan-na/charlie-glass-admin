@@ -9,8 +9,8 @@ import { invoiceTabKey } from "../Main";
 import { formatDayjsDate } from "../../../util/helpers";
 
 const initialState = {
-  fromDate: formatDayjsDate(dayjs().subtract(1, "month")),
-  toDate: formatDayjsDate(dayjs()),
+  fromDate: null,
+  toDate: null,
 };
 
 export default function Dashboard() {

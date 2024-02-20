@@ -23,8 +23,8 @@ import useQueryParam from "../../../hooks/queryParam/useQueryParam";
 import { invoiceTabKey } from "../Main";
 import Tooltip from "../../components/ant-design/Tooltip";
 const initialState = {
-  fromDate: formatDayjsDate(dayjs().subtract(3, "month")),
-  toDate: formatDayjsDate(dayjs()),
+  fromDate: null,
+  toDate: null,
 };
 
 const Invoice = (): JSX.Element => {
