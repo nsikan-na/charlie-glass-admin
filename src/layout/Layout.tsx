@@ -9,7 +9,7 @@ const Layout = () => {
   const { user }: any = useContext(Context);
   return (
     <>
-      {!user?.userId ? (
+      {user?.userId !== 0 && !user?.userId ? (
         <Login />
       ) : (
         <>
