@@ -17,14 +17,16 @@ export default function MobileServicesWidget({ input }: any) {
   };
 
   return (
-    <div className="w-full flex justify-center ">
+    <div className=" flex justify-center ">
       {(!data || data?.data?.content?.length === 0) && !isLoading ? (
         <div className="flex justify-center items-center mt-12">
           <Empty />
         </div>
       ) : (
         <Spinner spinning={isLoading}>
-          <Column className="w-3/4" {...config} />
+          <div className="w-3/4">
+            <Column className="w-full" {...config} />
+          </div>
         </Spinner>
       )}
     </div>

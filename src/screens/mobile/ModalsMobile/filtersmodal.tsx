@@ -7,15 +7,16 @@ import Input from "../../components/ant-design/form/Input";
 import { Selector } from "../../components/ant-design/form/Select";
 import dayjs from "dayjs";
 import { useEffect } from "react";
+import DatePicker from "../../components/ant-design/form/DatePicker";
 
 export default function MobileFiltersModal({
   isOpen,
   closeModal,
-  onRangeFilterChange,
   handleOnClose,
-  filters,
   onFilterChange,
   handleSelectFilter,
+  toDateFilterChange,
+  fromDateFilterChange,
 }: any) {
   useEffect(() => {}, [isOpen]);
   return (
@@ -35,14 +36,24 @@ export default function MobileFiltersModal({
       <div className="flex justify-center">
         <div className="grid grid-cols-1 gap-y-4">
           <div className="flex justify-between">
-            <RangePicker
-              onChange={onRangeFilterChange}
-              value={
-                filters?.fromDate && filters?.toDate
-                  ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
-                  : undefined
-              }
-            />
+            <div className="flex justify-center gap-4">
+              <div className="text-center ">
+                <div>From Date</div>
+                <DatePicker
+                  onChange={fromDateFilterChange}
+                  className="w-full"
+                  style={{ width: "100%" }}
+                />
+              </div>
+              <div className="text-center ">
+                <div>To Date</div>
+                <DatePicker
+                  onChange={toDateFilterChange}
+                  className="w-full"
+                  style={{ width: "100%" }}
+                />
+              </div>
+            </div>
           </div>
           <div className="flex justify-between">
             <Input

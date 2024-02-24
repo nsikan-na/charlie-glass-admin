@@ -1,4 +1,4 @@
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, FileOutlined, NumberOutlined } from "@ant-design/icons";
 import { Card, Space, Tag, Tooltip } from "antd";
 import { EColors } from "../../util/enums/colors";
 import { formatTimestampDate } from "../../util/helpers";
@@ -35,7 +35,7 @@ export default function MobileCards({
                 <EditOutlined
                   onClick={showSignModal}
                   style={{
-                    fontSize: "1.2rem",
+                    fontSize: "3rem",
                     cursor: "pointer",
                     color: EColors.primary,
                   }}
@@ -101,5 +101,70 @@ export default function MobileCards({
         </Card>
       </Space>
     </div>
+  );
+}
+
+export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
+  console.log("listing", listing);
+  return (
+    <Card
+      extra={
+        listing.isSigned === 0 ? (
+          <Tooltip title="Sign">
+            <EditOutlined
+              onClick={showSignModal}
+              style={{
+                fontSize: "2rem",
+                cursor: "pointer",
+                color: EColors.primary,
+              }}
+            />
+          </Tooltip>
+        ) : null
+      }
+      onClick={() => handleClick(listing)}
+      style={{ borderColor: `${EColors.primary}`, width: 300 }}
+      className="border-t-8 "
+      title={
+        <div className="flex justify-between">
+          <div>
+            {listing.isSigned === 1 ? (
+              <Tooltip title={"Invoice"}>
+                <FileOutlined
+                  style={{ color: EColors.blue, fontSize: "1.5rem" }}
+                />
+              </Tooltip>
+            ) : (
+              <Tooltip title={"Quote"}>
+                <FileOutlined
+                  style={{ color: EColors.green_6, fontSize: "1.5rem" }}
+                />
+              </Tooltip>
+            )}
+          </div>
+          <div className="text-2xl">#{listing.invoice_id}</div>
+          <div>
+            {listing.profit === null ? (
+              <div>{""}</div>
+            ) : (
+              <Tag color="green">{listing.profit}</Tag>
+            )}
+          </div>
+        </div>
+      }
+    >
+      <div className="flex justify-center">
+        <div className="grid grid-cols-1">
+          <div className="justify-self-center">{listing.receiver_name}</div>
+          <div>Creation Date: {formatTimestampDate(listing.creation_date)}</div>
+          <div>
+            Signature Date:{" "}
+            {listing.signature_date === null
+              ? ""
+              : formatTimestampDate(listing.signature_date)}
+          </div>
+        </div>
+      </div>
+    </Card>
   );
 }

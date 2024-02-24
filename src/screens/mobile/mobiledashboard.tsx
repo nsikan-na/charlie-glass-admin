@@ -22,6 +22,7 @@ import RangePicker from "../components/ant-design/form/RangePicker";
 import { SearchButton } from "../components/ant-design/buttons/SearchButton";
 import MobileProfitsWidget from "./WidgetsMobile/mobileprofitswidget";
 import MobileServicesWidget from "./WidgetsMobile/mobileserviceswidget";
+import DatePicker from "../components/ant-design/form/DatePicker";
 
 const initialState = {
   fromDate: formatDayjsDate(dayjs().subtract(1, "month")),
@@ -40,6 +41,20 @@ export default function MobileDashboard({ open, onClose, setScreen }: any) {
       toDate: e[1],
     }));
   };
+
+  const fromDateFilterChange = (_: unknown, e: any) => {
+    setFilters((prev: any) => ({
+      ...prev,
+      fromDate: e,
+    }));
+  };
+  const toDateFilterChange = (_: unknown, e: any) => {
+    setFilters((prev: any) => ({
+      ...prev,
+      toDate: e,
+    }));
+  };
+
   const items: MenuProps["items"] = [
     {
       key: "1",
@@ -102,13 +117,34 @@ export default function MobileDashboard({ open, onClose, setScreen }: any) {
           </span>
         </div>
       </Drawer>
-      <div className="mt-4  ml-4">
-        <Button onClick={setScreen}>View Listings</Button>
+      <div className="flex justify-center gap-5 mt-4  ">
+        <div className="text-center ">
+          <div>From Date</div>
+          <DatePicker
+            onChange={fromDateFilterChange}
+            className="w-full"
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div className="text-center ">
+          <div>To Date</div>
+          <DatePicker
+            onChange={toDateFilterChange}
+            className="w-full"
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div>
+          <div style={{ visibility: "hidden" }}>"</div>
+          <SearchButton onClick={() => setInput(filters)} />
+        </div>
       </div>
       <Divider>
         <BarChartOutlined /> Profits
       </Divider>
+
       <MobileProfitsWidget input={input} />
+
       <Divider>
         <BarChartOutlined /> Services
       </Divider>

@@ -15,10 +15,7 @@ export default function MobileProfitsWidget({ input }: any) {
     <div className="flex justify-center w-full mb-10">
       <Spinner spinning={isLoading}>
         <div className=" flex justify-center mt-6 w-full">
-          <div
-            className=" w-full grid grid-cols-1 justify-center "
-            style={{ height: "45vh" }}
-          >
+          <div className=" w-full grid grid-cols-1 justify-center ">
             <div style={{ overflowY: "scroll" }}>
               {data?.data?.content?.rows.map((row: any) => {
                 return <Profit row={row} key={uniqueId()} />;
@@ -26,7 +23,9 @@ export default function MobileProfitsWidget({ input }: any) {
             </div>
           </div>
         </div>
-        <Totals data={data} />
+        <div className="flex justify-center">
+          <Totals data={data} />
+        </div>
       </Spinner>
     </div>
   );
@@ -79,8 +78,7 @@ function Profit({ row }: any) {
 
 function Totals({ data }: any) {
   return (
-    <div className="gap-2 w-10/12 grid grid-cols-4 m-auto .auto-cols-min">
-      <div></div>
+    <div className="gap-2 w-10/12 grid grid-cols-3 m-auto .auto-cols-min">
       <div>
         <div>
           Total Revenue

@@ -8,8 +8,11 @@ import Mobile from "../screens/mobile/mobile";
 
 const Layout = () => {
   const { user }: any = useContext(Context);
+  const isDesktop = window.innerWidth <= 600;
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
-
+  const [isTablet, setIsTablet] = useState(
+    window.innerWidth <= 2560 && window.innerWidth >= 600,
+  );
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 430);
@@ -22,24 +25,40 @@ const Layout = () => {
     };
   }, []);
   return (
+    // <>
+    //   {!isMobile ? (
+    //     !user?.userId ? (
+    //       <Login />
+    //     ) : (
+    //       <>
+    //         <TopNavBar />
+    //         <main className="flex">
+    //           {/* <Sidebar /> */}
+    //           <Content className="w-full my-2 mx-10 p-0 ">
+    //             <Outlet />
+    //           </Content>
+    //         </main>
+    //       </>
+    //     )
+    //   ) : (
+    //     <Mobile />
+    //   )}
+    // </>
     <>
-      {!isMobile ? (
-        !user?.userId ? (
-          <Login />
-        ) : (
-          <>
-            <TopNavBar />
-            <main className="flex">
-              {/* <Sidebar /> */}
-              <Content className="w-full my-2 mx-10 p-0 ">
-                <Outlet />
-              </Content>
-            </main>
-          </>
-        )
+      {isDesktop && !user?.userId ? (
+        <Login />
       ) : (
-        <Mobile />
+        <>
+          <TopNavBar />
+          <main className="flex">
+            {/* <Sidebar /> */}
+            <Content className="w-full my-2 mx-10 p-0 ">
+              <Outlet />
+            </Content>
+          </main>{" "}
+        </>
       )}
+      {isMobile && <Mobile />}
     </>
   );
 };

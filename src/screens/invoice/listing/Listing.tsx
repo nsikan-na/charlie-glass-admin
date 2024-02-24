@@ -13,7 +13,7 @@ import SignModal from "../../modals/invoice/SignModal";
 
 import Table from "../../components/ant-design/Table";
 import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
-import { formatDayjsDate, formatTimestampDate } from "../../../util/helpers";
+import { formatTimestampDate } from "../../../util/helpers";
 import { Tag } from "antd";
 import { EColors } from "../../../util/enums/colors";
 
@@ -23,8 +23,8 @@ import useQueryParam from "../../../hooks/queryParam/useQueryParam";
 import { invoiceTabKey } from "../Main";
 import Tooltip from "../../components/ant-design/Tooltip";
 const initialState = {
-  fromDate: formatDayjsDate(dayjs().subtract(3, "month")),
-  toDate: formatDayjsDate(dayjs()),
+  fromDate: null,
+  toDate: null,
 };
 
 const Invoice = (): JSX.Element => {
