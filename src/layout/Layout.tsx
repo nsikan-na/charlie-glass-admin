@@ -8,14 +8,25 @@ import Mobile from "../screens/mobile/mobile";
 
 const Layout = () => {
   const { user }: any = useContext(Context);
-  const isDesktop = window.innerWidth <= 600;
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  const [isDesktop, setIsDeskTop] = useState(window.innerWidth >= 2560);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 430);
   const [isTablet, setIsTablet] = useState(
     window.innerWidth <= 2560 && window.innerWidth >= 600,
   );
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 430);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDeskTop(window.innerWidth >= 2560);
     };
 
     window.addEventListener("resize", handleResize);
