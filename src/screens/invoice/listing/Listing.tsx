@@ -271,17 +271,6 @@ const Invoice = (): JSX.Element => {
                 ))}
               </div>
             </Spinner>
-            <SignModal
-              currentInvoice={currentInvoice}
-              isSignModalOpen={isSignModalOpen}
-              closeSignModal={closeSignModal}
-            />
-            <InvoiceModal
-              closeModal={closeModal}
-              isModalOpen={isModalOpen}
-              pdf={pdfData?.data?.content}
-              isLoading={pdfLoading}
-            />
           </div>
           <Table
             className="hidden md:block"

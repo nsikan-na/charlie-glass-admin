@@ -7,27 +7,13 @@ import { formatTimestampDate } from "../../../util/helpers";
 export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
   return (
     <Card
-      extra={
-        listing.isSigned === 0 ? (
-          <Tooltip title="Sign">
-            <EditOutlined
-              onClick={showSignModal}
-              style={{
-                fontSize: "1.2rem",
-                cursor: "pointer",
-                color: EColors.primary,
-              }}
-            />
-          </Tooltip>
-        ) : null
-      }
       onClick={() => handleClick(listing)}
       style={{ borderColor: `${EColors.primary}` }}
       className="border-t-8 "
       title={
         <div className="flex justify-between">
           <div>
-            {listing.isSigned === 1 ? (
+            {listing?.isSigned === 1 ? (
               <Tooltip title={"Invoice"}>
                 <FileOutlined style={{ color: EColors.blue }} />
               </Tooltip>
@@ -37,12 +23,23 @@ export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
               </Tooltip>
             )}
           </div>
-          <div className="text-2xl">#{listing.invoice_id}</div>
+          <div className="text-2xl">#{listing?.invoice_id}</div>
           <div>
-            {listing.profit === null ? (
-              <div>{""}</div>
+            {listing?.signature_date ? (
+              <div>
+                <Tag color="green">{listing?.profit}</Tag>
+              </div>
             ) : (
-              <Tag color="green">{listing.profit}</Tag>
+              <Tooltip title="Sign">
+                <EditOutlined
+                  onClick={showSignModal}
+                  style={{
+                    fontSize: "1.2rem",
+                    cursor: "pointer",
+                    color: EColors.primary,
+                  }}
+                />
+              </Tooltip>
             )}
           </div>
         </div>
@@ -50,13 +47,15 @@ export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
     >
       <div className="flex justify-center">
         <div className="grid grid-cols-1">
-          <div className="justify-self-center">{listing.receiver_name}</div>
-          <div>Creation Date: {formatTimestampDate(listing.creation_date)}</div>
+          <div className="justify-self-center">{listing?.receiver_name}</div>
           <div>
-            Signature Date:{" "}
-            {listing.signature_date === null
+            Creation Date: {formatTimestampDate(listing?.creation_date)}
+          </div>
+          <div>
+            Signature Date: {""}
+            {!listing?.signature_date
               ? "-"
-              : formatTimestampDate(listing.signature_date)}
+              : formatTimestampDate(listing?.signature_date)}
           </div>
         </div>
       </div>
