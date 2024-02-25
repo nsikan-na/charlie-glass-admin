@@ -1,12 +1,18 @@
 import { Avatar, Layout } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+
 import { Context, userInitialState } from "../context";
 import setLocalStorage from "../hooks/localstorage/setLocalStorage";
 import ELocalStorage from "../util/enums/localStorage";
 import { ERoute } from "../util/enums/routes";
 import { EColors } from "../util/enums/colors";
-import { LogoutOutlined, UserOutlined, DownOutlined } from "@ant-design/icons";
+import {
+  LogoutOutlined,
+  UserOutlined,
+  DownOutlined,
+  MenuOutlined,
+} from "@ant-design/icons";
 import { MenuProps, Dropdown, Space } from "antd";
 
 const { Header } = Layout;
@@ -14,6 +20,7 @@ const { Header } = Layout;
 const TopNavBar = () => {
   const { user }: any = useContext(Context);
   const navigate = useNavigate();
+
   const items: MenuProps["items"] = [
     {
       key: "1",
@@ -32,6 +39,26 @@ const TopNavBar = () => {
     },
   ];
 
+  function navigateDashboard() {
+    // window.history.push(ETabs.INVOICEDASHBOARD);
+    navigate(ETabs.INVOICEDASHBOARD, { state: { needRefresh: true } });
+  }
+
+  function navigateListing() {
+    navigate(ETabs.INVOICELISTING);
+  }
+
+  const screenItems: MenuProps["items"] = [
+    {
+      key: "1",
+      label: <div onClick={navigateDashboard}>Dashboard</div>,
+    },
+    {
+      key: "2",
+      label: <div onClick={navigateListing}>Listing</div>,
+    },
+  ];
+
   return (
     <Header
       className="bg-white "
@@ -40,13 +67,31 @@ const TopNavBar = () => {
         borderTop: `.5rem solid ${EColors.primary}`,
       }}
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between ">
         <div
           onClick={() => navigate(ERoute.ROOT)}
-          className="mr-4 mt-3 text-2xl  cursor-pointer"
+          className="mr-4 mt-3 text-2xl hidden md:block cursor-pointer"
         >
           Charlie Glass Admin
         </div>
+        <div className="md:hidden">
+          <Dropdown menu={{ items: screenItems }} className="mb-2 mt-4">
+            <a onClick={(e) => e.preventDefault()}>
+              <Space>
+                <span className="">
+                  <MenuOutlined />
+                </span>
+              </Space>
+            </a>
+          </Dropdown>
+        </div>
+        <div
+          onClick={() => navigate(ERoute.ROOT)}
+          className="mr-4 mt-3 text-2xl md:hidden cursor-pointer"
+        >
+          CGI
+        </div>
+
         <div>
           <Dropdown menu={{ items }} className="mb-2 mt-4">
             <a onClick={(e) => e.preventDefault()}>
@@ -58,7 +103,8 @@ const TopNavBar = () => {
                     style={{ backgroundColor: EColors.primary }}
                     icon={<UserOutlined style={{ color: EColors.white }} />}
                   />
-                  {`${user.userName}`}
+
+                  <div className="hidden md:inline">{`${user.userName}`}</div>
                 </span>
                 <DownOutlined />
               </Space>
@@ -69,5 +115,9 @@ const TopNavBar = () => {
     </Header>
   );
 };
+enum ETabs {
+  INVOICEDASHBOARD = "/invoice?tab=dashboard",
+  INVOICELISTING = "/invoice?tab=listing",
+}
 
 export default TopNavBar;
