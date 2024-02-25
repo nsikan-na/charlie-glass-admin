@@ -39,22 +39,16 @@ const TopNavBar = () => {
     },
   ];
 
-  function navigateDashboard() {
-    navigate(ETabs.INVOICEDASHBOARD, { state: { needRefresh: true } });
-  }
-
-  function navigateListing() {
-    navigate(ETabs.INVOICELISTING);
-  }
-
   const screenItems: MenuProps["items"] = [
     {
       key: "1",
-      label: <div onClick={navigateDashboard}>Dashboard</div>,
+      label: (
+        <div onClick={() => navigate(ETabs.INVOICE_DASHBOARD)}>Dashboard</div>
+      ),
     },
     {
       key: "2",
-      label: <div onClick={navigateListing}>Listing</div>,
+      label: <div onClick={() => navigate(ETabs.INVOICE_LISTING)}>Listing</div>,
     },
   ];
 
@@ -115,8 +109,8 @@ const TopNavBar = () => {
   );
 };
 enum ETabs {
-  INVOICEDASHBOARD = "/invoice?tab=dashboard",
-  INVOICELISTING = "/invoice?tab=listing",
+  INVOICE_DASHBOARD = "/invoice?tab=dashboard",
+  INVOICE_LISTING = "/invoice?tab=listing",
 }
 
 export default TopNavBar;
