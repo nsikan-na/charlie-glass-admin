@@ -1,0 +1,66 @@
+import { Card, Tag } from "antd";
+import Tooltip from "../../components/ant-design/Tooltip";
+import { EColors } from "../../../util/enums/colors";
+import { EditOutlined, FileOutlined } from "@ant-design/icons";
+import { formatTimestampDate } from "../../../util/helpers";
+
+export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
+  console.log("listing", listing);
+  return (
+    <Card
+      extra={
+        listing.isSigned === 0 ? (
+          <Tooltip title="Sign">
+            <EditOutlined
+              onClick={showSignModal}
+              style={{
+                fontSize: "1.2rem",
+                cursor: "pointer",
+                color: EColors.primary,
+              }}
+            />
+          </Tooltip>
+        ) : null
+      }
+      onClick={() => handleClick(listing)}
+      style={{ borderColor: `${EColors.primary}` }}
+      className="border-t-8 "
+      title={
+        <div className="flex justify-between">
+          <div>
+            {listing.isSigned === 1 ? (
+              <Tooltip title={"Invoice"}>
+                <FileOutlined style={{ color: EColors.blue }} />
+              </Tooltip>
+            ) : (
+              <Tooltip title={"Quote"}>
+                <FileOutlined style={{ color: EColors.green_6 }} />
+              </Tooltip>
+            )}
+          </div>
+          <div className="text-2xl">#{listing.invoice_id}</div>
+          <div>
+            {listing.profit === null ? (
+              <div>{""}</div>
+            ) : (
+              <Tag color="green">{listing.profit}</Tag>
+            )}
+          </div>
+        </div>
+      }
+    >
+      <div className="flex justify-center">
+        <div className="grid grid-cols-1">
+          <div className="justify-self-center">{listing.receiver_name}</div>
+          <div>Creation Date: {formatTimestampDate(listing.creation_date)}</div>
+          <div>
+            Signature Date:{" "}
+            {listing.signature_date === null
+              ? "-"
+              : formatTimestampDate(listing.signature_date)}
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+}

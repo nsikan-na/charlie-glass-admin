@@ -6,13 +6,16 @@ import useGetInvoiceById from "../../../hooks/invoices/useGetInvoiceById";
 
 import Input from "../../components/ant-design/form/Input";
 import RangePicker from "../../components/ant-design/form/RangePicker";
-import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../../components/ant-design/buttons/SearchButton";
 import { Selector } from "../../components/ant-design/form/Select";
 import SignModal from "../../modals/invoice/SignModal";
-
 import Table from "../../components/ant-design/Table";
-import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  EyeOutlined,
+  FileOutlined,
+  FilterOutlined,
+} from "@ant-design/icons";
 import { formatTimestampDate } from "../../../util/helpers";
 import { Tag } from "antd";
 import { EColors } from "../../../util/enums/colors";
@@ -22,6 +25,12 @@ import dayjs from "dayjs";
 import useQueryParam from "../../../hooks/queryParam/useQueryParam";
 import { invoiceTabKey } from "../Main";
 import Tooltip from "../../components/ant-design/Tooltip";
+
+import Spinner from "../../components/ant-design/Spinner";
+import { uniqueId } from "lodash";
+import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
+import { NewMobileCard } from "./ListingCards";
+
 const initialState = {
   fromDate: null,
   toDate: null,
@@ -200,17 +209,15 @@ const Invoice = (): JSX.Element => {
   return (
     <>
       {!isCreateScreenOpen ? (
-        <div className="w-6/8 mx-4">
-          <div className="flex justify-end ">
-            <PrimaryButton
-              onClick={() => {
-                setIsCreateScreenOpen(true);
-              }}
-            >
-              Create New Quote
-            </PrimaryButton>
+        <div className="w-6/8 ">
+          <div className="flex justify-end  "></div>
+          <div className="my-2">
+            <SecondaryButton>
+              <FilterOutlined />
+              Apply Filters
+            </SecondaryButton>
           </div>
-          <div className="mb-4">
+          <div className="mb-4 hidden ">
             <RangePicker
               onChange={onRangeFilterChange}
               value={
@@ -248,7 +255,36 @@ const Invoice = (): JSX.Element => {
               <SearchButton className="" onClick={() => setInput(filters)} />
             </span>
           </div>
+          <div className="flex justify-center md:hidden ">
+            <Spinner spinning={isLoading}>
+              <div className="grid grid-cols-1 gap-y-8 ">
+                {data?.data?.content?.map((listing: any) => (
+                  <NewMobileCard
+                    key={uniqueId()}
+                    listing={listing}
+                    isLoading={isLoading}
+                    showSignModal={showSignModal}
+                    showModal={showModal}
+                    setCurrentInvoice={setCurrentInvoice}
+                    handleClick={handleClick}
+                  />
+                ))}
+              </div>
+            </Spinner>
+            <SignModal
+              currentInvoice={currentInvoice}
+              isSignModalOpen={isSignModalOpen}
+              closeSignModal={closeSignModal}
+            />
+            <InvoiceModal
+              closeModal={closeModal}
+              isModalOpen={isModalOpen}
+              pdf={pdfData?.data?.content}
+              isLoading={pdfLoading}
+            />
+          </div>
           <Table
+            className="hidden md:block"
             dataSource={data?.data?.content}
             columns={columns}
             pagination={false}

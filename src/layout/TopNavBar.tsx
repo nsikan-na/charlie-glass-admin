@@ -53,7 +53,7 @@ const TopNavBar = () => {
   ];
 
   return (
-    <div className="flex justify-between ">
+    <div className="flex justify-between content-center my-2">
       <div
         onClick={() => navigate(ERoute.ROOT)}
         className="mr-4 mt-3 text-2xl hidden md:block cursor-pointer"
@@ -61,7 +61,7 @@ const TopNavBar = () => {
         Charlie Glass Admin
       </div>
       <div className="md:hidden">
-        <Dropdown menu={{ items: screenItems }} className="mb-2 mt-4">
+        <Dropdown menu={{ items: screenItems }} className="mb-2 4">
           <a onClick={(e) => e.preventDefault()}>
             <Space>
               <span className="">
@@ -73,7 +73,7 @@ const TopNavBar = () => {
       </div>
       <div
         onClick={() => navigate(ERoute.ROOT)}
-        className="mr-4 mt-3 text-2xl md:hidden cursor-pointer"
+        className="mr-4  text-2xl md:hidden cursor-pointer"
       >
         CGI
       </div>
