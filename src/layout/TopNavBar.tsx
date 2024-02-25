@@ -40,7 +40,6 @@ const TopNavBar = () => {
   ];
 
   function navigateDashboard() {
-    // window.history.push(ETabs.INVOICEDASHBOARD);
     navigate(ETabs.INVOICEDASHBOARD, { state: { needRefresh: true } });
   }
 
