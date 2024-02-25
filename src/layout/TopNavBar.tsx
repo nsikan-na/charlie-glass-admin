@@ -53,59 +53,51 @@ const TopNavBar = () => {
   ];
 
   return (
-    <Header
-      className="bg-white "
-      style={{
-        borderBottom: `.1rem solid ${EColors.gray_4}`,
-        borderTop: `.5rem solid ${EColors.primary}`,
-      }}
-    >
-      <div className="flex justify-between ">
-        <div
-          onClick={() => navigate(ERoute.ROOT)}
-          className="mr-4 mt-3 text-2xl hidden md:block cursor-pointer"
-        >
-          Charlie Glass Admin
-        </div>
-        <div className="md:hidden">
-          <Dropdown menu={{ items: screenItems }} className="mb-2 mt-4">
-            <a onClick={(e) => e.preventDefault()}>
-              <Space>
-                <span className="">
-                  <MenuOutlined />
-                </span>
-              </Space>
-            </a>
-          </Dropdown>
-        </div>
-        <div
-          onClick={() => navigate(ERoute.ROOT)}
-          className="mr-4 mt-3 text-2xl md:hidden cursor-pointer"
-        >
-          CGI
-        </div>
-
-        <div>
-          <Dropdown menu={{ items }} className="mb-2 mt-4">
-            <a onClick={(e) => e.preventDefault()}>
-              <Space>
-                <span className="">
-                  <Avatar
-                    size="small"
-                    className="mr-1 self-center"
-                    style={{ backgroundColor: EColors.primary }}
-                    icon={<UserOutlined style={{ color: EColors.white }} />}
-                  />
-
-                  <div className="hidden md:inline">{`${user.userName}`}</div>
-                </span>
-                <DownOutlined />
-              </Space>
-            </a>
-          </Dropdown>
-        </div>
+    <div className="flex justify-between ">
+      <div
+        onClick={() => navigate(ERoute.ROOT)}
+        className="mr-4 mt-3 text-2xl hidden md:block cursor-pointer"
+      >
+        Charlie Glass Admin
       </div>
-    </Header>
+      <div className="md:hidden">
+        <Dropdown menu={{ items: screenItems }} className="mb-2 mt-4">
+          <a onClick={(e) => e.preventDefault()}>
+            <Space>
+              <span className="">
+                <MenuOutlined />
+              </span>
+            </Space>
+          </a>
+        </Dropdown>
+      </div>
+      <div
+        onClick={() => navigate(ERoute.ROOT)}
+        className="mr-4 mt-3 text-2xl md:hidden cursor-pointer"
+      >
+        CGI
+      </div>
+
+      <div>
+        <Dropdown menu={{ items }} className="mb-2 mt-4">
+          <a onClick={(e) => e.preventDefault()}>
+            <Space>
+              <span className="">
+                <Avatar
+                  size="small"
+                  className="mr-1 self-center"
+                  style={{ backgroundColor: EColors.primary }}
+                  icon={<UserOutlined style={{ color: EColors.white }} />}
+                />
+
+                <div className="hidden md:inline">{`${user.userName}`}</div>
+              </span>
+              <DownOutlined />
+            </Space>
+          </a>
+        </Dropdown>
+      </div>
+    </div>
   );
 };
 enum ETabs {
