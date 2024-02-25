@@ -32,12 +32,12 @@ const Login: React.FC = () => {
       }}
     >
       <div
-        className="flex justify-center items-center p-20 bg-white shadow-sm drop-shadow-sm "
+        className="flex justify-center items-center p-10 md:p-16 xl:p-20 bg-white shadow-sm drop-shadow-sm "
         style={{ borderTop: `.5rem solid ${EColors.primary}` }}
       >
         <div style={{ margin: "auto" }}>
           <Form>
-            <div className="text-center text-2xl my-3">
+            <div className="text-center md:text-2xl text-lg my-3">
               LOG IN TO YOUR ACCOUNT
             </div>
             <div>Username</div>
@@ -70,7 +70,7 @@ const Login: React.FC = () => {
                 checkLogin.mutate(demoLogin);
               }}
             >
-              <a>Log In As Demo User</a>
+              <a className="mb-4 md:mb-0">Log In As Demo User</a>
             </div>
           </Form>
         </div>
