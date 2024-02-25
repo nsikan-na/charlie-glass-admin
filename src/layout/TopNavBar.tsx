@@ -1,4 +1,4 @@
-import { Avatar, Layout } from "antd";
+import { Avatar } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
@@ -14,8 +14,6 @@ import {
   MenuOutlined,
 } from "@ant-design/icons";
 import { MenuProps, Dropdown, Space } from "antd";
-
-const { Header } = Layout;
 
 const TopNavBar = () => {
   const { user }: any = useContext(Context);
