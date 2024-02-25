@@ -1,7 +1,7 @@
 import { Tabs as AntTabs } from "antd";
 import type { TabsProps } from "antd";
 import Dashboard from "./dashboard/Dashboard";
-import Invoice from "./listing/Listing";
+import Listing from "./listing/Listing";
 import useQueryParam from "../../hooks/queryParam/useQueryParam";
 
 export default function Main() {
@@ -11,13 +11,28 @@ export default function Main() {
 
   const changeQuery = (value: string) => setQuery(invoiceTabKey, value);
 
+  const render = () => {
+    switch (getQuery(invoiceTabKey)) {
+      case EInvoiceTabs.DASHBOARD: {
+        return <Dashboard />;
+      }
+      case EInvoiceTabs.LISTING: {
+        return <Listing />;
+      }
+      default:
+        return <Dashboard />;
+    }
+  };
   return (
-    <AntTabs
-      className=" bg-white"
-      defaultActiveKey={getQuery(invoiceTabKey) || undefined}
-      items={items}
-      onChange={changeQuery}
-    />
+    <>
+      <AntTabs
+        className=" bg-white hidden md:block "
+        defaultActiveKey={getQuery(invoiceTabKey) || undefined}
+        items={items}
+        onChange={changeQuery}
+      />
+      <div className="md:hidden">{render()}</div>
+    </>
   );
 }
 export const invoiceTabKey = "tab";
@@ -35,6 +50,6 @@ const items: TabsProps["items"] = [
   {
     key: EInvoiceTabs.LISTING,
     label: "Listing",
-    children: <Invoice />,
+    children: <Listing />,
   },
 ];

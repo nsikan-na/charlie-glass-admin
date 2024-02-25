@@ -31,17 +31,19 @@ export default function Dashboard() {
   };
   return (
     <div>
-      <RangePicker
-        onChange={onRangeFilterChange}
-        value={
-          filters?.fromDate && filters?.toDate
-            ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
-            : undefined
-        }
-      />
-      <span className="ml-2">
-        <SearchButton onClick={() => setInput(filters)} />
-      </span>
+      <div className="flex ">
+        <RangePicker
+          onChange={onRangeFilterChange}
+          value={
+            filters?.fromDate && filters?.toDate
+              ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
+              : undefined
+          }
+        />
+        <span className="ml-2">
+          <SearchButton onClick={() => setInput(filters)} />
+        </span>
+      </div>
       <div className="flex justify-center">
         <div className="w-full">
           <ProfitsWidget input={input} />
