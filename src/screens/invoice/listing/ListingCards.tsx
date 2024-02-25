@@ -7,7 +7,7 @@ import { formatTimestampDate } from "../../../util/helpers";
 export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
   return (
     <Card
-      onClick={() => handleClick(listing)}
+      onClick={handleClick(listing)}
       style={{ borderColor: `${EColors.primary}` }}
       className="border-t-8 "
       title={
