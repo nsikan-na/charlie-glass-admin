@@ -5,7 +5,6 @@ import { EditOutlined, FileOutlined } from "@ant-design/icons";
 import { formatTimestampDate } from "../../../util/helpers";
 
 export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
-  console.log("listing", listing);
   return (
     <Card
       extra={
