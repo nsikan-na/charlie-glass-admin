@@ -23,7 +23,7 @@ export default function ServicesWidget({ input }: any) {
   };
 
   return (
-    <div className="w-full">
+    <div className=" mt-1 ">
       {(!data || data?.data?.content?.length === 0) && !isLoading ? (
         <div className="flex justify-center items-center mt-12">
           <Empty />

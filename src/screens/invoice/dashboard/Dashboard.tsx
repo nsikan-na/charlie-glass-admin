@@ -1,13 +1,11 @@
 import ServicesWidget from "./ServicesWidget";
 import ProfitsWidget from "./ProfitsWidget";
 import { useEffect, useState } from "react";
-import RangePicker from "../../components/ant-design/form/RangePicker";
 import { SearchButton } from "../../components/ant-design/buttons/SearchButton";
-import dayjs from "dayjs";
 import useQueryParam from "../../../hooks/queryParam/useQueryParam";
 import { invoiceTabKey } from "../Main";
-import Input from "../../components/ant-design/form/Input";
 import DatePicker from "../../components/ant-design/form/DatePicker";
+import { Divider } from "antd";
 
 const initialState = {
   fromDate: null,
@@ -23,14 +21,6 @@ export default function Dashboard() {
     setFilters(initialState);
     setInput(initialState);
   }, [getQuery(invoiceTabKey)]);
-
-  const onRangeFilterChange = (_: unknown, e: any) => {
-    setFilters((prev: any) => ({
-      ...prev,
-      fromDate: e[0],
-      toDate: e[1],
-    }));
-  };
 
   const onToFilterChange = (_: unknown, e: any) => {
     setFilters((prev: any) => ({
@@ -69,34 +59,19 @@ export default function Dashboard() {
           <SearchButton onClick={() => setInput(filters)} />
         </div>
       </div>
-      {/* <div className=" flex md:hidden">
-        <RangePicker
-          onChange={onRangeFilterChange}
-          value={
-            filters?.fromDate && filters?.toDate
-              ? [dayjs(filters?.fromDate), dayjs(filters?.toDate)]
-              : undefined
-          }
-        />
-        <span className="ml-2">
-          <SearchButton onClick={() => setInput(filters)} />
-        </span>
-      </div> */}
-      <div className="flex justify-center ">
-        <div className="w-full">
-          <ProfitsWidget input={input} />
-        </div>
-        <div className="w-full">
-          <ServicesWidget input={input} />
-        </div>
-      </div>
-      <div className="flex justify-center w-full">
-        <div className="md:hidden grid grid-cols-1">
-          <div className="w-full">
+      <div className=" flex  justify-center w-full mt-4 ">
+        <div className="md:flex md:justify-between md:gap-4 grid grid-cols-1 md:w-full  ">
+          <div className="md:w-1/2  ">
+            <div>
+              <Divider>Profits</Divider>
+            </div>
             <ProfitsWidget input={input} />
           </div>
-          <div className="w-full">
-            <ServicesWidget input={input} />
+          <div className="md:w-1/2 ">
+            <div className="w-full">
+              <Divider>Services</Divider>
+              <ServicesWidget input={input} />
+            </div>
           </div>
         </div>
       </div>
