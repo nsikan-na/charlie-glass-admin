@@ -12,7 +12,7 @@ export default function ProfitsWidget({ input }: any) {
   const { data, isLoading } = useGetProfits(input);
 
   return (
-    <div className="mt-1 md:w-full  ">
+    <div className="md:w-full  ">
       <Spinner spinning={isLoading}>
         <div className=" flex justify-center  ">
           <div
@@ -31,8 +31,8 @@ export default function ProfitsWidget({ input }: any) {
             </div>
 
             <Divider>Totals</Divider>
-            <div className="flex justify-center mb-3">
-              <div className="mt-2 ">
+            <div className="">
+              <div className="">
                 {data?.data?.content?.rows && <Totals data={data} />}
               </div>
             </div>
@@ -47,32 +47,36 @@ function Profit({ row }: any) {
   return (
     <>
       <div>
-        <div className=" text-center items-center  ">
+        <div className=" text-center items-center font-semibold">
           {formatTimestampDate(row.signature_date)}
         </div>
       </div>
-      <div className=" gap-8 w-10/12 grid grid-cols-3 m-auto .auto-cols-min mt-1">
-        <div>
+      <div className=" gap-8 w-10/12 grid grid-cols-3 m-auto mt-1">
+        <div className="flex justify-center text-center">
           <div>
             Revenue
             <div>
-              <Tag color="blue">{row.revenue}</Tag>
+              <Tag color="blue" className="md:text-xl ">
+                {row.revenue}
+              </Tag>
             </div>
           </div>
         </div>
-        <div>
+        <div className="flex justify-center text-center">
           <div>
             Expense
             <div>
-              <Tag color="red">{row.expense}</Tag>
+              <Tag color="red" className="md:text-xl">
+                {row.expense}
+              </Tag>
             </div>
           </div>
         </div>
-        <div>
+        <div className="flex justify-center text-center">
           <div>
             Profit
             <div>
-              <Tag className=" " color="green">
+              <Tag className="md:text-xl" color="green">
                 {row.profit}
               </Tag>
             </div>
@@ -86,11 +90,11 @@ function Profit({ row }: any) {
 function Totals({ data }: any) {
   return (
     <div className=" gap-8 w-10/12 grid grid-cols-3 m-auto .auto-cols-min">
-      <div>
+      <div className="flex justify-center">
         <div>
           Revenue
           <div>
-            <Tag color="blue">
+            <Tag color="blue" className="md:text-xl">
               {decimalThousandsCommaSeparated(
                 data?.data?.content?.totalRevenue,
               )}
@@ -98,11 +102,11 @@ function Totals({ data }: any) {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex justify-center">
         <div>
           Expense
           <div>
-            <Tag color="red">
+            <Tag color="red" className="md:text-xl">
               {decimalThousandsCommaSeparated(
                 data?.data?.content?.totalExpense,
               )}
@@ -110,11 +114,11 @@ function Totals({ data }: any) {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex justify-center">
         <div>
           Profit
           <div>
-            <Tag color="green">
+            <Tag color="green" className="md:text-xl">
               {decimalThousandsCommaSeparated(data?.data?.content?.totalProfit)}
             </Tag>
           </div>
