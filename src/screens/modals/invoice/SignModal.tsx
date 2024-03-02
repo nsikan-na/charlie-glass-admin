@@ -37,6 +37,10 @@ export default function SignModal({
     setInput(initialState);
   }, [isSignModalOpen]);
 
+  function addSigned() {
+    add.mutate(input);
+  }
+
   return (
     <Modal
       title={"Sign Quote"}
@@ -47,13 +51,7 @@ export default function SignModal({
           <SecondaryButton className="mr-2" onClick={closeSignModal}>
             Cancel
           </SecondaryButton>
-          <PrimaryButton
-            onClick={() => {
-              add.mutate(input);
-            }}
-          >
-            Submit
-          </PrimaryButton>
+          <PrimaryButton onClick={addSigned}>Submit</PrimaryButton>
         </div>
       )}
     >

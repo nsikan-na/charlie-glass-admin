@@ -1,4 +1,4 @@
-import { Tag } from "antd";
+import { Divider, Tag } from "antd";
 import {
   decimalThousandsCommaSeparated,
   formatTimestampDate,
@@ -12,20 +12,29 @@ export default function ProfitsWidget({ input }: any) {
   const { data, isLoading } = useGetProfits(input);
 
   return (
-    <div className="mt-8  ">
+    <div className="md:w-full  ">
       <Spinner spinning={isLoading}>
-        <div className=" flex justify-center mt-14">
+        <div className=" flex justify-center  ">
           <div
             className=" w-10/12 grid grid-cols-1 justify-center "
-            style={{ height: "45vh" }}
+            style={{ height: "70vh" }}
           >
             <div style={{ overflowY: "scroll" }}>
               {data?.data?.content?.rows.map((row: any) => {
-                return <Profit row={row} key={uniqueId()} />;
+                return (
+                  <div key={uniqueId()}>
+                    <Profit row={row} />
+                    <Divider />
+                  </div>
+                );
               })}
             </div>
-            <div className="mt-5">
-              {data?.data?.content?.rows && <Totals data={data} />}
+
+            <Divider>Totals</Divider>
+            <div className="">
+              <div className="">
+                {data?.data?.content?.rows && <Totals data={data} />}
+              </div>
             </div>
           </div>
         </div>
@@ -36,55 +45,56 @@ export default function ProfitsWidget({ input }: any) {
 
 function Profit({ row }: any) {
   return (
-    <div className=" w-10/12 grid grid-cols-4 m-auto .auto-cols-min mt-4">
+    <>
       <div>
-        <div className="text-lg text-center items-center mx-6 mt-4">
+        <div className=" text-center items-center font-semibold">
           {formatTimestampDate(row.signature_date)}
         </div>
       </div>
-      <div>
-        <div>
-          Revenue
+      <div className=" gap-8 w-10/12 grid grid-cols-3 m-auto mt-1">
+        <div className="flex justify-center text-center">
           <div>
-            <Tag className=" text-lg w-8/12 h-7" color="blue">
-              {row.revenue}
-            </Tag>
+            Revenue
+            <div>
+              <Tag color="blue" className="md:text-lg ">
+                {row.revenue}
+              </Tag>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center text-center">
+          <div>
+            Expense
+            <div>
+              <Tag color="red" className="md:text-lg">
+                {row.expense}
+              </Tag>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center text-center">
+          <div>
+            Profit
+            <div>
+              <Tag className="md:text-lg" color="green">
+                {row.profit}
+              </Tag>
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <div>
-          Expense
-          <div>
-            <Tag className=" text-lg w-8/12 h-7" color="red">
-              {row.expense}
-            </Tag>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div>
-          Profit
-          <div>
-            <Tag className=" text-lg w-8/12 h-7" color="green">
-              {row.profit}
-            </Tag>
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 
 function Totals({ data }: any) {
   return (
-    <div className=" w-10/12 grid grid-cols-4 m-auto .auto-cols-min">
-      <div></div>
-      <div>
+    <div className=" gap-8 w-10/12 grid grid-cols-3 m-auto .auto-cols-min">
+      <div className="flex justify-center">
         <div>
-          Total Revenue
+          Revenue
           <div>
-            <Tag className=" text-lg w-8/12 h-7" color="blue">
+            <Tag color="blue" className="md:text-lg">
               {decimalThousandsCommaSeparated(
                 data?.data?.content?.totalRevenue,
               )}
@@ -92,11 +102,11 @@ function Totals({ data }: any) {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex justify-center">
         <div>
-          Total Expense
+          Expense
           <div>
-            <Tag className=" text-lg w-8/12 h-7" color="red">
+            <Tag color="red" className="md:text-lg">
               {decimalThousandsCommaSeparated(
                 data?.data?.content?.totalExpense,
               )}
@@ -104,11 +114,11 @@ function Totals({ data }: any) {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex justify-center">
         <div>
-          Total Profit
+          Profit
           <div>
-            <Tag className=" text-lg w-8/12 h-7" color="green">
+            <Tag color="green" className="md:text-lg">
               {decimalThousandsCommaSeparated(data?.data?.content?.totalProfit)}
             </Tag>
           </div>

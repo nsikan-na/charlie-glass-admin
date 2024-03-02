@@ -6,13 +6,16 @@ import useGetInvoiceById from "../../../hooks/invoices/useGetInvoiceById";
 
 import Input from "../../components/ant-design/form/Input";
 import RangePicker from "../../components/ant-design/form/RangePicker";
-import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
 import { SearchButton } from "../../components/ant-design/buttons/SearchButton";
 import { Selector } from "../../components/ant-design/form/Select";
 import SignModal from "../../modals/invoice/SignModal";
-
 import Table from "../../components/ant-design/Table";
-import { EditOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  EyeOutlined,
+  FileOutlined,
+  FilterOutlined,
+} from "@ant-design/icons";
 import { formatTimestampDate } from "../../../util/helpers";
 import { Tag } from "antd";
 import { EColors } from "../../../util/enums/colors";
@@ -22,6 +25,14 @@ import dayjs from "dayjs";
 import useQueryParam from "../../../hooks/queryParam/useQueryParam";
 import { invoiceTabKey } from "../Main";
 import Tooltip from "../../components/ant-design/Tooltip";
+
+import Spinner from "../../components/ant-design/Spinner";
+import { uniqueId } from "lodash";
+import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
+import { NewMobileCard } from "./ListingCards";
+import FiltersModal from "../../modals/invoice/FiltersModal";
+import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
+
 const initialState = {
   fromDate: null,
   toDate: null,
@@ -41,6 +52,14 @@ const Invoice = (): JSX.Element => {
   };
   const closeSignModal = () => {
     setSignModalOpen(false);
+  };
+
+  const [isFilterModalOpen, setFilterModalOpen] = useState(false);
+  const showFiltersModal = () => {
+    setFilterModalOpen(true);
+  };
+  const closeFiltersModal = () => {
+    setFilterModalOpen(false);
   };
 
   const { data, isLoading }: any = useGetAllInvoices(input);
@@ -172,6 +191,7 @@ const Invoice = (): JSX.Element => {
         <div className="flex gap-5" onClick={() => handleClick(record)}>
           <Tooltip title="View">
             <EyeOutlined
+              className="hidden lg:block"
               style={{
                 fontSize: "1.2rem",
                 cursor: "pointer",
@@ -197,12 +217,18 @@ const Invoice = (): JSX.Element => {
     },
   ];
 
+  function handleFilterSubmit() {
+    setInput(filters);
+    closeFiltersModal();
+  }
+
   return (
     <>
       {!isCreateScreenOpen ? (
-        <div className="w-6/8 mx-4">
-          <div className="flex justify-end ">
+        <div className="w-6/8 ">
+          <div className="lg:flex justify-end  hidden mb-2">
             <PrimaryButton
+              className=""
               onClick={() => {
                 setIsCreateScreenOpen(true);
               }}
@@ -210,7 +236,14 @@ const Invoice = (): JSX.Element => {
               Create New Quote
             </PrimaryButton>
           </div>
-          <div className="mb-4">
+          <div className="flex justify-end  "></div>
+          <div className="my-3 lg:hidden">
+            <SecondaryButton onClick={showFiltersModal}>
+              <FilterOutlined />
+              Apply Filters
+            </SecondaryButton>
+          </div>
+          <div className="w-full mb-4 mr-3 hidden  lg:flex">
             <RangePicker
               onChange={onRangeFilterChange}
               value={
@@ -221,20 +254,20 @@ const Invoice = (): JSX.Element => {
             />
             <Input
               addonBefore="Id"
-              className="w-72 mx-2"
+              className=" mx-2 w-28"
               onChange={onFilterChange("invoice_id")}
             />
             <span className="mx-2">
               <Input
                 addonBefore="Name"
-                className="w-72"
+                className="w-60"
                 onChange={onFilterChange("name")}
               />
             </span>
             <span className="mx-2">
               <Selector
                 onChange={handleSelectFilter("isSigned")}
-                className="w-40"
+                className="w-full"
                 defaultValue="All"
                 style={{ width: 120 }}
                 options={[
@@ -245,10 +278,28 @@ const Invoice = (): JSX.Element => {
               />
             </span>
             <span>
-              <SearchButton className="" onClick={() => setInput(filters)} />
+              <SearchButton className="" onClick={handleFilterSubmit} />
             </span>
           </div>
+          <div className="flex justify-center md:hidden ">
+            <Spinner spinning={isLoading}>
+              <div className="grid grid-cols-1 gap-y-8 ">
+                {data?.data?.content?.map((listing: any) => (
+                  <NewMobileCard
+                    key={uniqueId()}
+                    listing={listing}
+                    isLoading={isLoading}
+                    showSignModal={showSignModal}
+                    showModal={showModal}
+                    setCurrentInvoice={setCurrentInvoice}
+                    handleClick={handleClick}
+                  />
+                ))}
+              </div>
+            </Spinner>
+          </div>
           <Table
+            className="hidden md:block"
             dataSource={data?.data?.content}
             columns={columns}
             pagination={false}
@@ -265,6 +316,13 @@ const Invoice = (): JSX.Element => {
             isModalOpen={isModalOpen}
             pdf={pdfData?.data?.content}
             isLoading={pdfLoading}
+          />
+          <FiltersModal
+            closeFiltersModal={closeFiltersModal}
+            isFilterModalOpen={isFilterModalOpen}
+            onFilterChange={onFilterChange}
+            handleSelectFilter={handleSelectFilter}
+            handleFilterSubmit={handleFilterSubmit}
           />
         </div>
       ) : (

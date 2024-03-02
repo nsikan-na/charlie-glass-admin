@@ -1,7 +1,6 @@
-import { Avatar, Layout } from "antd";
+import { Avatar } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-
 import { Context, userInitialState } from "../context";
 import setLocalStorage from "../hooks/localstorage/setLocalStorage";
 import ELocalStorage from "../util/enums/localStorage";
@@ -10,12 +9,10 @@ import { EColors } from "../util/enums/colors";
 import {
   LogoutOutlined,
   UserOutlined,
-  DownOutlined,
   MenuOutlined,
+  DownOutlined,
 } from "@ant-design/icons";
 import { MenuProps, Dropdown, Space } from "antd";
-
-const { Header } = Layout;
 
 const TopNavBar = () => {
   const { user }: any = useContext(Context);
@@ -32,7 +29,7 @@ const TopNavBar = () => {
             navigate(ERoute.LOGIN);
           }}
         >
-          <LogoutOutlined className="mr-2" />
+          <LogoutOutlined className="mr-2" style={{ color: EColors.primary }} />
           Log Out
         </span>
       ),
@@ -53,18 +50,21 @@ const TopNavBar = () => {
   ];
 
   return (
-    <div className="flex justify-between ">
+    <div
+      className="flex justify-between content-center my-2"
+      style={{ borderBottom: `1px solid ${EColors.gray_4}` }}
+    >
       <div
         onClick={() => navigate(ERoute.ROOT)}
-        className="mr-4 mt-3 text-2xl hidden md:block cursor-pointer"
+        className="ml-4 text-2xl hidden md:block cursor-pointer mb-4"
       >
         Charlie Glass Admin
       </div>
       <div className="md:hidden">
-        <Dropdown menu={{ items: screenItems }} className="mb-2 mt-4">
+        <Dropdown menu={{ items: screenItems }} className="mb-2 ">
           <a onClick={(e) => e.preventDefault()}>
             <Space>
-              <span className="">
+              <span className="ml-1">
                 <MenuOutlined />
               </span>
             </Space>
@@ -73,26 +73,30 @@ const TopNavBar = () => {
       </div>
       <div
         onClick={() => navigate(ERoute.ROOT)}
-        className="mr-4 mt-3 text-2xl md:hidden cursor-pointer"
+        className=" text-2xl md:hidden cursor-pointer"
       >
-        CGI
+        <div className="w-7">
+          <img src="/logo2small.png " alt="charlie glass logo" />
+        </div>
       </div>
 
       <div>
-        <Dropdown menu={{ items }} className="mb-2 mt-4">
+        <Dropdown menu={{ items }} className="mb-2 mt-4 mr-2">
           <a onClick={(e) => e.preventDefault()}>
             <Space>
               <span className="">
                 <Avatar
                   size="small"
-                  className="mr-1 self-center"
+                  className=" self-center mr-1"
                   style={{ backgroundColor: EColors.primary }}
                   icon={<UserOutlined style={{ color: EColors.white }} />}
                 />
 
-                <div className="hidden md:inline">{`${user.userName}`}</div>
+                <div className="hidden mr-4 my-2 lg:inline align-middle">
+                  {user.userName}
+                  <DownOutlined className="mt-1" />
+                </div>
               </span>
-              <DownOutlined />
             </Space>
           </a>
         </Dropdown>
