@@ -8,7 +8,7 @@ export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
   return (
     <Card
       onClick={handleClick(listing)}
-      style={{ borderColor: `${EColors.primary}` }}
+      style={{ borderTopColor: `${EColors.primary}` }}
       className="border-t-8 "
       title={
         <div className="flex justify-between">
@@ -47,7 +47,7 @@ export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
     >
       <div className="flex justify-center">
         <div className="grid grid-cols-1">
-          <div className="justify-self-center">{listing?.receiver_name}</div>
+          <div className="justify-self-center text-xl mb-2">{listing?.receiver_name}</div>
           <div>
             Creation Date: {formatTimestampDate(listing?.creation_date)}
           </div>

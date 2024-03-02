@@ -190,6 +190,7 @@ const Invoice = (): JSX.Element => {
         <div className="flex gap-5" onClick={() => handleClick(record)}>
           <Tooltip title="View">
             <EyeOutlined
+              className="hidden lg:block"
               style={{
                 fontSize: "1.2rem",
                 cursor: "pointer",
@@ -225,13 +226,13 @@ const Invoice = (): JSX.Element => {
       {!isCreateScreenOpen ? (
         <div className="w-6/8 ">
           <div className="flex justify-end  "></div>
-          <div className="my-3 md:hidden">
+          <div className="my-3 lg:hidden">
             <SecondaryButton onClick={showFiltersModal}>
               <FilterOutlined />
               Apply Filters
             </SecondaryButton>
           </div>
-          <div className="w-full mb-4 mr-3 hidden  md:flex">
+          <div className="w-full mb-4 mr-3 hidden  lg:flex">
             <RangePicker
               onChange={onRangeFilterChange}
               value={
