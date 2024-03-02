@@ -52,7 +52,7 @@ function Profit({ row }: any) {
         </div>
       </div>
       <div className=" gap-8 w-10/12 grid grid-cols-3 m-auto mt-1">
-        <div className="flex justify-center text-center">
+        <div className="flex justify-center ">
           <div>
             Revenue
             <div>
@@ -62,7 +62,7 @@ function Profit({ row }: any) {
             </div>
           </div>
         </div>
-        <div className="flex justify-center text-center">
+        <div className="flex justify-center ">
           <div>
             Expense
             <div>
@@ -72,7 +72,7 @@ function Profit({ row }: any) {
             </div>
           </div>
         </div>
-        <div className="flex justify-center text-center">
+        <div className="flex justify-center ">
           <div>
             Profit
             <div>
