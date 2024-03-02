@@ -30,6 +30,7 @@ import Spinner from "../../components/ant-design/Spinner";
 import { uniqueId } from "lodash";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
 import { NewMobileCard } from "./ListingCards";
+import FiltersModal from "../../modals/invoice/FiltersModal";
 
 const initialState = {
   fromDate: null,
@@ -50,6 +51,14 @@ const Invoice = (): JSX.Element => {
   };
   const closeSignModal = () => {
     setSignModalOpen(false);
+  };
+
+  const [isFilterModalOpen, setFilterModalOpen] = useState(false);
+  const showFiltersModal = () => {
+    setFilterModalOpen(true);
+  };
+  const closeFiltersModal = () => {
+    setFilterModalOpen(false);
   };
 
   const { data, isLoading }: any = useGetAllInvoices(input);
@@ -206,18 +215,23 @@ const Invoice = (): JSX.Element => {
     },
   ];
 
+  function handleFilterSubmit() {
+    setInput(filters);
+    closeFiltersModal();
+  }
+
   return (
     <>
       {!isCreateScreenOpen ? (
         <div className="w-6/8 ">
           <div className="flex justify-end  "></div>
-          <div className="my-2">
-            <SecondaryButton>
+          <div className="my-3 md:hidden">
+            <SecondaryButton onClick={showFiltersModal}>
               <FilterOutlined />
               Apply Filters
             </SecondaryButton>
           </div>
-          <div className="mb-4 hidden ">
+          <div className="w-full mb-4 mr-3 hidden  md:flex">
             <RangePicker
               onChange={onRangeFilterChange}
               value={
@@ -228,20 +242,20 @@ const Invoice = (): JSX.Element => {
             />
             <Input
               addonBefore="Id"
-              className="w-72 mx-2"
+              className=" mx-2 w-28"
               onChange={onFilterChange("invoice_id")}
             />
             <span className="mx-2">
               <Input
                 addonBefore="Name"
-                className="w-72"
+                className="w-60"
                 onChange={onFilterChange("name")}
               />
             </span>
             <span className="mx-2">
               <Selector
                 onChange={handleSelectFilter("isSigned")}
-                className="w-40"
+                className="w-full"
                 defaultValue="All"
                 style={{ width: 120 }}
                 options={[
@@ -252,7 +266,7 @@ const Invoice = (): JSX.Element => {
               />
             </span>
             <span>
-              <SearchButton className="" onClick={() => setInput(filters)} />
+              <SearchButton className="" onClick={handleFilterSubmit} />
             </span>
           </div>
           <div className="flex justify-center md:hidden ">
@@ -290,6 +304,13 @@ const Invoice = (): JSX.Element => {
             isModalOpen={isModalOpen}
             pdf={pdfData?.data?.content}
             isLoading={pdfLoading}
+          />
+          <FiltersModal
+            closeFiltersModal={closeFiltersModal}
+            isFilterModalOpen={isFilterModalOpen}
+            onFilterChange={onFilterChange}
+            handleSelectFilter={handleSelectFilter}
+            handleFilterSubmit={handleFilterSubmit}
           />
         </div>
       ) : (

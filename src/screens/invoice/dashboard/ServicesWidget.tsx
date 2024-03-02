@@ -1,4 +1,4 @@
-import { Column } from "@ant-design/plots";
+import { Column, Bar } from "@ant-design/plots";
 
 import useGetReportServices from "../../../hooks/reports/useGetReportServices";
 
@@ -29,9 +29,18 @@ export default function ServicesWidget({ input }: any) {
           <Empty />
         </div>
       ) : (
-        <Spinner spinning={isLoading}>
-          <Column {...config} />
-        </Spinner>
+        <>
+          <div className="xl:hidden">
+            <Spinner spinning={isLoading}>
+              <Column {...config} />
+            </Spinner>
+          </div>
+          <div className=" hidden xl:block">
+            <Spinner spinning={isLoading}>
+              <Bar {...config} />
+            </Spinner>
+          </div>
+        </>
       )}
     </div>
   );
