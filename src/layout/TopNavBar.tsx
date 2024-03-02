@@ -53,7 +53,7 @@ const TopNavBar = () => {
         Charlie Glass Admin
       </div>
       <div className="md:hidden">
-        <Dropdown menu={{ items: screenItems }} className="mb-2 4">
+        <Dropdown menu={{ items: screenItems }} className="mb-2 ">
           <a onClick={(e) => e.preventDefault()}>
             <Space>
               <span className="ml-1">
