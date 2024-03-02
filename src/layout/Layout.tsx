@@ -4,6 +4,7 @@ import Login from "../screens/login/LogIn";
 import { useContext } from "react";
 import { Context } from "../context";
 import { Content } from "antd/es/layout/layout";
+import { EColors } from "../util/enums/colors";
 
 const Layout = () => {
   const { user }: any = useContext(Context);
@@ -12,7 +13,7 @@ const Layout = () => {
       {user?.userId !== 0 && !user?.userId ? (
         <Login />
       ) : (
-        <>
+        <div style={{ borderTop: `.5rem solid ${EColors.primary}` }}>
           <TopNavBar />
           <main className="flex">
             {/* <Sidebar /> */}
@@ -20,7 +21,7 @@ const Layout = () => {
               <Outlet />
             </Content>
           </main>
-        </>
+        </div>
       )}
     </>
   );

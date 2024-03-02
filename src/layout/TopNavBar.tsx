@@ -6,7 +6,12 @@ import setLocalStorage from "../hooks/localstorage/setLocalStorage";
 import ELocalStorage from "../util/enums/localStorage";
 import { ERoute } from "../util/enums/routes";
 import { EColors } from "../util/enums/colors";
-import { LogoutOutlined, UserOutlined, MenuOutlined } from "@ant-design/icons";
+import {
+  LogoutOutlined,
+  UserOutlined,
+  MenuOutlined,
+  DownOutlined,
+} from "@ant-design/icons";
 import { MenuProps, Dropdown, Space } from "antd";
 
 const TopNavBar = () => {
@@ -24,7 +29,7 @@ const TopNavBar = () => {
             navigate(ERoute.LOGIN);
           }}
         >
-          <LogoutOutlined className="mr-2" />
+          <LogoutOutlined className="mr-2" style={{ color: EColors.primary }} />
           Log Out
         </span>
       ),
@@ -45,7 +50,10 @@ const TopNavBar = () => {
   ];
 
   return (
-    <div className="flex justify-between content-center my-2">
+    <div
+      className="flex justify-between content-center my-2"
+      style={{ borderBottom: `1px solid ${EColors.gray_4}` }}
+    >
       <div
         onClick={() => navigate(ERoute.ROOT)}
         className="ml-4 text-2xl hidden md:block cursor-pointer mb-4"
@@ -79,12 +87,15 @@ const TopNavBar = () => {
               <span className="">
                 <Avatar
                   size="small"
-                  className=" self-center"
+                  className=" self-center mr-1"
                   style={{ backgroundColor: EColors.primary }}
                   icon={<UserOutlined style={{ color: EColors.white }} />}
                 />
 
-                <div className="hidden mr-4 mt-3 md:inline">{`${user.userName}`}</div>
+                <div className="hidden mr-4 my-2 lg:inline align-middle">
+                  {user.userName}
+                  <DownOutlined className="mt-1" />
+                </div>
               </span>
             </Space>
           </a>

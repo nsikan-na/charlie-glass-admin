@@ -226,7 +226,7 @@ const Invoice = (): JSX.Element => {
     <>
       {!isCreateScreenOpen ? (
         <div className="w-6/8 ">
-          <div className="lg:flex justify-end  hidden">
+          <div className="lg:flex justify-end  hidden mb-2">
             <PrimaryButton
               className=""
               onClick={() => {
