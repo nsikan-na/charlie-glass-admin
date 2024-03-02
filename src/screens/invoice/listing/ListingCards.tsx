@@ -47,7 +47,9 @@ export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
     >
       <div className="flex justify-center">
         <div className="grid grid-cols-1">
-          <div className="justify-self-center text-xl mb-2">{listing?.receiver_name}</div>
+          <div className="justify-self-center text-xl mb-2">
+            {listing?.receiver_name}
+          </div>
           <div>
             Creation Date: {formatTimestampDate(listing?.creation_date)}
           </div>

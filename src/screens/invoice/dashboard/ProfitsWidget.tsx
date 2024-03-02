@@ -56,7 +56,7 @@ function Profit({ row }: any) {
           <div>
             Revenue
             <div>
-              <Tag color="blue" className="md:text-xl ">
+              <Tag color="blue" className="md:text-lg ">
                 {row.revenue}
               </Tag>
             </div>
@@ -66,7 +66,7 @@ function Profit({ row }: any) {
           <div>
             Expense
             <div>
-              <Tag color="red" className="md:text-xl">
+              <Tag color="red" className="md:text-lg">
                 {row.expense}
               </Tag>
             </div>
@@ -76,7 +76,7 @@ function Profit({ row }: any) {
           <div>
             Profit
             <div>
-              <Tag className="md:text-xl" color="green">
+              <Tag className="md:text-lg" color="green">
                 {row.profit}
               </Tag>
             </div>
@@ -94,7 +94,7 @@ function Totals({ data }: any) {
         <div>
           Revenue
           <div>
-            <Tag color="blue" className="md:text-xl">
+            <Tag color="blue" className="md:text-lg">
               {decimalThousandsCommaSeparated(
                 data?.data?.content?.totalRevenue,
               )}
@@ -106,7 +106,7 @@ function Totals({ data }: any) {
         <div>
           Expense
           <div>
-            <Tag color="red" className="md:text-xl">
+            <Tag color="red" className="md:text-lg">
               {decimalThousandsCommaSeparated(
                 data?.data?.content?.totalExpense,
               )}
@@ -118,7 +118,7 @@ function Totals({ data }: any) {
         <div>
           Profit
           <div>
-            <Tag color="green" className="md:text-xl">
+            <Tag color="green" className="md:text-lg">
               {decimalThousandsCommaSeparated(data?.data?.content?.totalProfit)}
             </Tag>
           </div>
