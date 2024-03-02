@@ -31,6 +31,7 @@ import { uniqueId } from "lodash";
 import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton";
 import { NewMobileCard } from "./ListingCards";
 import FiltersModal from "../../modals/invoice/FiltersModal";
+import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
 
 const initialState = {
   fromDate: null,
@@ -225,6 +226,16 @@ const Invoice = (): JSX.Element => {
     <>
       {!isCreateScreenOpen ? (
         <div className="w-6/8 ">
+          <div className="lg:flex justify-end  hidden">
+            <PrimaryButton
+              className=""
+              onClick={() => {
+                setIsCreateScreenOpen(true);
+              }}
+            >
+              Create New Quote
+            </PrimaryButton>
+          </div>
           <div className="flex justify-end  "></div>
           <div className="my-3 lg:hidden">
             <SecondaryButton onClick={showFiltersModal}>
