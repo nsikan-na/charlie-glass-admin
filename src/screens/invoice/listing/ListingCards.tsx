@@ -1,10 +1,10 @@
 import { Card, Tag } from "antd";
 import Tooltip from "../../components/ant-design/Tooltip";
 import { EColors } from "../../../util/enums/colors";
-import { EditOutlined, FileOutlined } from "@ant-design/icons";
+import { FileOutlined } from "@ant-design/icons";
 import { formatTimestampDate } from "../../../util/helpers";
 
-export function NewMobileCard({ listing, showSignModal }: any) {
+export function NewMobileCard({ listing }: any) {
   return (
     <Card
       style={{ borderTopColor: `${EColors.primary}` }}
