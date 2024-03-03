@@ -61,6 +61,9 @@ const Invoice = (): JSX.Element => {
   const closeFiltersModal = () => {
     setFilterModalOpen(false);
   };
+  useEffect(() => {
+    console.log(currentInvoice);
+  }, [currentInvoice]);
 
   const { data, isLoading }: any = useGetAllInvoices(input);
 
@@ -236,7 +239,6 @@ const Invoice = (): JSX.Element => {
               Create New Quote
             </PrimaryButton>
           </div>
-          <div className="flex justify-end  "></div>
           <div className="my-3 lg:hidden">
             <SecondaryButton onClick={showFiltersModal}>
               <FilterOutlined />
@@ -292,7 +294,6 @@ const Invoice = (): JSX.Element => {
                     showSignModal={showSignModal}
                     showModal={showModal}
                     setCurrentInvoice={setCurrentInvoice}
-                    handleClick={handleClick}
                   />
                 ))}
               </div>

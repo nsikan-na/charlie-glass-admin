@@ -4,10 +4,9 @@ import { EColors } from "../../../util/enums/colors";
 import { EditOutlined, FileOutlined } from "@ant-design/icons";
 import { formatTimestampDate } from "../../../util/helpers";
 
-export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
+export function NewMobileCard({ listing, showSignModal }: any) {
   return (
     <Card
-      onClick={handleClick(listing)}
       style={{ borderTopColor: `${EColors.primary}` }}
       className="border-t-8 "
       title={
@@ -23,23 +22,16 @@ export function NewMobileCard({ listing, showSignModal, handleClick }: any) {
               </Tooltip>
             )}
           </div>
-          <div className="text-2xl">#{listing?.invoice_id}</div>
+          <div className="text-xl">{listing?.invoice_id}</div>
           <div>
             {listing?.signature_date ? (
               <div>
                 <Tag color="green">{listing?.profit}</Tag>
               </div>
             ) : (
-              <Tooltip title="Sign">
-                <EditOutlined
-                  onClick={showSignModal}
-                  style={{
-                    fontSize: "1.2rem",
-                    cursor: "pointer",
-                    color: EColors.primary,
-                  }}
-                />
-              </Tooltip>
+              <div>
+                <Tag color="red">{listing?.revenue}</Tag>
+              </div>
             )}
           </div>
         </div>
