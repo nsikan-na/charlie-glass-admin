@@ -17,7 +17,6 @@ export default function SignModal({
   closeSignModal,
   currentInvoice,
 }: any) {
-  console.log(currentInvoice);
   const [input, setInput] = useState<any>(initialState);
   const handleInputChange = (key: string) => (e: any) => {
     setInput((i: any) => ({ ...i, [key]: e.target.value }));

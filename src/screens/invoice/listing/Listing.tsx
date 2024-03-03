@@ -15,9 +15,11 @@ import {
   EyeOutlined,
   FileOutlined,
   FilterOutlined,
+  DeleteOutlined,
+  CloseCircleOutlined,
 } from "@ant-design/icons";
 import { formatTimestampDate } from "../../../util/helpers";
-import { Tag } from "antd";
+import { Modal, Tag } from "antd";
 import { EColors } from "../../../util/enums/colors";
 
 import CreateNewInvoice from "../create-new-invoice/CreateNewInvoice";
@@ -32,6 +34,7 @@ import SecondaryButton from "../../components/ant-design/buttons/SecondaryButton
 import { NewMobileCard } from "./ListingCards";
 import FiltersModal from "../../modals/invoice/FiltersModal";
 import PrimaryButton from "../../components/ant-design/buttons/PrimaryButton";
+import useDeleteInvoice from "../../../hooks/invoices/useDeleteQuote";
 
 const initialState = {
   fromDate: null,
@@ -40,7 +43,7 @@ const initialState = {
 
 const Invoice = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentInvoice, setCurrentInvoice] = useState(null);
+  const [currentInvoice, setCurrentInvoice] = useState<any>(null);
   const [input, setInput] = useState<any>(initialState);
   const [filters, setFilters] = useState<any>(initialState);
   const { getQuery } = useQueryParam();
@@ -61,9 +64,6 @@ const Invoice = (): JSX.Element => {
   const closeFiltersModal = () => {
     setFilterModalOpen(false);
   };
-  useEffect(() => {
-    console.log(currentInvoice);
-  }, [currentInvoice]);
 
   const { data, isLoading }: any = useGetAllInvoices(input);
 
@@ -102,6 +102,33 @@ const Invoice = (): JSX.Element => {
     setFilters(initialState);
     setInput(initialState);
   }, [getQuery(invoiceTabKey)]);
+
+  const deleteInvoice = useDeleteInvoice(currentInvoice, () => {
+    setInput(initialState);
+    closeSignModal();
+  });
+
+  const handleDeleteIconClick = (invoice: any) => () => {
+    Modal.confirm({
+      title: `Do you want to delete invoice ${invoice?.invoice_id}?`,
+      icon: <CloseCircleOutlined style={{ color: EColors.red_6 }} />,
+      onOk: () => {
+        console.log("Ok");
+        deleteInvoice.mutate(invoice?.invoice_id);
+      },
+      okText: "Delete",
+      okButtonProps: {
+        style: { backgroundColor: EColors.primary, color: "white" },
+      },
+      cancelButtonProps: {
+        style: {
+          backgroundColor: "white",
+          color: EColors.primary,
+          borderColor: EColors.primary,
+        },
+      },
+    });
+  };
 
   const columns: any["columns"] = [
     {
@@ -196,7 +223,7 @@ const Invoice = (): JSX.Element => {
             <EyeOutlined
               className="hidden lg:block"
               style={{
-                fontSize: "1.2rem",
+                fontSize: "1.1rem",
                 cursor: "pointer",
                 color: EColors.primary,
               }}
@@ -208,13 +235,23 @@ const Invoice = (): JSX.Element => {
               <EditOutlined
                 onClick={showSignModal}
                 style={{
-                  fontSize: "1.2rem",
+                  fontSize: "1.1rem",
                   cursor: "pointer",
                   color: EColors.primary,
                 }}
               />
             </Tooltip>
           ) : null}
+          <Tooltip title="Delete">
+            <DeleteOutlined
+              onClick={handleDeleteIconClick(record)}
+              style={{
+                fontSize: "1.1rem",
+                cursor: "pointer",
+                color: EColors.red_6,
+              }}
+            />
+          </Tooltip>
         </div>
       ),
     },
