@@ -70,7 +70,7 @@ const Login: React.FC = () => {
                 checkLogin.mutate(demoLogin);
               }}
             >
-              <a className="mb-4">Log In As Demo User</a>
+              <a className="mb-4">Click Here To Log In As Demo User</a>
             </div>
           </Form>
         </div>
