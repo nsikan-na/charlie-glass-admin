@@ -174,10 +174,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
                   >{`_______________________________________________________________________`}</Text>
                 </View>
                 {items?.map(
-                  (
-                    { item_description, item_price, item_quantity }: any,
-                    idx: number,
-                  ) => (
+                  ({ description, price, quantity }: any, idx: number) => (
                     <View key={uniqueId()}>
                       <View
                         style={{
@@ -188,10 +185,10 @@ const PdfTemplate = ({ invoiceData }: any) => {
                         }}
                       >
                         <Text style={{ flex: 1 }}>{idx + 1}.</Text>
-                        <Text style={{ flex: 3 }}>{item_description}</Text>
+                        <Text style={{ flex: 3 }}>{description}</Text>
                         <Text style={{ flex: 1 }}></Text>
-                        <Text style={{ flex: 1 }}>x{item_quantity}</Text>
-                        <Text style={{ flex: 1 }}>{`$${item_price}`}</Text>
+                        <Text style={{ flex: 1 }}>x{quantity}</Text>
+                        <Text style={{ flex: 1 }}>{`$${price}`}</Text>
                       </View>
                       <View
                         style={{
