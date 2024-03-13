@@ -33,10 +33,10 @@ const PdfTemplate = ({ invoiceData }: any) => {
     items,
     receiver_name,
     creation_date,
-    receiver_street,
-    receiver_city,
-    receiver_state,
-    receiver_zip,
+    street,
+    city,
+    state,
+    zip,
     signature_date,
   } = invoiceData;
 
@@ -122,13 +122,11 @@ const PdfTemplate = ({ invoiceData }: any) => {
               <View style={{ flex: 4, fontSize: 12 }}>
                 <Text style={{ margin: "5 0" }}>Ship To:</Text>
                 <Text style={{ margin: "5 0" }}>{receiver_name}</Text>
-                <Text style={{ margin: "5 0" }}>{receiver_street}</Text>
+                <Text style={{ margin: "5 0" }}>{street}</Text>
                 <Text style={{ margin: "5 0" }}>
-                  {receiver_city}, {receiver_state}
+                  {city}, {state}
                 </Text>
-                <Text style={{ margin: "5 0" }}>
-                  {receiver_zip}, United States
-                </Text>
+                <Text style={{ margin: "5 0" }}>{zip}, United States</Text>
               </View>
 
               <View style={{ flex: 1, fontSize: 12 }}>
