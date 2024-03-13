@@ -42,7 +42,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
 
   const total = decimalThousandsCommaSeparated(
     items
-      ?.map((item: any) => Number(item.item_price))
+      ?.map((item: any) => Number(item.price))
       .reduce((acc: any, cur: any) => {
         acc += cur;
         return acc;
