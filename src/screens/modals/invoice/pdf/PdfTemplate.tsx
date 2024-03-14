@@ -229,7 +229,7 @@ const PdfTemplate = ({ invoiceData }: any) => {
               <Text style={{ marginRight: 10, fontSize: 10 }}>
                 {invoiceData.isSigned === 0
                   ? " x_______________________"
-                  : "Thank you for your bussiness"}
+                  : "Thank you for your business"}
               </Text>
             </View>
           </View>
