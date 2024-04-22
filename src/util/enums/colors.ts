@@ -12,7 +12,7 @@ export const EColors = {
   red_1: "#FFF1F0",
   red_3: "#FFA39E",
   red_6: "#F5222D",
-  primary: "#fab005",
+  primary: "#21abce",
   bgSelected: "#f0feff",
   bgHover: "#f0feff",
   white: "#fff",
